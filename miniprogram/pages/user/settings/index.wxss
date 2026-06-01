@@ -1,0 +1,39 @@
+.settings-page {
+  padding: var(--space-4);
+}
+
+.settings-list {
+  padding: 0;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5);
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-label {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+.settings-value {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.settings-arrow {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.logout-wrap {
+  margin-top: var(--space-10);
+  padding: 0 var(--space-4);
+}

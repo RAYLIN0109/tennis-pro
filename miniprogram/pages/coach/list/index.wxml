@@ -1,0 +1,93 @@
+<view class="coach-list-page page-container">
+  <!-- Search -->
+  <view class="search-wrap">
+    <search-bar
+      placeholder="搜索教练姓名、专长..."
+      value="{{searchValue}}"
+      bind:search="onSearch"
+      bind:change="onSearchChange"
+    />
+  </view>
+
+  <!-- Sort -->
+  <view class="sort-bar" bindtap="toggleSortPanel">
+    <text class="sort-label">
+      {{sortOptions[0].value === sortBy ? sortOptions[0].label : ''}}
+      {{sortOptions[1].value === sortBy ? sortOptions[1].label : ''}}
+      {{sortOptions[2].value === sortBy ? sortOptions[2].label : ''}}
+      {{sortOptions[3].value === sortBy ? sortOptions[3].label : ''}}
+    </text>
+    <text class="sort-arrow">{{showSortPanel ? '▲' : '▼'}}</text>
+  </view>
+
+  <!-- Sort Panel -->
+  <view wx:if="{{showSortPanel}}" class="sort-panel">
+    <view
+      wx:for="{{sortOptions}}"
+      wx:key="value"
+      class="sort-option {{sortBy === item.value ? 'sort-option-active' : ''}}"
+      data-value="{{item.value}}"
+      bindtap="onSortChange"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <!-- Coach List -->
+  <view class="coach-list">
+    <view
+      wx:for="{{list}}"
+      wx:key="_id"
+      class="coach-card card"
+      data-id="{{item._id}}"
+      bindtap="goCoachDetail"
+    >
+      <view class="coach-row">
+        <image
+          class="coach-avatar"
+          src="{{item.user_info.avatar_url || '/common/images/default-avatar.png'}}"
+          mode="aspectFill"
+        />
+        <view class="coach-info">
+          <view class="coach-name-row">
+            <text class="coach-name">{{item.real_name || item.user_info.nickname || '教练'}}</text>
+            <view wx:if="{{item.status === 'active'}}" class="badge badge-accent verified-badge">已认证</view>
+          </view>
+          <view class="coach-tags">
+            <text wx:for="{{item.specialties}}" wx:for-item="tag" wx:key="*this" class="coach-tag" wx:if="{{index < 3}}">{{tag}}</text>
+          </view>
+          <view class="coach-meta">
+            <rating-stars value="{{item.rating}}" size="sm" readonly="{{true}}" />
+            <text class="meta-text">{{item.rating > 0 ? item.ratingText || item.rating : '暂无评分'}}</text>
+            <text wx:if="{{item.teaching_years}}" class="meta-dot">·</text>
+            <text wx:if="{{item.teaching_years}}" class="meta-text">{{item.teaching_years}}年教龄</text>
+          </view>
+        </view>
+        <view class="coach-price">
+          <price-display amount="{{item.hourly_rate}}" size="sm" suffix="/时" />
+        </view>
+      </view>
+      <view wx:if="{{item.bio}}" class="coach-bio line-clamp-1">{{item.bio}}</view>
+    </view>
+
+    <!-- Loading -->
+    <view wx:if="{{loading && list.length === 0}}" class="loading-wrap">
+      <skeleton-loader type="card" rows="{{3}}" />
+    </view>
+
+    <!-- Load more -->
+    <view wx:elif="{{loading}}" class="load-more">
+      <text class="load-more-text">加载中...</text>
+    </view>
+    <view wx:elif="{{!hasMore && list.length > 0}}" class="load-more">
+      <text class="load-more-text">没有更多了</text>
+    </view>
+
+    <!-- Empty -->
+    <empty-state
+      wx:if="{{!loading && list.length === 0}}"
+      title="暂无教练"
+      description="当前条件下没有找到教练"
+    />
+  </view>
+</view>

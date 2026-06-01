@@ -1,0 +1,227 @@
+.detail-page {
+  padding: var(--space-4);
+  padding-bottom: 32rpx;
+}
+
+/* Hero */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-8) var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.hero-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  margin-bottom: var(--space-4);
+}
+
+.hero-name {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.hero-badges {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: var(--space-4);
+}
+
+.hero-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12rpx;
+}
+
+.specialty-tag {
+  font-size: var(--text-sm);
+  color: var(--accent);
+  background-color: var(--accent-light);
+  padding: 4rpx 20rpx;
+  border-radius: var(--radius-full);
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.stat-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.stat-desc {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-top: 4rpx;
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background-color: var(--border-light);
+}
+
+/* Price */
+.price-card {
+  margin-bottom: var(--space-4);
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trial-row {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1rpx solid var(--border-light);
+}
+
+.price-label {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+/* Bio */
+.bio-section, .cert-section, .schedule-section, .reviews-section {
+  margin-bottom: var(--space-4);
+}
+
+.bio-text {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.cert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.cert-item {
+  font-size: var(--text-sm);
+  color: var(--accent);
+  background-color: var(--accent-light);
+  padding: 4rpx 20rpx;
+  border-radius: var(--radius-full);
+}
+
+/* Schedule */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.section-more {
+  font-size: var(--text-sm);
+  color: var(--accent);
+}
+
+.date-scroll {
+  white-space: nowrap;
+  margin-bottom: var(--space-4);
+}
+
+.date-tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+  height: 100rpx;
+  border-radius: var(--radius-md);
+  margin-right: 16rpx;
+  background-color: var(--bg-secondary);
+  white-space: pre-line;
+  text-align: center;
+}
+
+.date-tab-active {
+  background-color: var(--accent);
+}
+
+.date-tab-active .date-label {
+  color: var(--accent-contrast);
+}
+
+.date-label {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.slots-wrap {
+  margin-top: var(--space-3);
+}
+
+/* Reviews */
+.no-reviews {
+  padding: var(--space-5) 0;
+  text-align: center;
+}
+
+.no-reviews-text {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.review-item {
+  padding: var(--space-4) 0;
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.review-date {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.review-content {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* Bottom Bar */
+.bottom-info {
+  flex: 1;
+}
+
+.bottom-btn {
+  padding: 0 48rpx;
+  height: 80rpx;
+  font-size: var(--text-md);
+}

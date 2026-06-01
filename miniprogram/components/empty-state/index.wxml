@@ -1,0 +1,16 @@
+<view class="empty-state custom-class">
+  <image
+    wx:if="{{icon}}"
+    class="empty-icon"
+    src="{{icon}}"
+    mode="aspectFit"
+  />
+  <view wx:else class="empty-icon-placeholder">
+    <text class="empty-emoji">🎾</text>
+  </view>
+  <text class="empty-title">{{title}}</text>
+  <text wx:if="{{description}}" class="empty-desc">{{description}}</text>
+  <view wx:if="{{actionText}}" class="empty-action btn btn-sm btn-primary" bindtap="onAction">
+    {{actionText}}
+  </view>
+</view>

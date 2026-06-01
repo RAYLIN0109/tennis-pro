@@ -1,0 +1,66 @@
+<view class="order-list-page page-container">
+  <!-- Tabs -->
+  <view class="tab-bar">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab-item {{currentTab === index ? 'tab-active' : ''}}"
+      data-index="{{index}}"
+      bindtap="onTabChange"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <!-- Order List -->
+  <view class="order-list">
+    <view
+      wx:for="{{list}}"
+      wx:key="_id"
+      class="order-card card"
+      data-id="{{item._id}}"
+      bindtap="goDetail"
+    >
+      <!-- Top: order no + status -->
+      <view class="order-top">
+        <text class="order-no">{{item.order_no}}</text>
+        <status-badge status="{{item.status}}" />
+      </view>
+
+      <!-- Middle: resource info -->
+      <view class="order-mid">
+        <view class="order-resource">
+          <image
+            class="order-avatar"
+            src="{{item.resource_snapshot.avatar || '/common/images/default-avatar.png'}}"
+            mode="aspectFill"
+          />
+          <view class="order-resource-info">
+            <text class="order-resource-name">{{item.resource_snapshot.name || item.resource_info.name || '未知'}}</text>
+            <text class="order-type">{{item.typeLabel}}</text>
+          </view>
+        </view>
+        <view class="order-time">
+          <text class="order-date">{{item.date}} {{item.time_range.start}}-{{item.time_range.end}}</text>
+        </view>
+      </view>
+
+      <!-- Bottom: price + actions -->
+      <view class="order-bottom">
+        <text class="order-price">{{item.priceText}}</text>
+        <view class="order-actions" catchtap="">
+          <view wx:if="{{item.status === 'pending_payment'}}" class="btn btn-sm btn-ghost" catchtap="onCancel" data-id="{{item._id}}">取消</view>
+          <view wx:if="{{item.status === 'pending_payment'}}" class="btn btn-sm btn-primary" catchtap="goPay" data-id="{{item._id}}">去付款</view>
+          <view wx:if="{{item.status === 'completed' && !item.reviewed}}" class="btn btn-sm btn-secondary" catchtap="goReview" data-id="{{item._id}}">去评价</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{loading && list.length === 0}}">
+      <skeleton-loader type="list" rows="{{5}}" />
+    </view>
+    <view wx:elif="{{loading}}" class="load-more"><text class="load-more-text">加载中...</text></view>
+    <view wx:elif="{{!hasMore && list.length > 0}}" class="load-more"><text class="load-more-text">没有更多了</text></view>
+    <empty-state wx:if="{{!loading && list.length === 0}}" title="暂无订单" description="预约教练或场地后，订单将出现在这里" />
+  </view>
+</view>

@@ -1,0 +1,131 @@
+<view class="detail-page page-container">
+  <skeleton-loader wx:if="{{loading}}" type="detail" />
+
+  <block wx:elif="{{coach}}">
+    <!-- Hero Section -->
+    <view class="hero-section card">
+      <image
+        class="hero-avatar"
+        src="{{coach.user_info.avatar_url || '/common/images/default-avatar.png'}}"
+        mode="aspectFill"
+      />
+      <text class="hero-name">{{coach.real_name || '教练'}}</text>
+      <view class="hero-badges">
+        <view wx:if="{{coach.status === 'active'}}" class="badge badge-accent">已认证</view>
+        <view wx:if="{{coach.teaching_years}}" class="badge badge-info">{{coach.teaching_years}}年教龄</view>
+      </view>
+      <view class="hero-specialties">
+        <text wx:for="{{coach.specialties}}" wx:key="*this" class="specialty-tag">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- Stats Row -->
+    <view class="stats-row card">
+      <view class="stat-col">
+        <text class="stat-value">{{coach.total_students || 0}}</text>
+        <text class="stat-desc">学员</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-col">
+        <text class="stat-value">{{coach.review_count || 0}}</text>
+        <text class="stat-desc">评价</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-col">
+        <rating-stars value="{{coach.rating || 0}}" size="sm" readonly="{{true}}" />
+        <text class="stat-desc">{{coach.rating > 0 ? (coach.ratingText || coach.rating) : '暂无'}}</text>
+      </view>
+    </view>
+
+    <!-- Price Card -->
+    <view class="price-card card">
+      <view class="price-row">
+        <text class="price-label">课时费</text>
+        <price-display amount="{{coach.hourly_rate}}" size="md" suffix="/小时" />
+      </view>
+      <view wx:if="{{coach.trial_rate}}" class="price-row trial-row">
+        <text class="price-label">体验课</text>
+        <price-display amount="{{coach.trial_rate}}" size="sm" suffix="/节" />
+      </view>
+    </view>
+
+    <!-- Bio -->
+    <view wx:if="{{coach.bio}}" class="bio-section card">
+      <text class="section-title">个人简介</text>
+      <text class="bio-text">{{coach.bio}}</text>
+    </view>
+
+    <!-- Certifications -->
+    <view wx:if="{{coach.certification_labels.length > 0}}" class="cert-section card">
+      <text class="section-title">资质证书</text>
+      <view class="cert-list">
+        <text wx:for="{{coach.certification_labels}}" wx:key="*this" class="cert-item">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- Schedule Section -->
+    <view class="schedule-section card">
+      <text class="section-title">课程时间</text>
+
+      <!-- Date Tabs -->
+      <scroll-view class="date-scroll" scroll-x enable-flex>
+        <view
+          wx:for="{{dates}}"
+          wx:key="date"
+          class="date-tab {{selectedDateIndex === index ? 'date-tab-active' : ''}}"
+          data-index="{{index}}"
+          bindtap="onDateChange"
+        >
+          <text class="date-label">{{item.label}}</text>
+        </view>
+      </scroll-view>
+
+      <!-- Time Slots -->
+      <view class="slots-wrap">
+        <time-slot-picker
+          slots="{{slots}}"
+          multi="{{true}}"
+          bind:change="onSlotChange"
+        />
+      </view>
+    </view>
+
+    <!-- Reviews Preview -->
+    <view class="reviews-section card">
+      <view class="section-header">
+        <text class="section-title">学员评价</text>
+        <text wx:if="{{reviewCount > 0}}" class="section-more" bindtap="goReviewList">
+          查看全部({{reviewCount}}) >
+        </text>
+      </view>
+
+      <view wx:if="{{recentReviews.length === 0}}" class="no-reviews">
+        <text class="no-reviews-text">暂无评价</text>
+      </view>
+
+      <view wx:for="{{recentReviews}}" wx:key="_id" class="review-item">
+        <view class="review-header">
+          <rating-stars value="{{item.rating}}" size="sm" readonly="{{true}}" />
+          <text class="review-date">{{item.created_at}}</text>
+        </view>
+        <text class="review-content">{{item.content}}</text>
+      </view>
+    </view>
+
+    <!-- Bottom Action Bar -->
+    <view class="bottom-bar safe-area-bottom">
+      <view class="bottom-info">
+        <price-display amount="{{coach.hourly_rate}}" size="md" suffix="/时" />
+      </view>
+      <view
+        class="btn btn-primary bottom-btn {{selectedSlotIndexes.length === 0 ? 'disabled' : ''}}"
+        bindtap="goBook"
+      >
+        立即预约{{selectedSlotIndexes.length > 0 ? ' (' + selectedSlotIndexes.length + '个时段)' : ''}}
+      </view>
+    </view>
+
+    <!-- Spacer for bottom bar -->
+    <view style="height: 180rpx;"></view>
+  </block>
+</view>

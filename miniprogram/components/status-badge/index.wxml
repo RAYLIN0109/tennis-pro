@@ -1,0 +1,3 @@
+<view class="status-badge custom-class">
+  <view class="badge-inner badge {{colorClass}}">{{label}}</view>
+</view>

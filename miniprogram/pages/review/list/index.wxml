@@ -1,0 +1,49 @@
+<view class="rlist-page page-container">
+  <!-- Stats -->
+  <view wx:if="{{stats}}" class="stats-card card">
+    <view class="stats-left">
+      <text class="stats-avg">{{stats.average}}</text>
+      <rating-stars value="{{stats.average}}" size="sm" readonly="{{true}}" />
+      <text class="stats-count">{{stats.count}}条评价</text>
+    </view>
+    <view class="stats-bars">
+      <view wx:for="{{[5,4,3,2,1]}}" wx:key="*this" class="bar-row">
+        <text class="bar-label">{{item}}★</text>
+        <view class="bar-track">
+          <view class="bar-fill" style="width: {{stats.count ? (stats.distribution[item] / stats.count * 100) : 0}}%;"></view>
+        </view>
+        <text class="bar-count">{{stats.distribution[item] || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Sort -->
+  <view class="sort-row">
+    <text class="sort-btn {{sortBy === 'newest' ? 'sort-active' : ''}}" data-sort="newest" bindtap="onSortChange">最新</text>
+    <text class="sort-btn {{sortBy === 'highest' ? 'sort-active' : ''}}" data-sort="highest" bindtap="onSortChange">好评</text>
+    <text class="sort-btn {{sortBy === 'lowest' ? 'sort-active' : ''}}" data-sort="lowest" bindtap="onSortChange">差评</text>
+  </view>
+
+  <!-- Reviews -->
+  <view class="review-list">
+    <view wx:for="{{list}}" wx:key="_id" class="review-card">
+      <view class="reviewer-row">
+        <image class="reviewer-avatar" src="{{item.user_info.avatar_url || '/common/images/default-avatar.png'}}" mode="aspectFill" />
+        <view class="reviewer-info">
+          <text class="reviewer-name">{{item.user_info.nickname || '用户'}}</text>
+          <view class="review-meta">
+            <rating-stars value="{{item.rating}}" size="sm" readonly="{{true}}" />
+            <text class="review-date">{{item.created_at}}</text>
+          </view>
+        </view>
+      </view>
+      <text class="review-content">{{item.content}}</text>
+      <view wx:if="{{item.images.length}}" class="review-images">
+        <image wx:for="{{item.images}}" wx:for-item="img" wx:key="*this"
+          class="review-img" src="{{img}}" mode="aspectFill"
+          data-src="{{img}}" data-urls="{{item.images}}" bindtap="previewImage" />
+      </view>
+    </view>
+    <empty-state wx:if="{{!loading && list.length === 0}}" title="暂无评价" />
+  </view>
+</view>

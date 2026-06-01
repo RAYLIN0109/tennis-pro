@@ -1,0 +1,87 @@
+.venue-list-page { padding-bottom: 32rpx; }
+.search-wrap { padding: var(--space-3) var(--space-4) 0; background-color: var(--bg-primary); }
+
+.filter-scroll {
+  white-space: nowrap;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--bg-primary);
+}
+
+.filter-chip {
+  display: inline-flex;
+  padding: 8rpx 24rpx;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  margin-right: 16rpx;
+}
+
+.filter-chip-active {
+  background-color: var(--accent-light);
+  color: var(--accent);
+}
+
+.venue-list { padding: var(--space-3) var(--space-4); }
+
+.venue-card { margin-bottom: var(--space-4); padding: var(--space-5); }
+
+.venue-row { display: flex; align-items: flex-start; }
+
+.venue-cover {
+  width: 180rpx;
+  height: 140rpx;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.venue-info {
+  flex: 1;
+  margin-left: var(--space-4);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.venue-name {
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: 4rpx;
+}
+
+.venue-address {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.venue-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.venue-tag {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  padding: 2rpx 12rpx;
+  border-radius: var(--radius-sm);
+}
+
+.venue-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.venue-price {
+  font-size: var(--text-sm);
+  color: var(--accent);
+  font-weight: var(--font-medium);
+}
+
+.load-more { padding: var(--space-5) 0; }
+.load-more-text { display: block; text-align: center; font-size: var(--text-sm); color: var(--text-tertiary); }

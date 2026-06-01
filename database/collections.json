@@ -1,0 +1,219 @@
+{
+  "collections": [
+    {
+      "name": "users",
+      "description": "用户表",
+      "fields": {
+        "_id": "string (auto)",
+        "_openid": "string (auto-injected, unique)",
+        "nickname": "string",
+        "avatar_url": "string (cloud fileID)",
+        "gender": "number (0=unknown, 1=male, 2=female)",
+        "phone": "string (encrypted)",
+        "tennis_level": "string (1.0-7.0)",
+        "bio": "string (max 200)",
+        "city": "string",
+        "location": "GeoPoint",
+        "role": "array<string> (user, coach, venue_owner)",
+        "status": "string (active, banned)",
+        "stats": "object { total_bookings, total_reviews, total_activities }",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["_openid"], "unique": true },
+        { "fields": ["city"] },
+        { "fields": ["tennis_level"] }
+      ]
+    },
+    {
+      "name": "coaches",
+      "description": "教练表",
+      "fields": {
+        "_id": "string (auto)",
+        "user_id": "string (FK -> users._id)",
+        "real_name": "string",
+        "certifications": "array<string> (cloud fileIDs)",
+        "certification_labels": "array<string>",
+        "specialties": "array<string>",
+        "teaching_years": "number",
+        "hourly_rate": "number (cents)",
+        "trial_rate": "number (cents)",
+        "service_areas": "array<object>",
+        "venue_ids": "array<string>",
+        "rating": "number (0-5)",
+        "review_count": "number",
+        "total_students": "number",
+        "bio": "string",
+        "photos": "array<string>",
+        "status": "string (pending, active, suspended)",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["user_id"], "unique": true },
+        { "fields": ["status", "city"] },
+        { "fields": ["rating"] },
+        { "fields": ["hourly_rate"] }
+      ]
+    },
+    {
+      "name": "venues",
+      "description": "场地表",
+      "fields": {
+        "_id": "string (auto)",
+        "name": "string",
+        "address": "string",
+        "city": "string",
+        "district": "string",
+        "location": "GeoPoint",
+        "contact_name": "string",
+        "contact_phone": "string (encrypted)",
+        "court_count": "number",
+        "court_types": "array<string>",
+        "courts": "array<object { id, name, type, status }>",
+        "facilities": "array<string>",
+        "price_rules": "array<object { price_per_hour(cents) }>",
+        "business_hours": "object { open, close }",
+        "photos": "array<string>",
+        "rating": "number",
+        "review_count": "number",
+        "owner_id": "string",
+        "status": "string (active, suspended)",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["city", "status"] },
+        { "fields": ["location"], "type": "2dsphere" },
+        { "fields": ["rating"] }
+      ]
+    },
+    {
+      "name": "schedules",
+      "description": "排期表（教练/场地通用）",
+      "fields": {
+        "_id": "string (auto)",
+        "resource_id": "string",
+        "resource_type": "string (coach, venue)",
+        "date": "string (YYYY-MM-DD)",
+        "slots": "array<object { slot_id, start_time, end_time, status, price(cents), booked_by, order_ref, booked_at }>",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["resource_id", "resource_type", "date"], "unique": true }
+      ]
+    },
+    {
+      "name": "activities",
+      "description": "活动表（多态）",
+      "fields": {
+        "_id": "string (auto)",
+        "type": "string (coach_booking, venue_booking, pickup_game, watch_party)",
+        "title": "string",
+        "description": "string",
+        "creator_id": "string (openid)",
+        "status": "string",
+        "start_time": "Date",
+        "end_time": "Date",
+        "location": "object",
+        "venue_id": "string",
+        "coach_id": "string",
+        "participants": "array<object>",
+        "min_participants": "number",
+        "max_participants": "number",
+        "current_count": "number",
+        "fee": "number (cents)",
+        "fee_type": "string",
+        "cover_image": "string",
+        "tags": "array<string>",
+        "extra": "object",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["type", "status"] },
+        { "fields": ["creator_id"] },
+        { "fields": ["start_time"] }
+      ]
+    },
+    {
+      "name": "orders",
+      "description": "订单表",
+      "fields": {
+        "_id": "string (auto)",
+        "order_no": "string (unique)",
+        "order_type": "string",
+        "status": "string",
+        "created_by": "string (openid)",
+        "resource_id": "string",
+        "resource_type": "string",
+        "resource_snapshot": "object",
+        "date": "string",
+        "time_range": "object { start, end }",
+        "duration_minutes": "number",
+        "total_amount": "number (cents)",
+        "paid_amount": "number (cents)",
+        "schedule_id": "string",
+        "slot_indexes": "array<number>",
+        "contact_phone": "string",
+        "notes": "string",
+        "extra": "object",
+        "paid_at": "Date",
+        "cancelled_at": "Date",
+        "cancel_reason": "string",
+        "completed_at": "Date",
+        "reviewed": "boolean",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["order_no"], "unique": true },
+        { "fields": ["created_by", "status"] },
+        { "fields": ["created_by", "order_type"] },
+        { "fields": ["schedule_id"] }
+      ]
+    },
+    {
+      "name": "reviews",
+      "description": "评价表",
+      "fields": {
+        "_id": "string (auto)",
+        "order_id": "string (unique per order)",
+        "created_by": "string (openid)",
+        "target_type": "string (coach, venue, activity)",
+        "target_id": "string",
+        "rating": "number (1-5)",
+        "content": "string (max 500)",
+        "images": "array<string>",
+        "is_anonymous": "boolean",
+        "reply": "object { content, replied_at }",
+        "status": "string (visible, hidden)",
+        "created_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["target_type", "target_id", "created_at"] },
+        { "fields": ["order_id"], "unique": true },
+        { "fields": ["created_by"] }
+      ]
+    },
+    {
+      "name": "notifications",
+      "description": "通知表",
+      "fields": {
+        "_id": "string (auto)",
+        "user_id": "string (openid)",
+        "type": "string",
+        "title": "string",
+        "content": "string",
+        "extra": "object",
+        "is_read": "boolean",
+        "created_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["user_id", "is_read", "created_at"] }
+      ]
+    }
+  ]
+}

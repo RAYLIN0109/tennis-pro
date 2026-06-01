@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/coach/list/index",
+    "pages/coach/detail/index",
+    "pages/coach/book/index",
+    "pages/venue/list/index",
+    "pages/venue/detail/index",
+    "pages/venue/book/index",
+    "pages/activity/list/index",
+    "pages/activity/detail/index",
+    "pages/activity/create/index",
+    "pages/order/list/index",
+    "pages/order/detail/index",
+    "pages/review/create/index",
+    "pages/review/list/index",
+    "pages/user/login/index",
+    "pages/user/profile/index",
+    "pages/user/edit-profile/index",
+    "pages/user/settings/index",
+    "pages/tennis-circle/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "TennisVibe",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F5F5",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#B8E600",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "common/images/tab-home.png",
+        "selectedIconPath": "common/images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/tennis-circle/index",
+        "text": "网球圈",
+        "iconPath": "common/images/tab-circle.png",
+        "selectedIconPath": "common/images/tab-circle-active.png"
+      },
+      {
+        "pagePath": "pages/user/profile/index",
+        "text": "我的",
+        "iconPath": "common/images/tab-user.png",
+        "selectedIconPath": "common/images/tab-user-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "cloud": true
+}

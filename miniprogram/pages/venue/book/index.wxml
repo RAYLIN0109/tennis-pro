@@ -1,0 +1,72 @@
+<view class="book-page page-container">
+  <!-- Venue Summary -->
+  <view class="book-card card">
+    <view class="summary-row">
+      <image
+        class="summary-cover"
+        src="{{venue.photos[0] || '/common/images/empty-state.png'}}"
+        mode="aspectFill"
+      />
+      <view class="summary-info">
+        <text class="summary-name">{{venue.name || '场馆'}}</text>
+        <text class="summary-court">球场: {{courtId}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Booking Details -->
+  <view class="book-card card">
+    <text class="card-title">预约详情</text>
+    <view class="detail-row">
+      <text class="detail-label">日期</text>
+      <text class="detail-value">{{date}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">时段</text>
+      <view class="detail-slots">
+        <text wx:for="{{slots}}" wx:key="index" class="slot-chip">{{item.start_time}}-{{item.end_time}}</text>
+      </view>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">时长</text>
+      <text class="detail-value">{{durationMinutes}}分钟</text>
+    </view>
+  </view>
+
+  <!-- Price -->
+  <view class="book-card card">
+    <text class="card-title">费用明细</text>
+    <view wx:for="{{slots}}" wx:key="index" class="price-line">
+      <text class="price-line-label">{{item.start_time}}-{{item.end_time}}</text>
+      <price-display amount="{{item.price}}" size="sm" />
+    </view>
+    <view class="price-total">
+      <text class="price-total-label">合计</text>
+      <price-display amount="{{totalAmount}}" size="lg" />
+    </view>
+  </view>
+
+  <!-- Contact -->
+  <view class="book-card card">
+    <view class="form-row">
+      <text class="form-label">联系电话</text>
+      <input class="form-input" type="number" value="{{contactPhone}}" placeholder="选填" maxlength="11" bindinput="onInputPhone" />
+    </view>
+    <view class="form-row no-border">
+      <text class="form-label">备注</text>
+      <input class="form-input" value="{{notes}}" placeholder="选填" bindinput="onInputNotes" />
+    </view>
+  </view>
+
+  <!-- Submit -->
+  <view class="submit-bar bottom-bar safe-area-bottom">
+    <view class="submit-price">
+      <text>合计 </text>
+      <price-display amount="{{totalAmount}}" size="lg" />
+    </view>
+    <button class="btn btn-primary submit-btn" bindtap="onSubmit" loading="{{submitting}}" disabled="{{submitting}}">
+      确认预约
+    </button>
+  </view>
+  <view style="height: 200rpx;"></view>
+</view>

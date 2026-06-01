@@ -1,0 +1,91 @@
+<view class="odetail-page page-container">
+  <skeleton-loader wx:if="{{loading}}" type="detail" />
+
+  <block wx:elif="{{order}}">
+    <!-- Status Hero -->
+    <view class="status-hero status-hero-{{order.statusColor}}">
+      <text class="hero-status-text">{{order.statusLabel}}</text>
+    </view>
+
+    <!-- Resource Card -->
+    <view class="detail-card card">
+      <view class="resource-row">
+        <image
+          class="resource-avatar"
+          src="{{order.resource_snapshot.avatar || '/common/images/default-avatar.png'}}"
+          mode="aspectFill"
+        />
+        <view class="resource-info">
+          <text class="resource-name">{{order.resource_info.name || order.resource_snapshot.name || '未知'}}</text>
+          <text class="resource-type">{{order.typeLabel}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Booking Info -->
+    <view class="detail-card card">
+      <text class="card-title">预约信息</text>
+      <view class="info-row">
+        <text class="info-label">日期</text>
+        <text class="info-value">{{order.date}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">时段</text>
+        <text class="info-value">{{order.time_range.start}} - {{order.time_range.end}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">时长</text>
+        <text class="info-value">{{order.duration_minutes}}分钟</text>
+      </view>
+    </view>
+
+    <!-- Price -->
+    <view class="detail-card card">
+      <text class="card-title">费用</text>
+      <view class="price-row">
+        <text class="price-label">订单金额</text>
+        <price-display amount="{{order.total_amount}}" size="lg" />
+      </view>
+    </view>
+
+    <!-- Order Info -->
+    <view class="detail-card card">
+      <text class="card-title">订单信息</text>
+      <view class="info-row" bindtap="copyOrderNo">
+        <text class="info-label">订单编号</text>
+        <text class="info-value accent-text">{{order.order_no}} 复制</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">创建时间</text>
+        <text class="info-value">{{order.createdText}}</text>
+      </view>
+      <view wx:if="{{order.paidText}}" class="info-row">
+        <text class="info-label">支付时间</text>
+        <text class="info-value">{{order.paidText}}</text>
+      </view>
+      <view wx:if="{{order.contact_phone}}" class="info-row">
+        <text class="info-label">联系电话</text>
+        <text class="info-value">{{order.contact_phone}}</text>
+      </view>
+      <view wx:if="{{order.notes}}" class="info-row">
+        <text class="info-label">备注</text>
+        <text class="info-value">{{order.notes}}</text>
+      </view>
+    </view>
+
+    <!-- Actions -->
+    <view class="action-bar bottom-bar safe-area-bottom">
+      <view wx:if="{{order.status === 'pending_payment'}}" class="action-btns">
+        <view class="btn btn-ghost" bindtap="onCancel">取消预约</view>
+        <view class="btn btn-primary" bindtap="goPay" style="margin-left:24rpx;">立即付款</view>
+      </view>
+      <view wx:elif="{{order.status === 'completed' && !order.reviewed}}" class="action-btns">
+        <view class="btn btn-primary btn-block" bindtap="goReview">去评价</view>
+      </view>
+      <view wx:else class="action-btns">
+        <text class="action-tip">暂无可操作项</text>
+      </view>
+    </view>
+    <view style="height: 180rpx;"></view>
+  </block>
+</view>

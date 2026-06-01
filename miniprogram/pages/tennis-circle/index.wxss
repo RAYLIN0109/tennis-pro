@@ -1,0 +1,7 @@
+.tennis-circle-page {
+  min-height: 100vh;
+}
+
+.coming-wrapper {
+  padding: var(--space-10);
+}

@@ -1,0 +1,15 @@
+<view class="user-card custom-class user-card-{{size}}" bindtap="onTap">
+  <image
+    class="user-avatar"
+    src="{{user.avatar_url || '/common/images/default-avatar.png'}}"
+    mode="aspectFill"
+  />
+  <view class="user-info">
+    <view class="user-name-row">
+      <text class="user-name">{{user.nickname || '用户'}}</text>
+    </view>
+    <view wx:if="{{showLevel && user.tennis_level}}" class="user-level badge badge-accent">
+      {{user.tennis_level}}
+    </view>
+  </view>
+</view>

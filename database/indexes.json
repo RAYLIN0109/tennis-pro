@@ -1,0 +1,36 @@
+{
+  "indexes": {
+    "users": [
+      { "fields": [{ "fieldPath": "_openid", "order": "asc" }], "unique": true },
+      { "fields": [{ "fieldPath": "city", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "tennis_level", "order": "asc" }] }
+    ],
+    "coaches": [
+      { "fields": [{ "fieldPath": "user_id", "order": "asc" }], "unique": true },
+      { "fields": [{ "fieldPath": "status", "order": "asc" }, { "fieldPath": "city", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "rating", "order": "desc" }] },
+      { "fields": [{ "fieldPath": "hourly_rate", "order": "asc" }] }
+    ],
+    "venues": [
+      { "fields": [{ "fieldPath": "city", "order": "asc" }, { "fieldPath": "status", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "rating", "order": "desc" }] }
+    ],
+    "schedules": [
+      { "fields": [{ "fieldPath": "resource_id", "order": "asc" }, { "fieldPath": "resource_type", "order": "asc" }, { "fieldPath": "date", "order": "asc" }], "unique": true }
+    ],
+    "orders": [
+      { "fields": [{ "fieldPath": "order_no", "order": "asc" }], "unique": true },
+      { "fields": [{ "fieldPath": "created_by", "order": "asc" }, { "fieldPath": "status", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "created_by", "order": "asc" }, { "fieldPath": "order_type", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "schedule_id", "order": "asc" }] }
+    ],
+    "reviews": [
+      { "fields": [{ "fieldPath": "target_type", "order": "asc" }, { "fieldPath": "target_id", "order": "asc" }, { "fieldPath": "created_at", "order": "desc" }] },
+      { "fields": [{ "fieldPath": "order_id", "order": "asc" }], "unique": true },
+      { "fields": [{ "fieldPath": "created_by", "order": "asc" }] }
+    ],
+    "notifications": [
+      { "fields": [{ "fieldPath": "user_id", "order": "asc" }, { "fieldPath": "is_read", "order": "asc" }, { "fieldPath": "created_at", "order": "desc" }] }
+    ]
+  }
+}

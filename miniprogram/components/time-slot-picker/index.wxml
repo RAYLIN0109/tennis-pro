@@ -1,0 +1,17 @@
+<view class="time-slot-picker custom-class">
+  <view class="slot-grid">
+    <view
+      wx:for="{{processedSlots}}"
+      wx:key="index"
+      class="slot {{item.status === 'booked' || item.status === 'blocked' ? 'slot-disable' : item.status === 'pending' ? 'slot-pending' : selectedIndexes.indexOf(index) > -1 ? 'slot-selected' : 'slot-available'}}"
+      data-index="{{index}}"
+      bindtap="onTapSlot"
+    >
+      <text class="slot-time">{{item.start_time || item.start}}</text>
+      <text wx:if="{{showPrice && item.displayPrice}}" class="slot-price">¥{{item.displayPrice}}</text>
+    </view>
+  </view>
+  <view wx:if="{{!processedSlots.length}}" class="slot-empty">
+    <text class="slot-empty-text">暂无可用时段</text>
+  </view>
+</view>

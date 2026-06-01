@@ -1,0 +1,21 @@
+<view class="login-page page-container">
+  <view class="login-content">
+    <view class="login-logo-wrap">
+      <image class="login-logo" src="/common/images/logo.png" mode="aspectFit" />
+      <text class="login-app-name">TennisVibe</text>
+      <text class="login-tagline">你的全方位网球生态</text>
+    </view>
+
+    <view class="login-actions">
+      <button
+        class="btn btn-primary btn-block login-btn"
+        bindtap="onLogin"
+        loading="{{logging}}"
+        disabled="{{logging}}"
+      >
+        微信一键登录
+      </button>
+      <text class="login-tip">登录即表示同意《用户协议》和《隐私政策》</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.star {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.star-icon {
+  transition: color 0.2s;
+}
+
+.star-sm .star-icon { font-size: 24rpx; }
+.star-md .star-icon { font-size: 32rpx; }
+.star-lg .star-icon { font-size: 44rpx; }
+
+.star-full .star-icon {
+  color: #F59E0B;
+}
+
+.star-half .star-icon {
+  color: #F59E0B;
+  opacity: 0.5;
+}
+
+.star-empty .star-icon {
+  color: #E5E7EB;
+}

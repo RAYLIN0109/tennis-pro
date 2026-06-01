@@ -1,0 +1,5 @@
+<view class="price-display custom-class price-{{size}}">
+  <text class="price-prefix">{{prefix}}</text>
+  <text class="price-amount">{{displayPrice}}</text>
+  <text wx:if="{{suffix}}" class="price-suffix">{{suffix}}</text>
+</view>

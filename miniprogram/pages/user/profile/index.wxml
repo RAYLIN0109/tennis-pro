@@ -1,0 +1,64 @@
+<view class="profile-page page-container">
+  <!-- Logged in -->
+  <block wx:if="{{isLoggedIn && userInfo}}">
+    <!-- Header Card -->
+    <view class="profile-header card">
+      <view class="profile-avatar-row" bindtap="goEditProfile">
+        <image
+          class="profile-avatar"
+          src="{{userInfo.avatar_url || '/common/images/default-avatar.png'}}"
+          mode="aspectFill"
+        />
+        <view class="profile-name-area">
+          <text class="profile-name">{{userInfo.nickname || '点击设置昵称'}}</text>
+          <view wx:if="{{userInfo.tennis_level}}" class="badge badge-accent">
+            {{userInfo.tennis_level}}
+          </view>
+        </view>
+        <text class="profile-edit-link">编辑 ></text>
+      </view>
+    </view>
+
+    <!-- Stats Row -->
+    <view class="profile-stats card">
+      <view class="stat-item">
+        <text class="stat-num">{{stats.total_bookings}}</text>
+        <text class="stat-label">预约</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.total_activities}}</text>
+        <text class="stat-label">活动</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.total_reviews}}</text>
+        <text class="stat-label">评价</text>
+      </view>
+    </view>
+
+    <!-- Menu List -->
+    <view class="profile-menu card">
+      <view class="menu-item" bindtap="goOrders">
+        <text class="menu-label">我的订单</text>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goOrders">
+        <text class="menu-label">我的评价</text>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goSettings">
+        <text class="menu-label">设置</text>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Not logged in -->
+  <block wx:else>
+    <empty-state
+      title="尚未登录"
+      description="登录后享受完整网球生态体验"
+      actionText="立即登录"
+      bind:action="goLogin"
+    />
+  </block>
+</view>

@@ -1,0 +1,76 @@
+/* ========================================
+   TennisVibe - Design Tokens
+   Modern / Lime accent
+   ======================================== */
+
+page {
+  /* === Colors === */
+  --accent: #D4FF00;
+  --accent-light: #F0FFB8;
+  --accent-dark: #B8E600;
+  --accent-contrast: #333333;
+
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-tertiary: #EEEEEE;
+
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+
+  --danger: #EF4444;
+  --danger-light: #FEE2E2;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --info: #3B82F6;
+  --info-light: #DBEAFE;
+
+  --border: #E0E0E0;
+  --border-light: #F0F0F0;
+
+  /* === Spacing (4rpx base) === */
+  --space-1: 4rpx;
+  --space-2: 8rpx;
+  --space-3: 12rpx;
+  --space-4: 16rpx;
+  --space-5: 24rpx;
+  --space-6: 32rpx;
+  --space-8: 48rpx;
+  --space-10: 64rpx;
+  --space-12: 80rpx;
+  --space-16: 100rpx;
+
+  /* === Typography === */
+  --text-xs: 22rpx;
+  --text-sm: 24rpx;
+  --text-base: 28rpx;
+  --text-md: 30rpx;
+  --text-lg: 32rpx;
+  --text-xl: 36rpx;
+  --text-2xl: 44rpx;
+  --text-3xl: 56rpx;
+
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* === Border Radius === */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-xl: 32rpx;
+  --radius-full: 999rpx;
+
+  /* === Shadows === */
+  --shadow-sm: 0 1rpx 4rpx rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4rpx 24rpx rgba(0, 0, 0, 0.08);
+  --shadow-float: 0 8rpx 32rpx rgba(0, 0, 0, 0.10);
+
+  /* === Line Height === */
+  --leading-tight: 1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+}

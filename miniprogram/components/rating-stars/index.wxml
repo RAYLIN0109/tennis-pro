@@ -1,0 +1,11 @@
+<view class="rating-stars custom-class">
+  <view
+    wx:for="{{stars}}"
+    wx:key="index"
+    class="star star-{{item}} star-{{size}}"
+    data-index="{{index}}"
+    bindtap="onTap"
+  >
+    <view class="star-icon">★</view>
+  </view>
+</view>

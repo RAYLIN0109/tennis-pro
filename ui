@@ -1,0 +1,481 @@
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TennisVibe - 导航</title>
+    <script src="https://res.gemcoder.com/js/reload.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#D4FF00',
+              dark: '#333333',
+              'dark-gray': '#666666',
+              'light-gray': '#F5F5F5'
+            }
+          }
+        }
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+          .content-auto {
+              content-visibility: auto;
+          }
+      }
+      .active-menu {
+          color: #D4FF00 !important;
+          position: relative;
+      }
+    </style>
+  </head>
+  <body class="flex flex-col h-screen bg-white">
+    <main class="flex-grow overflow-hidden">
+      <div class="w-full h-full">
+        <iframe
+          id="navigation"
+          src=""
+          class=""
+          width="100%"
+          height="100%"
+          srcdoc="<html lang='zh-CN'>
+        <head >
+        <meta charset='UTF-8'/>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+<title >TennisVibe - 首页</title>
+<script src='https://res.gemcoder.com/js/reload.js'></script>
+<script src='https://cdn.tailwindcss.com'></script>
+<link href='https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
+<script >tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#D4FF00',
+        dark: '#333333',
+        'dark-gray': '#666666',
+        'light-gray': '#F5F5F5'
+      }
+    }
+  }
+};</script>
+<style type='text/tailwindcss'>
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-shadow {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            }
+        }
+    </style>
+    
+      <style>
+          ::-webkit-scrollbar { width: 0px; }
+      </style>
+  </head>
+<body class='bg-white'>
+        <div class='p-4' data-uuid='home'>
+        <!-- 顶部问候与搜索区域 -->
+<div class='mb-8'>
+        <div class='mb-4'>
+        <h1 class='text-[28px] font-bold text-dark'>
+        你好，网球爱好者👋
+    </h1>
+<p class='text-dark-gray mt-1'>
+        今天想去打网球吗？
+    </p>
+    </div>
+<div class='relative'>
+        <input type='text' placeholder='搜索教练、场地或球友...' class='w-full py-3 px-4 pl-12 bg-light-gray rounded-full text-dark placeholder-dark-gray focus:outline-none focus:ring-2 focus:ring-primary/50'/>
+<i class='fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-dark-gray'>
+        </i>
+    </div>
+    </div>
+<!-- 中部功能入口矩阵 -->
+<div class='mb-8'>
+        <div class='grid grid-cols-5 gap-4'>
+        <a href='javascript:void(0);' class='flex flex-col items-center' data-uuid='coachList' onclick='handleMenuClick(this)'>
+        <div class='w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2'>
+        <i class='fas fa-user-tie text-2xl text-primary'>
+        </i>
+    </div>
+<span class='text-sm font-medium text-dark'>
+        约教练
+    </span>
+    </a>
+<a href='javascript:void(0);' class='flex flex-col items-center'>
+        <div class='w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2'>
+        <i class='fas fa-map-location-dot text-2xl text-primary'>
+        </i>
+    </div>
+<span class='text-sm font-medium text-dark'>
+        约场地
+    </span>
+    </a>
+<a href='javascript:void(0);' class='flex flex-col items-center'>
+        <div class='w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2'>
+        <i class='fas fa-users text-2xl text-primary'>
+        </i>
+    </div>
+<span class='text-sm font-medium text-dark'>
+        约球友
+    </span>
+    </a>
+<a href='javascript:void(0);' class='flex flex-col items-center'>
+        <div class='w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2'>
+        <i class='fas fa-video text-2xl text-primary'>
+        </i>
+    </div>
+<span class='text-sm font-medium text-dark'>
+        看比赛
+    </span>
+    </a>
+<a href='javascript:void(0);' class='flex flex-col items-center' data-uuid='tennis-circle' onclick='handleMenuClick(this)'>
+        <div class='w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2'>
+        <i class='fas fa-comments text-2xl text-primary'>
+        </i>
+    </div>
+<span class='text-sm font-medium text-dark'>
+        网球圈
+    </span>
+    </a>
+    </div>
+    </div>
+<!-- 推荐区域 -->
+<div >
+        <div class='flex justify-between items-center mb-4'>
+        <h2 class='text-xl font-bold text-dark'>
+        附近热门球场
+    </h2>
+<a href='javascript:void(0);' class='text-primary font-medium text-sm'>
+        查看全部
+<i class='fas fa-chevron-right text-xs ml-1'>
+        </i>
+    </a>
+    </div>
+<div class='overflow-x-auto pb-4 -mx-4 px-4'>
+        <div class='flex gap-4 w-max'>
+        <!-- 球场卡片 1 -->
+<div class='w-[260px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[140px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/b631e3130e39e4361003eb60b24db828.png' alt='网球中心' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-4'>
+        <h3 class='font-bold text-dark text-lg mb-1'>
+        城市网球中心
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-map-marker-alt text-dark-gray text-xs mr-1'>
+        </i>
+<span class='text-dark-gray text-xs'>
+        3.2km · 朝阳区
+    </span>
+    </div>
+<div class='flex items-center justify-between'>
+        <div class='flex items-center'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark font-medium'>
+        4.8
+    </span>
+    </div>
+<div >
+        <span class='text-primary font-bold'>
+        ¥80
+    </span>
+<span class='text-dark-gray text-xs'>
+        /小时起
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+<!-- 球场卡片 2 -->
+<div class='w-[260px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[140px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/88163fe2068cf245d663f6c49cf931fd.png' alt='绿洲网球俱乐部' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-4'>
+        <h3 class='font-bold text-dark text-lg mb-1'>
+        绿洲网球俱乐部
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-map-marker-alt text-dark-gray text-xs mr-1'>
+        </i>
+<span class='text-dark-gray text-xs'>
+        5.1km · 海淀区
+    </span>
+    </div>
+<div class='flex items-center justify-between'>
+        <div class='flex items-center'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark font-medium'>
+        4.9
+    </span>
+    </div>
+<div >
+        <span class='text-primary font-bold'>
+        ¥120
+    </span>
+<span class='text-dark-gray text-xs'>
+        /小时起
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+<!-- 球场卡片 3 -->
+<div class='w-[260px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[140px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/2a3f81129431a2f263de00a085587cf8.png' alt='阳光网球公园' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-4'>
+        <h3 class='font-bold text-dark text-lg mb-1'>
+        阳光网球公园
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-map-marker-alt text-dark-gray text-xs mr-1'>
+        </i>
+<span class='text-dark-gray text-xs'>
+        7.8km · 顺义区
+    </span>
+    </div>
+<div class='flex items-center justify-between'>
+        <div class='flex items-center'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark font-medium'>
+        4.7
+    </span>
+    </div>
+<div >
+        <span class='text-primary font-bold'>
+        ¥60
+    </span>
+<span class='text-dark-gray text-xs'>
+        /小时起
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+<!-- 球场卡片 4 -->
+<div class='w-[260px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[140px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/0410b1b3d65e2f036cb6d3ca3422fcc3.png' alt='CBD网球会所' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-4'>
+        <h3 class='font-bold text-dark text-lg mb-1'>
+        CBD网球会所
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-map-marker-alt text-dark-gray text-xs mr-1'>
+        </i>
+<span class='text-dark-gray text-xs'>
+        2.5km · 朝阳区
+    </span>
+    </div>
+<div class='flex items-center justify-between'>
+        <div class='flex items-center'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark font-medium'>
+        4.6
+    </span>
+    </div>
+<div >
+        <span class='text-pri
+mary font-bold'>
+        ¥150
+    </span>
+<span class='text-dark-gray text-xs'>
+        /小时起
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<!-- 今日推荐教练 -->
+<div class='mt-6'>
+        <div class='flex justify-between items-center mb-4'>
+        <h2 class='text-xl font-bold text-dark'>
+        今日推荐教练
+    </h2>
+<a href='javascript:void(0);' class='text-primary font-medium text-sm' data-uuid='coachList' onclick='handleMenuClick(this)'>
+        查看全部
+<i class='fas fa-chevron-right text-xs ml-1'>
+        </i>
+    </a>
+    </div>
+<div class='overflow-x-auto pb-4 -mx-4 px-4'>
+        <div class='flex gap-4 w-max'>
+        <!-- 教练卡片 1 -->
+<div class='w-[200px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[200px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/d5d6fa5c33cdb90f966988e9dedca6b4.png' alt='张教练' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-3'>
+        <h3 class='font-bold text-dark text-base mb-1'>
+        张教练
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark text-sm font-medium'>
+        5.0
+    </span>
+<span class='text-dark-gray text-xs ml-1'>
+        (128节课)
+    </span>
+    </div>
+<div class='text-xs text-dark-gray mb-3'>
+        擅长：正手进攻、初学者入门
+    </div>
+<div class='flex items-center justify-between'>
+        <div >
+        <span class='text-primary font-bold'>
+        ¥180
+    </span>
+<span class='text-dark-gray text-xs'>
+        /课时
+    </span>
+    </div>
+<a href='javascript:void(0);' class='bg-primary text-dark px-3 py-1 rounded-full text-xs font-medium' data-uuid='coachDetail' onclick='handleMenuClick(this)'>
+        预约
+    </a>
+    </div>
+    </div>
+    </div>
+<!-- 教练卡片 2 -->
+<div class='w-[200px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[200px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/fe171625d839a1792c0d9226f6ca11ce.png' alt='李教练' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-3'>
+        <h3 class='font-bold text-dark text-base mb-1'>
+        李教练
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark text-sm font-medium'>
+        4.9
+    </span>
+<span class='text-dark-gray text-xs ml-1'>
+        (96节课)
+    </span>
+    </div>
+<div class='text-xs text-dark-gray mb-3'>
+        擅长：女子教学、技术提升
+    </div>
+<div class='flex items-center justify-between'>
+        <div >
+        <span class='text-primary font-bold'>
+        ¥200
+    </span>
+<span class='text-dark-gray text-xs'>
+        /课时
+    </span>
+    </div>
+<a href='javascript:void(0);' class='bg-primary text-dark px-3 py-1 rounded-full text-xs font-medium' data-uuid='coachDetail' onclick='handleMenuClick(this)'>
+        预约
+    </a>
+    </div>
+    </div>
+    </div>
+<!-- 教练卡片 3 -->
+<div class='w-[200px] bg-white rounded-2xl card-shadow overflow-hidden'>
+        <div class='h-[200px] overflow-hidden'>
+        <img src='https://design.gemcoder.com/staticResource/echoAiSystemImages/ee782a4e8a14fe6a7807725fcfd887c6.png' alt='王教练' class='w-full h-full object-cover'/>
+    </div>
+<div class='p-3'>
+        <h3 class='font-bold text-dark text-base mb-1'>
+        王教练
+    </h3>
+<div class='flex items-center mb-2'>
+        <i class='fas fa-star text-yellow-400 text-xs mr-1'>
+        </i>
+<span class='text-dark text-sm font-medium'>
+        4.8
+    </span>
+<span class='text-dark-gray text-xs ml-1'>
+        (210节课)
+    </span>
+    </div>
+<div class='text-xs text-dark-gray mb-3'>
+        擅长：青少年培训、战术指导
+    </div>
+<div class='flex items-center justify-between'>
+        <div >
+        <span class='text-primary font-bold'>
+        ¥160
+    </span>
+<span class='text-dark-gray text-xs'>
+        /课时
+    </span>
+    </div>
+<a href='javascript:void(0);' class='bg-primary text-dark px-3 py-1 rounded-full text-xs font-medium' data-uuid='coachDetail' onclick='handleMenuClick(this)'>
+        预约
+    </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<script >function handleMenuClick(element) {
+  var uuid = element.getAttribute('data-uuid');
+  window.top.postMessage(uuid, '*');
+}
+// 通知父页面更新iframe高度
+ytSendPageSize();</script>
+    </body>
+    </html>"
+          data-iframe-id="navigation-iframe"
+        ></iframe>
+      </div>
+    </main>
+    <footer class="bg-white shadow-lg border-t border-gray-100 z-10">
+      <nav class="flex justify-around items-center px-2 py-3">
+        <div
+          class="flex flex-col items-center py-1 px-3 cursor-pointer active-menu rounded-xl"
+          onclick="ytCustomClickRouter(this, event)"
+          data-uuid="home"
+        >
+          <i class="fas fa-home text-xl mb-1"> </i>
+          <span class="text-sm font-medium"> 首页 </span>
+        </div>
+        <div
+          class="flex flex-col items-center py-1 px-3 cursor-pointer text-dark-gray rounded-xl"
+          onclick="ytCustomClickRouter(this, event)"
+          data-uuid="tennis-circle"
+        >
+          <i class="fas fa-users text-xl mb-1"> </i>
+          <span class="text-sm font-medium"> 网球圈 </span>
+        </div>
+        <div
+          class="flex flex-col items-center py-1 px-3 cursor-pointer text-dark-gray rounded-xl"
+          onclick="ytCustomClickRouter(this, event)"
+          data-uuid="profile"
+        >
+          <i class="fas fa-user text-xl mb-1"> </i>
+          <span class="text-sm font-medium"> 我的 </span>
+        </div>
+      </nav>
+    </footer>
+    <script>
+      ytGetIframeResize(document.getElementById('navigation'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "场馆详情",
+  "usingComponents": {
+    "rating-stars": "/components/rating-stars/index",
+    "price-display": "/components/price-display/index",
+    "time-slot-picker": "/components/time-slot-picker/index",
+    "skeleton-loader": "/components/skeleton-loader/index"
+  }
+}

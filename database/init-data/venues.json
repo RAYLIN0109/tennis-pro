@@ -1,0 +1,80 @@
+[
+  {
+    "name": "阳光网球中心",
+    "address": "上海市浦东新区世纪大道1000号",
+    "city": "上海",
+    "district": "浦东新区",
+    "contact_name": "张经理",
+    "court_count": 6,
+    "court_types": ["硬地", "室内"],
+    "courts": [
+      { "id": "court_1", "name": "1号场-硬地", "type": "硬地", "status": "active" },
+      { "id": "court_2", "name": "2号场-硬地", "type": "硬地", "status": "active" },
+      { "id": "court_3", "name": "3号场-室内", "type": "室内", "status": "active" },
+      { "id": "court_4", "name": "4号场-室内", "type": "室内", "status": "active" },
+      { "id": "court_5", "name": "5号场-硬地", "type": "硬地", "status": "active" },
+      { "id": "court_6", "name": "6号场-硬地", "type": "硬地", "status": "active" }
+    ],
+    "facilities": ["淋浴", "更衣室", "停车场", "咖啡厅", "WiFi", "灯光"],
+    "price_rules": [
+      { "label": "工作日白天", "price_per_hour": 12000, "time_range": "07:00-18:00" },
+      { "label": "工作日晚间", "price_per_hour": 18000, "time_range": "18:00-22:00" },
+      { "label": "周末/节假日", "price_per_hour": 20000, "time_range": "07:00-22:00" }
+    ],
+    "business_hours": { "open": "07:00", "close": "22:00" },
+    "rating": 4.7,
+    "review_count": 128,
+    "status": "active"
+  },
+  {
+    "name": "绿茵网球俱乐部",
+    "address": "上海市徐汇区漕溪北路500号",
+    "city": "上海",
+    "district": "徐汇区",
+    "contact_name": "李经理",
+    "court_count": 4,
+    "court_types": ["红土", "硬地"],
+    "courts": [
+      { "id": "court_1", "name": "红土1号", "type": "红土", "status": "active" },
+      { "id": "court_2", "name": "红土2号", "type": "红土", "status": "active" },
+      { "id": "court_3", "name": "硬地1号", "type": "硬地", "status": "active" },
+      { "id": "court_4", "name": "硬地2号", "type": "硬地", "status": "active" }
+    ],
+    "facilities": ["淋浴", "储物柜", "停车场", "网球商店"],
+    "price_rules": [
+      { "label": "统一价格", "price_per_hour": 15000, "time_range": "08:00-21:00" }
+    ],
+    "business_hours": { "open": "08:00", "close": "21:00" },
+    "rating": 4.5,
+    "review_count": 76,
+    "status": "active"
+  },
+  {
+    "name": "天河网球馆",
+    "address": "广州市天河区体育西路200号",
+    "city": "广州",
+    "district": "天河区",
+    "contact_name": "王经理",
+    "court_count": 8,
+    "court_types": ["硬地", "室内"],
+    "courts": [
+      { "id": "court_1", "name": "A1-室内", "type": "室内", "status": "active" },
+      { "id": "court_2", "name": "A2-室内", "type": "室内", "status": "active" },
+      { "id": "court_3", "name": "A3-室内", "type": "室内", "status": "active" },
+      { "id": "court_4", "name": "A4-室内", "type": "室内", "status": "active" },
+      { "id": "court_5", "name": "B1-硬地", "type": "硬地", "status": "active" },
+      { "id": "court_6", "name": "B2-硬地", "type": "硬地", "status": "active" },
+      { "id": "court_7", "name": "B3-硬地", "type": "硬地", "status": "active" },
+      { "id": "court_8", "name": "B4-硬地", "type": "硬地", "status": "active" }
+    ],
+    "facilities": ["淋浴", "更衣室", "停车场", "咖啡厅", "WiFi", "灯光", "网球商店"],
+    "price_rules": [
+      { "label": "室内场", "price_per_hour": 20000, "time_range": "06:00-23:00" },
+      { "label": "室外场", "price_per_hour": 10000, "time_range": "06:00-20:00" }
+    ],
+    "business_hours": { "open": "06:00", "close": "23:00" },
+    "rating": 4.8,
+    "review_count": 210,
+    "status": "active"
+  }
+]

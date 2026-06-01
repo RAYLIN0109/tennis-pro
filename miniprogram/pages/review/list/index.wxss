@@ -1,0 +1,28 @@
+.rlist-page { padding: var(--space-4); }
+.stats-card { display: flex; margin-bottom: var(--space-4); padding: var(--space-5); }
+.stats-left { display: flex; flex-direction: column; align-items: center; margin-right: var(--space-6); min-width: 140rpx; }
+.stats-avg { font-size: var(--text-3xl); font-weight: var(--font-bold); color: var(--text-primary); line-height: 1.2; }
+.stats-count { font-size: var(--text-xs); color: var(--text-secondary); margin-top: 4rpx; }
+
+.stats-bars { flex: 1; }
+.bar-row { display: flex; align-items: center; margin-bottom: 6rpx; }
+.bar-label { font-size: var(--text-xs); color: var(--text-secondary); width: 48rpx; }
+.bar-track { flex: 1; height: 12rpx; background: var(--bg-tertiary); border-radius: 6rpx; margin: 0 8rpx; overflow: hidden; }
+.bar-fill { height: 100%; background: #F59E0B; border-radius: 6rpx; transition: width 0.3s; }
+.bar-count { font-size: var(--text-xs); color: var(--text-tertiary); width: 48rpx; text-align: right; }
+
+.sort-row { display: flex; gap: 24rpx; margin-bottom: var(--space-4); }
+.sort-btn { font-size: var(--text-sm); color: var(--text-secondary); padding: 8rpx 0; }
+.sort-active { color: var(--accent); font-weight: var(--font-medium); }
+
+.review-card { background: var(--bg-primary); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-4); }
+.reviewer-row { display: flex; align-items: center; margin-bottom: var(--space-3); }
+.reviewer-avatar { width: 64rpx; height: 64rpx; border-radius: 50%; flex-shrink: 0; }
+.reviewer-info { margin-left: var(--space-3); flex: 1; }
+.reviewer-name { font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--text-primary); display: block; }
+.review-meta { display: flex; align-items: center; gap: 12rpx; margin-top: 4rpx; }
+.review-date { font-size: var(--text-xs); color: var(--text-tertiary); }
+.review-content { font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed); display: block; }
+
+.review-images { display: flex; gap: 12rpx; margin-top: var(--space-3); }
+.review-img { width: 160rpx; height: 160rpx; border-radius: var(--radius-md); }

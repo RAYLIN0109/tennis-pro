@@ -1,0 +1,7 @@
+<view class="tennis-circle-page page-container">
+  <view class="coming-wrapper flex flex-col items-center justify-center" style="min-height: 80vh;">
+    <text class="coming-icon" style="font-size: 120rpx; margin-bottom: 32rpx;">💬</text>
+    <text class="coming-title" style="font-size: var(--text-xl); font-weight: var(--font-bold); color: var(--text-primary); margin-bottom: 16rpx;">网球圈</text>
+    <text class="coming-desc" style="font-size: var(--text-base); color: var(--text-secondary); text-align: center; padding: 0 64rpx;">社区功能即将上线，敬请期待</text>
+  </view>
+</view>

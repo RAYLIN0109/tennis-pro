@@ -1,0 +1,8 @@
+.activity-page { min-height: 100vh; }
+.tab-bar { display: flex; background: var(--bg-primary); padding: 0 var(--space-4); position: sticky; top: 0; z-index: 10; }
+.tab-item { flex: 1; text-align: center; padding: var(--space-4) 0; font-size: var(--text-base); color: var(--text-secondary); position: relative; }
+.tab-active { color: var(--accent); font-weight: var(--font-semibold); }
+.tab-active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 48rpx; height: 4rpx; background: var(--accent); border-radius: 2rpx; }
+
+.fab { position: fixed; right: 48rpx; bottom: 180rpx; width: 100rpx; height: 100rpx; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-float); }
+.fab-text { font-size: 48rpx; color: var(--accent-contrast); font-weight: 300; line-height: 1; }

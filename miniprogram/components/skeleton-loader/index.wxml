@@ -1,0 +1,39 @@
+<view class="skeleton-loader custom-class">
+  <!-- Card type -->
+  <block wx:if="{{type === 'card'}}">
+    <view wx:for="{{items}}" wx:key="*this" class="skel-card">
+      <view class="skel-row">
+        <view class="skel-avatar skeleton"></view>
+        <view class="skel-info">
+          <view class="skel-line skel-line-title skeleton"></view>
+          <view class="skel-line skel-line-sub skeleton"></view>
+        </view>
+      </view>
+      <view class="skel-line skel-line-text skeleton" style="width: 80%;"></view>
+      <view class="skel-line skel-line-text skeleton" style="width: 60%;"></view>
+    </view>
+  </block>
+
+  <!-- List type -->
+  <block wx:elif="{{type === 'list'}}">
+    <view wx:for="{{items}}" wx:key="*this" class="skel-list-item">
+      <view class="skel-avatar-sm skeleton"></view>
+      <view class="skel-info">
+        <view class="skel-line skel-line-title skeleton"></view>
+        <view class="skel-line skel-line-sub skeleton"></view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Detail type -->
+  <block wx:elif="{{type === 'detail'}}">
+    <view class="skel-detail">
+      <view class="skel-hero skeleton"></view>
+      <view class="skel-line skel-line-title skeleton" style="width: 60%; margin-top: 24rpx;"></view>
+      <view class="skel-line skel-line-sub skeleton" style="width: 40%;"></view>
+      <view class="skel-line skel-line-text skeleton" style="width: 90%; margin-top: 32rpx;"></view>
+      <view class="skel-line skel-line-text skeleton" style="width: 75%;"></view>
+      <view class="skel-line skel-line-text skeleton" style="width: 85%;"></view>
+    </view>
+  </block>
+</view>

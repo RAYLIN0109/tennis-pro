@@ -1,0 +1,58 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.login-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 120rpx 64rpx 80rpx;
+}
+
+.login-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80rpx;
+}
+
+.login-logo {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 32rpx;
+}
+
+.login-app-name {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: 12rpx;
+}
+
+.login-tagline {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.login-actions {
+  margin-top: 80rpx;
+}
+
+.login-btn {
+  height: 96rpx;
+  font-size: var(--text-lg);
+  border-radius: var(--radius-xl);
+}
+
+.login-tip {
+  display: block;
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--space-5);
+  line-height: var(--leading-relaxed);
+}

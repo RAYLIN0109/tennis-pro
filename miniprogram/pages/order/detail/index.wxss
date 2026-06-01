@@ -1,0 +1,39 @@
+.odetail-page { padding-bottom: 32rpx; }
+
+.status-hero {
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.status-hero-accent { background-color: var(--accent-light); }
+.status-hero-warning { background-color: var(--warning-light); }
+.status-hero-danger { background-color: var(--danger-light); }
+.status-hero-tertiary { background-color: var(--bg-tertiary); }
+
+.hero-status-text {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.detail-card { margin: var(--space-4); }
+
+.resource-row { display: flex; align-items: center; }
+.resource-avatar { width: 96rpx; height: 96rpx; border-radius: var(--radius-lg); flex-shrink: 0; }
+.resource-info { margin-left: var(--space-4); }
+.resource-name { font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); display: block; }
+.resource-type { font-size: var(--text-sm); color: var(--text-secondary); }
+
+.card-title { font-size: var(--text-md); font-weight: var(--font-semibold); color: var(--text-primary); display: block; margin-bottom: var(--space-4); }
+
+.info-row { display: flex; justify-content: space-between; align-items: center; padding: var(--space-3) 0; }
+.info-label { font-size: var(--text-base); color: var(--text-secondary); }
+.info-value { font-size: var(--text-base); color: var(--text-primary); }
+.accent-text { color: var(--accent); }
+
+.price-row { display: flex; justify-content: space-between; align-items: center; }
+.price-label { font-size: var(--text-base); color: var(--text-secondary); }
+
+.action-btns { display: flex; align-items: center; width: 100%; justify-content: flex-end; }
+.action-btns .btn { padding: 0 36rpx; height: 76rpx; }
+.action-tip { font-size: var(--text-sm); color: var(--text-tertiary); width: 100%; text-align: center; }

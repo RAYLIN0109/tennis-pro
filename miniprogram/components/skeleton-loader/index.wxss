@@ -1,0 +1,76 @@
+.skeleton-loader {
+  padding: var(--space-4) 0;
+}
+
+/* Card skeleton */
+.skel-card {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.skel-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.skel-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  margin-right: var(--space-4);
+  flex-shrink: 0;
+}
+
+.skel-avatar-sm {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-right: var(--space-4);
+  flex-shrink: 0;
+}
+
+.skel-info {
+  flex: 1;
+}
+
+.skel-line {
+  border-radius: 8rpx;
+  margin-bottom: 12rpx;
+}
+
+.skel-line-title {
+  height: 32rpx;
+  width: 50%;
+}
+
+.skel-line-sub {
+  height: 24rpx;
+  width: 30%;
+  margin-top: 8rpx;
+}
+
+.skel-line-text {
+  height: 26rpx;
+}
+
+/* List skeleton */
+.skel-list-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) 0;
+  border-bottom: 1rpx solid var(--border-light);
+}
+
+/* Detail skeleton */
+.skel-detail {
+  padding: var(--space-4);
+}
+
+.skel-hero {
+  width: 100%;
+  height: 320rpx;
+  border-radius: var(--radius-lg);
+}

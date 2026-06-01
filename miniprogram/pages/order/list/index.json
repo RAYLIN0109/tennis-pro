@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "status-badge": "/components/status-badge/index",
+    "empty-state": "/components/empty-state/index",
+    "skeleton-loader": "/components/skeleton-loader/index"
+  }
+}

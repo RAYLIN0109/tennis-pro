@@ -1,0 +1,13 @@
+.status-badge {
+  display: inline-flex;
+}
+
+.badge-inner {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  line-height: 1.6;
+}

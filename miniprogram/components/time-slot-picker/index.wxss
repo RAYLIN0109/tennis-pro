@@ -1,0 +1,93 @@
+.time-slot-picker {
+  width: 100%;
+}
+
+.slot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.slot {
+  width: calc(33.33% - 12rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 8rpx;
+  border-radius: 16rpx;
+  border: 2rpx solid var(--border);
+  transition: all 0.2s;
+}
+
+.slot-time {
+  font-size: 26rpx;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.slot-price {
+  font-size: 22rpx;
+  margin-top: 4rpx;
+  color: var(--text-secondary);
+}
+
+.slot-available {
+  background-color: var(--bg-primary);
+  border-color: var(--border);
+}
+
+.slot-available:active {
+  background-color: var(--bg-tertiary);
+}
+
+.slot-available .slot-time {
+  color: var(--text-primary);
+}
+
+.slot-selected {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.slot-selected .slot-time {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.slot-selected .slot-price {
+  color: var(--accent);
+}
+
+.slot-disabled {
+  background-color: var(--bg-tertiary);
+  border-color: transparent;
+}
+
+.slot-disabled .slot-time {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.slot-disabled .slot-price {
+  color: var(--text-tertiary);
+}
+
+.slot-pending {
+  background-color: var(--warning-light);
+  border-color: transparent;
+}
+
+.slot-pending .slot-time {
+  color: var(--warning);
+}
+
+.slot-empty {
+  padding: 48rpx 0;
+  text-align: center;
+}
+
+.slot-empty-text {
+  font-size: 28rpx;
+  color: var(--text-tertiary);
+}

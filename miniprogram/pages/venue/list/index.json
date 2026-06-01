@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "找场馆",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "search-bar": "/components/search-bar/index",
+    "rating-stars": "/components/rating-stars/index",
+    "price-display": "/components/price-display/index",
+    "skeleton-loader": "/components/skeleton-loader/index",
+    "empty-state": "/components/empty-state/index"
+  }
+}

@@ -1,0 +1,41 @@
+<view class="review-page page-container">
+  <view class="review-card card">
+    <text class="card-title">评分</text>
+    <view class="rating-wrap">
+      <rating-stars value="{{rating}}" size="lg" bind:change="onRatingChange" />
+    </view>
+  </view>
+
+  <view class="review-card card">
+    <text class="card-title">评价内容</text>
+    <textarea
+      class="content-textarea"
+      placeholder="分享你的体验..."
+      maxlength="500"
+      value="{{content}}"
+      bindinput="onContentInput"
+    />
+    <text class="char-count">{{content.length || 0}}/500</text>
+  </view>
+
+  <view class="review-card card">
+    <text class="card-title">图片（最多3张）</text>
+    <view class="image-grid">
+      <view wx:for="{{images}}" wx:key="*this" class="image-item">
+        <image class="preview-img" src="{{item}}" mode="aspectFill" />
+        <view class="remove-btn" data-index="{{index}}" bindtap="onRemoveImage">✕</view>
+      </view>
+      <view wx:if="{{images.length < 3}}" class="add-image" bindtap="onChooseImage">
+        <text class="add-icon">+</text>
+        <text class="add-text">添加图片</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-wrap safe-area-bottom">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" loading="{{submitting}}" disabled="{{submitting || !rating}}">
+      提交评价
+    </button>
+  </view>
+  <view style="height: 160rpx;"></view>
+</view>

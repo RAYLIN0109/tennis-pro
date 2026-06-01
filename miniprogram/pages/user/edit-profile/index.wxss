@@ -1,0 +1,97 @@
+.edit-page {
+  padding: var(--space-4);
+  padding-bottom: 180rpx;
+}
+
+.form-section {
+  margin-bottom: var(--space-4);
+  padding: 0;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5);
+  border-bottom: 1rpx solid var(--border-light);
+  min-height: 96rpx;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  flex-shrink: 0;
+  width: 160rpx;
+}
+
+.form-input {
+  flex: 1;
+  text-align: right;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+.form-placeholder {
+  color: var(--text-tertiary);
+}
+
+.avatar-item {
+  padding: var(--space-4) var(--space-5);
+}
+
+.avatar-right {
+  display: flex;
+  align-items: center;
+}
+
+.edit-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  margin-right: var(--space-3);
+}
+
+.form-arrow {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.picker-value {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.bio-item {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  margin-top: var(--space-3);
+  line-height: var(--leading-relaxed);
+}
+
+.char-count {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  align-self: flex-end;
+  margin-top: 8rpx;
+}
+
+.submit-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-4) var(--space-6);
+  background-color: var(--bg-primary);
+  box-shadow: 0 -2rpx 16rpx rgba(0, 0, 0, 0.06);
+}

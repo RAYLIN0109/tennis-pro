@@ -1,0 +1,18 @@
+<view class="activity-page page-container">
+  <view class="tab-bar">
+    <view wx:for="{{tabs}}" wx:key="*this" class="tab-item {{currentTab === index ? 'tab-active' : ''}}" data-index="{{index}}" bindtap="onTabChange">
+      {{item}}
+    </view>
+  </view>
+
+  <empty-state
+    title="即将开放"
+    description="{{currentTab === 0 ? '约球功能即将上线，敬请期待' : currentTab === 1 ? '看比赛功能即将上线，敬请期待' : '暂无活动'}}"
+    actionText="{{currentTab < 2 ? '' : ''}}"
+  />
+
+  <!-- FAB -->
+  <view class="fab" bindtap="onCreate">
+    <text class="fab-text">+</text>
+  </view>
+</view>

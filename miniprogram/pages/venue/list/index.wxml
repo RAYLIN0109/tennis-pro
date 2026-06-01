@@ -1,0 +1,71 @@
+<view class="venue-list-page page-container">
+  <view class="search-wrap">
+    <search-bar
+      placeholder="搜索场馆名称、地址..."
+      value="{{searchValue}}"
+      bind:search="onSearch"
+      bind:change="onSearchChange"
+    />
+  </view>
+
+  <!-- Court Type Filters -->
+  <scroll-view class="filter-scroll" scroll-x enable-flex>
+    <view
+      wx:for="{{courtTypes}}"
+      wx:key="value"
+      class="filter-chip {{selectedCourtType === item.value ? 'filter-chip-active' : ''}}"
+      data-value="{{item.value}}"
+      bindtap="onFilterCourtType"
+    >
+      {{item.label}}
+    </view>
+  </scroll-view>
+
+  <!-- Venue List -->
+  <view class="venue-list">
+    <view
+      wx:for="{{list}}"
+      wx:key="_id"
+      class="venue-card card"
+      data-id="{{item._id}}"
+      bindtap="goVenueDetail"
+    >
+      <view class="venue-row">
+        <image
+          class="venue-cover"
+          src="{{item.photos[0] || '/common/images/empty-state.png'}}"
+          mode="aspectFill"
+        />
+        <view class="venue-info">
+          <text class="venue-name">{{item.name}}</text>
+          <text class="venue-address line-clamp-1">{{item.address}}</text>
+          <view class="venue-tags">
+            <text wx:for="{{item.court_types}}" wx:for-item="ct" wx:key="*this" class="venue-tag" wx:if="{{index < 3}}">{{ct}}</text>
+            <text wx:if="{{item.court_count}}" class="venue-tag">{{item.court_count}}片场地</text>
+          </view>
+          <view class="venue-bottom">
+            <rating-stars value="{{item.rating}}" size="sm" readonly="{{true}}" />
+            <text class="venue-price">
+              {{item.display_price ? '¥' + item.display_price + '起/时' : ''}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{loading && list.length === 0}}">
+      <skeleton-loader type="card" rows="{{3}}" />
+    </view>
+    <view wx:elif="{{loading}}" class="load-more">
+      <text class="load-more-text">加载中...</text>
+    </view>
+    <view wx:elif="{{!hasMore && list.length > 0}}" class="load-more">
+      <text class="load-more-text">没有更多了</text>
+    </view>
+    <empty-state
+      wx:if="{{!loading && list.length === 0}}"
+      title="暂无场馆"
+      description="当前条件下没有找到场馆"
+    />
+  </view>
+</view>

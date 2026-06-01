@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "TennisVibe",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "rating-stars": "/components/rating-stars/index",
+    "price-display": "/components/price-display/index",
+    "skeleton-loader": "/components/skeleton-loader/index",
+    "search-bar": "/components/search-bar/index"
+  }
+}
