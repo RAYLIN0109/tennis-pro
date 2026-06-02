@@ -15,12 +15,17 @@ module.exports = async function detail(db, event) {
   let userInfo = {}
   if (coach.user_id) {
     try {
-      const userDoc = await db.collection('users').doc(coach.user_id).get()
-      const u = userDoc.data
-      userInfo = {
-        nickname: u.nickname,
-        avatar_url: u.avatar_url,
-        tennis_level: u.tennis_level
+      const { data: users } = await db.collection('users')
+        .where({ _openid: coach.user_id })
+        .limit(1)
+        .get()
+      if (users.length > 0) {
+        const u = users[0]
+        userInfo = {
+          nickname: u.nickname,
+          avatar_url: u.avatar_url,
+          tennis_level: u.tennis_level
+        }
       }
     } catch (e) {
       // User might not exist

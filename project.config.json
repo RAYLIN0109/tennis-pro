@@ -47,8 +47,8 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.3.4",
-  "appid": "wxd78e98cafe1dff67",
+  "libVersion": "3.16.1",
+  "appid": "wxcc40f5643fe6f4eb",
   "projectname": "tennis-eco",
   "condition": {},
   "editorSetting": {
@@ -57,5 +57,6 @@
   },
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
-  "simulatorPluginLibVersion": {}
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

@@ -1,138 +1,78 @@
-<view class="apply-page">
-  <!-- 必填信息 -->
-  <view class="section">
-    <text class="section-title">必填信息</text>
+<view class="coach-apply-page page-container">
+  <view class="form-section card">
+    <view class="section-title">必填信息</view>
 
-    <view class="form-card">
-      <!-- 真实姓名 -->
-      <view class="form-row">
-        <text class="form-label">真实姓名 *</text>
-        <input class="input form-input {{errors.real_name ? 'input-error' : ''}}"
-          placeholder="请输入姓名" value="{{real_name}}" bindinput="onInputRealName" />
-        <text wx:if="{{errors.real_name}}" class="field-error">{{errors.real_name}}</text>
+    <view class="form-item">
+      <text class="form-label">真实姓名 *</text>
+      <input class="form-input" placeholder="请输入姓名" value="{{form.real_name}}" bindinput="onInputName" />
+      <text wx:if="{{errors.real_name}}" class="form-error">{{errors.real_name}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">手机号 *</text>
+      <input class="form-input" type="number" maxlength="11" placeholder="请输入手机号" value="{{form.phone}}" bindinput="onInputPhone" />
+      <text wx:if="{{errors.phone}}" class="form-error">{{errors.phone}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">教学经验(年) *</text>
+      <input class="form-input" type="number" placeholder="请输入年限" value="{{form.teaching_years}}" bindinput="onInputYears" />
+      <text wx:if="{{errors.teaching_years}}" class="form-error">{{errors.teaching_years}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">每小时费用(元) *</text>
+      <input class="form-input" type="digit" placeholder="请输入价格" value="{{form.hourly_rate}}" bindinput="onInputRate" />
+      <text wx:if="{{errors.hourly_rate}}" class="form-error">{{errors.hourly_rate}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">特长标签 *</text>
+      <view class="tag-list">
+        <view
+          wx:for="{{presetTags}}"
+          wx:key="*this"
+          class="tag {{form.specialties.indexOf(item) > -1 ? 'tag-active' : ''}}"
+          data-tag="{{item}}"
+          bindtap="toggleTag"
+        >{{item}}</view>
       </view>
+      <text wx:if="{{errors.specialties}}" class="form-error">{{errors.specialties}}</text>
+    </view>
+  </view>
 
-      <!-- 手机号 -->
-      <view class="form-row">
-        <text class="form-label">手机号 *</text>
-        <input class="input form-input {{errors.phone ? 'input-error' : ''}}"
-          type="number" maxlength="11" placeholder="请输入手机号"
-          value="{{phone}}" bindinput="onInputPhone" />
-        <text wx:if="{{errors.phone}}" class="field-error">{{errors.phone}}</text>
-      </view>
+  <view class="form-section card">
+    <view class="section-title">选填信息</view>
 
-      <!-- 教学年限 -->
-      <view class="form-row">
-        <text class="form-label">教学经验 *</text>
-        <picker mode="selector" range="{{teachingYearsOptions}}" value="{{teaching_years}}" bindchange="onTeachingYearsChange">
-          <view class="picker-wrap {{errors.teaching_years ? 'input-error' : ''}}">
-            <text class="picker-text">{{teachingYearsOptions[teaching_years] || '请选择年限'}}</text>
-            <text class="picker-arrow">▾</text>
-          </view>
-        </picker>
-        <text wx:if="{{errors.teaching_years}}" class="field-error">{{errors.teaching_years}}</text>
-      </view>
+    <view class="form-item">
+      <text class="form-label">体验课价格(元)</text>
+      <input class="form-input" type="digit" placeholder="请输入价格" value="{{form.trial_rate}}" bindinput="onInputTrial" />
+    </view>
 
-      <!-- 每小时费用 -->
-      <view class="form-row">
-        <text class="form-label">每小时费用 *</text>
-        <input class="input form-input {{errors.hourly_rate ? 'input-error' : ''}}"
-          type="digit" placeholder="请输入价格（元）"
-          value="{{hourly_rate}}" bindinput="onInputHourlyRate" />
-        <text wx:if="{{errors.hourly_rate}}" class="field-error">{{errors.hourly_rate}}</text>
-      </view>
+    <view class="form-item">
+      <text class="form-label">个人简介</text>
+      <textarea class="form-textarea" maxlength="500" placeholder="请输入个人简介" value="{{form.bio}}" bindinput="onInputBio" />
+    </view>
 
-      <!-- 特长标签 -->
-      <view class="form-row">
-        <text class="form-label">特长标签 *</text>
-        <view class="tag-grid">
-          <text wx:for="{{PRESET_TAGS}}" wx:key="*this"
-            class="tag-pill {{specialties.indexOf(item) >= 0 ? 'tag-selected' : ''}}"
-            data-tag="{{item}}" bindtap="addPresetTag">
-            {{item}}
-          </text>
+    <view class="form-item">
+      <text class="form-label">个人照片</text>
+      <view class="photo-list">
+        <view wx:for="{{form.photos}}" wx:key="*this" class="photo-item">
+          <image class="photo-img" src="{{item}}" mode="aspectFill" />
+          <view class="photo-remove" data-index="{{index}}" bindtap="removePhoto">×</view>
         </view>
-        <view class="custom-tag-row">
-          <input class="input tag-input" placeholder="自定义标签"
-            value="{{customTag}}" bindinput="onInputCustomTag"
-            bindconfirm="addCustomTag" />
-          <view class="tag-add-btn" bindtap="addCustomTag">添加</view>
-        </view>
-        <view class="tag-list" wx:if="{{specialties.length > 0}}">
-          <text wx:for="{{specialties}}" wx:key="*this" class="tag-selected-item">
-            {{item}} <text class="tag-remove" data-index="{{index}}" bindtap="removeSpecialty">×</text>
-          </text>
-        </view>
-        <text wx:if="{{errors.specialties}}" class="field-error">{{errors.specialties}}</text>
+        <view wx:if="{{form.photos.length < 9}}" class="photo-add" bindtap="uploadPhoto">+</view>
       </view>
     </view>
   </view>
 
-  <!-- 选填信息 -->
-  <view class="section">
-    <text class="section-title">选填信息</text>
-
-    <view class="form-card">
-      <!-- 体验课价格 -->
-      <view class="form-row">
-        <text class="form-label">体验课价格</text>
-        <input class="input form-input" type="digit" placeholder="请输入价格（元）"
-          value="{{trial_rate}}" bindinput="onInputTrialRate" />
-      </view>
-
-      <!-- 个人简介 -->
-      <view class="form-row">
-        <text class="form-label">个人简介</text>
-        <textarea class="input form-textarea" placeholder="介绍您的教学风格和经历..."
-          maxlength="500" value="{{bio}}" bindinput="onInputBio" />
-        <text class="char-count">{{bio.length}}/500</text>
-      </view>
-
-      <!-- 资质证书 -->
-      <view class="form-row">
-        <text class="form-label">资质证书</text>
-        <view class="custom-tag-row">
-          <input class="input tag-input" placeholder="证书名称"
-            value="{{certLabelInput}}" bindinput="onInputCertLabel"
-            bindconfirm="addCertLabel" />
-          <view class="tag-add-btn" bindtap="addCertLabel">添加</view>
-        </view>
-        <view class="tag-list" wx:if="{{certification_labels.length > 0}}">
-          <text wx:for="{{certification_labels}}" wx:key="*this" class="cert-tag">
-            {{item}} <text class="tag-remove" data-index="{{index}}" bindtap="removeCertLabel">×</text>
-          </text>
-        </view>
-      </view>
-
-      <!-- 个人照片 -->
-      <view class="form-row">
-        <text class="form-label">个人照片</text>
-        <view class="photo-grid">
-          <image wx:for="{{photos}}" wx:key="*this" class="photo-item" src="{{item}}" mode="aspectFill"
-            data-index="{{index}}" bindtap="removePhoto" />
-          <view wx:if="{{photos.length < 9}}" class="photo-add" bindtap="uploadPhoto">
-            <text class="photo-add-icon">+</text>
-          </view>
-        </view>
-        <text class="photo-hint">最多9张</text>
-      </view>
-    </view>
+  <view class="agreement">
+    <view class="agreement-check {{agreed ? 'checked' : ''}}" bindtap="toggleAgree"></view>
+    <text class="agreement-text">我已阅读并同意《教练入驻协议》和《隐私政策》</text>
   </view>
+  <text wx:if="{{errors.agreed}}" class="form-error">{{errors.agreed}}</text>
 
-  <!-- 协议 -->
-  <view class="agreement-row">
-    <view class="agreement-check {{agreed ? 'checked' : ''}}" bindtap="onToggleAgreed">
-      <text wx:if="{{agreed}}" class="check-mark">✓</text>
-    </view>
-    <text class="agreement-text">我已阅读并同意《教练入驻协议》</text>
-  </view>
-  <text wx:if="{{errors.agreed}}" class="field-error agreement-error">{{errors.agreed}}</text>
-
-  <!-- 提交按钮 -->
-  <view class="submit-section">
-    <button class="btn-primary btn-submit {{submitting ? 'btn-disabled' : ''}}"
-      disabled="{{submitting}}" bindtap="onSubmit">
-      提交申请
-    </button>
+  <view class="submit-wrap">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">提交申请</button>
   </view>
 </view>

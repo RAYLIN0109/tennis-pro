@@ -1,21 +1,20 @@
-<view class="login-page page-container">
-  <view class="login-content">
-    <view class="login-logo-wrap">
-      <image class="login-logo" src="/common/images/logo.png" mode="aspectFit" />
-      <text class="login-app-name">TennisVibe</text>
-      <text class="login-tagline">你的全方位网球生态</text>
-    </view>
+<view class="login-page">
+  <view class="login-header">
+    <image class="logo" src="/common/images/logo.png" mode="aspectFit" />
+    <text class="app-name">TennisVibe</text>
+    <text class="app-subtitle">你的全方位网球生态</text>
+  </view>
 
-    <view class="login-actions">
-      <button
-        class="btn btn-primary btn-block login-btn"
-        bindtap="onLogin"
-        loading="{{logging}}"
-        disabled="{{logging}}"
-      >
-        微信一键登录
-      </button>
-      <text class="login-tip">登录即表示同意《用户协议》和《隐私政策》</text>
-    </view>
+  <view class="login-body">
+    <button class="btn btn-primary btn-block" bindtap="onLogin">微信一键登录</button>
+  </view>
+
+  <view class="login-footer">
+    <text class="agreement">
+      登录即表示同意
+      <text class="link" bindtap="goAgreement">《用户协议》</text>
+      和
+      <text class="link" bindtap="goPrivacy">《隐私政策》</text>
+    </text>
   </view>
 </view>

@@ -1,7 +1,7 @@
-const CoachService = require('../../services/coach')
-const ScheduleService = require('../../services/schedule')
-const { getToday, addDays, getDateTabLabel, formatDate } = require('../../utils/date')
-var mock = require('../../common/mock-data')
+const CoachService = require('../../../services/coach')
+const ScheduleService = require('../../../services/schedule')
+const { getToday, addDays, getDateTabLabel, formatDate } = require('../../../utils/date')
+var mock = require('../../../common/mock-data')
 
 Page({
   data: {

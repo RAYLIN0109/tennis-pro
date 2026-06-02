@@ -1,0 +1,25 @@
+<view class="rich-text-page page-container">
+  <view class="content">
+    <view class="content-title">用户协议</view>
+    <view class="content-section">
+      <view class="section-heading">一、服务说明</view>
+      <view class="section-body">TennisVibe 网球生态小程序致力于为用户提供便捷的网球教练预约、场地查询、球友社交等服务。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">二、用户义务</view>
+      <view class="section-body">您承诺所提供的个人信息真实有效，不发布违法、违规或侵犯他人权益的内容。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">三、平台权利</view>
+      <view class="section-body">平台有权审核用户提交的信息，并对违规行为采取警告、限制或封禁措施。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">四、免责声明</view>
+      <view class="section-body">平台作为信息中介，不对教练与学员之间的实际服务质量和交易纠纷承担责任，但会积极配合协商解决。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">五、协议修改</view>
+      <view class="section-body">我们可能根据需要更新本协议，更新后的协议将在小程序内公布。</view>
+    </view>
+  </view>
+</view>

@@ -1,6 +1,6 @@
 <view class="rlist-page page-container">
-  <!-- Stats -->
-  <view wx:if="{{stats}}" class="stats-card card">
+  <!-- Stats (非"我的评价"模式) -->
+  <view wx:if="{{!isMine && stats}}" class="stats-card card">
     <view class="stats-left">
       <text class="stats-avg">{{stats.average}}</text>
       <rating-stars value="{{stats.average}}" size="sm" readonly="{{true}}" />
@@ -17,8 +17,8 @@
     </view>
   </view>
 
-  <!-- Sort -->
-  <view class="sort-row">
+  <!-- Sort (非"我的评价"模式) -->
+  <view wx:if="{{!isMine}}" class="sort-row">
     <text class="sort-btn {{sortBy === 'newest' ? 'sort-active' : ''}}" data-sort="newest" bindtap="onSortChange">最新</text>
     <text class="sort-btn {{sortBy === 'highest' ? 'sort-active' : ''}}" data-sort="highest" bindtap="onSortChange">好评</text>
     <text class="sort-btn {{sortBy === 'lowest' ? 'sort-active' : ''}}" data-sort="lowest" bindtap="onSortChange">差评</text>
@@ -27,6 +27,13 @@
   <!-- Reviews -->
   <view class="review-list">
     <view wx:for="{{list}}" wx:key="_id" class="review-card">
+      <!-- 评价对象（仅"我的评价"模式） -->
+      <view wx:if="{{isMine && item.order_snapshot}}" class="review-target">
+        <text class="target-label">评价对象：</text>
+        <text class="target-name">{{item.order_snapshot.resource_snapshot.name || item.target_type}}</text>
+        <text class="target-date">{{item.order_snapshot.date}}</text>
+      </view>
+
       <view class="reviewer-row">
         <image class="reviewer-avatar" src="{{item.user_info.avatar_url || '/common/images/default-avatar.png'}}" mode="aspectFill" />
         <view class="reviewer-info">

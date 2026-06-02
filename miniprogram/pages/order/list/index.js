@@ -1,8 +1,8 @@
-const OrderService = require('../../services/order')
-const { ORDER_STATUS, ORDER_STATUS_MAP, ORDER_TYPE_MAP } = require('../../common/constants/order')
-const { price } = require('../../utils/formatter')
-const { formatDate } = require('../../utils/date')
-var mock = require('../../common/mock-data')
+const OrderService = require('../../../services/order')
+const { ORDER_STATUS, ORDER_STATUS_MAP, ORDER_TYPE_MAP } = require('../../../common/constants/order')
+const { price } = require('../../../utils/formatter')
+const { formatDate } = require('../../../utils/date')
+var mock = require('../../../common/mock-data')
 
 Page({
   data: {

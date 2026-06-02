@@ -1,6 +1,7 @@
 /**
  * 生成排期
  * 以30分钟为一个时段，从 07:00 到 22:00
+ * 使用数据库唯一索引 (resource_id + resource_type + date) 防止并发脏写
  */
 const SLOT_DURATION = 30
 const DAY_START_HOUR = 7
@@ -15,7 +16,7 @@ module.exports = async function generateSchedule(db, event) {
     return { code: 9002, message: '缺少必要参数' }
   }
 
-  // 检查是否已存在
+  // 先查缓存 —— 大多数情况走此分支
   const { data: existing } = await db.collection('schedules')
     .where({ resource_id: resourceId, resource_type: resourceType, date })
     .limit(1)
@@ -78,7 +79,22 @@ module.exports = async function generateSchedule(db, event) {
     updated_at: now
   }
 
-  const { _id } = await db.collection('schedules').add({ data: scheduleData })
+  try {
+    const { _id } = await db.collection('schedules').add({ data: scheduleData })
+    return { code: 0, data: { _id, ...scheduleData } }
+  } catch (err) {
+    // 并发场景：唯一索引冲突，说明已有其他请求插入成功
+    // 重新查询并返回已存在的记录
+    const { data: retryExisting } = await db.collection('schedules')
+      .where({ resource_id: resourceId, resource_type: resourceType, date })
+      .limit(1)
+      .get()
 
-  return { code: 0, data: { _id, ...scheduleData } }
+    if (retryExisting.length > 0) {
+      return { code: 0, data: retryExisting[0] }
+    }
+
+    // 降级：原样抛出错误
+    throw err
+  }
 }

@@ -1,0 +1,5 @@
+.rich-text-page { padding: var(--space-5); }
+.content-title { font-size: 40rpx; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: var(--space-6); }
+.content-section { margin-bottom: var(--space-6); }
+.section-heading { font-size: 30rpx; font-weight: 600; color: var(--text-primary); margin-bottom: 16rpx; }
+.section-body { font-size: 28rpx; color: var(--text-secondary); line-height: 1.8; }

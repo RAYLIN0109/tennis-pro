@@ -61,10 +61,10 @@ module.exports = async function list(db, event) {
   let usersMap = {}
   if (userIds.length > 0) {
     const { data: users } = await db.collection('users')
-      .where({ _id: _.in(userIds) })
-      .field({ _id: true, nickname: true, avatar_url: true })
+      .where({ _openid: _.in(userIds) })
+      .field({ _openid: true, nickname: true, avatar_url: true })
       .get()
-    users.forEach((u) => { usersMap[u._id] = u })
+    users.forEach((u) => { usersMap[u._openid] = u })
   }
 
   // 合并数据

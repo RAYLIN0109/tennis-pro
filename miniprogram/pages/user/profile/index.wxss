@@ -91,6 +91,25 @@
   color: var(--text-tertiary);
 }
 
+/* === Become Coach CTA === */
+.menu-item-apply {
+  background-color: #FAFFF0;
+  border-bottom: 2rpx solid var(--accent-light, #E8F5E9);
+}
+.menu-item-apply .menu-label {
+  color: var(--accent-dark, #33691E);
+  font-weight: var(--font-semibold);
+}
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.menu-sub {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
 /* === Coach Certification === */
 .coach-cert-section {
   margin-bottom: var(--space-4);
@@ -150,4 +169,80 @@
 
 .btn-reapply::after {
   border: none;
+}
+
+/* === Notification Badge === */
+.profile-notify {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.notify-right {
+  display: flex;
+  align-items: center;
+}
+
+.badge-unread {
+  background-color: #EF4444;
+  color: #FFFFFF;
+  font-size: 22rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+}
+
+/* === Empty State Wrapper（防止坍缩） === */
+.profile-empty-wrap {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Skeleton Loader === */
+.profile-skeleton {
+  padding: 0;
+}
+.skel-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+.skel-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.skel-lines {
+  flex: 1;
+  margin-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+}
+.skel-line {
+  height: 24rpx;
+  border-radius: 4rpx;
+  margin-bottom: 12rpx;
+}
+.skel-line-lg { width: 60%; height: 32rpx; }
+.skel-line-sm { width: 30%; height: 20rpx; margin-bottom: 0; }
+.skel-card {
+  height: 160rpx;
+  border-radius: 16rpx;
+  margin-bottom: var(--space-4);
+}
+.skel-stats { height: 140rpx; }
+.skel-menu-1, .skel-menu-2 { height: 100rpx; }
+.skel-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

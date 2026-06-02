@@ -1,8 +1,8 @@
-const CoachService = require('../../services/coach')
-const { get, post } = require('../../utils/request')
-const { priceShort } = require('../../utils/formatter')
-const { formatDuration } = require('../../utils/date')
-const { ensureLogin } = require('../../utils/auth')
+const CoachService = require('../../../services/coach')
+const { get, post } = require('../../../utils/request')
+const { priceShort } = require('../../../utils/formatter')
+const { formatDuration } = require('../../../utils/date')
+const { ensureLogin } = require('../../../utils/auth')
 
 Page({
   data: {
@@ -87,19 +87,39 @@ Page({
         orderData.timeRange = { start: first.start_time, end: last.end_time }
       }
 
+      let createdOrder = null
+
       post('order', 'create', orderData, '创建订单中...')
         .then((order) => {
+          createdOrder = order
           // 开发模式直接模拟支付
-          return post('order', 'pay', { orderId: order._id }, '支付中...').then(() => order)
+          return post('order', 'pay', { orderId: order._id }, '支付中...')
         })
-        .then((order) => {
+        .then(() => {
           wx.showToast({ title: '预约成功', icon: 'success' })
           setTimeout(() => {
-            wx.redirectTo({ url: `/pages/order/detail/index?id=${order._id}` })
+            wx.redirectTo({ url: `/pages/order/detail/index?id=${createdOrder._id}` })
           }, 1500)
         })
         .catch((err) => {
-          wx.showToast({ title: err.message || '预约失败', icon: 'none' })
+          // 如果订单已创建，引导用户到订单详情页重试支付
+          if (createdOrder) {
+            wx.showModal({
+              title: '支付提示',
+              content: err.message || '支付失败，可在订单详情页重试',
+              confirmText: '查看订单',
+              cancelText: '稍后处理',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.redirectTo({ url: `/pages/order/detail/index?id=${createdOrder._id}` })
+                } else {
+                  wx.switchTab({ url: '/pages/index/index' })
+                }
+              }
+            })
+          } else {
+            wx.showToast({ title: err.message || '预约失败', icon: 'none' })
+          }
         })
         .finally(() => {
           this.setData({ submitting: false })

@@ -179,10 +179,40 @@ var mockOrders = [
   }
 ]
 
+var mockMyReviews = [
+  {
+    _id: 'mock_review_001',
+    order_id: 'mock_order_001',
+    rating: 5,
+    content: '教练非常专业，讲解清晰，对我的正手技术帮助很大！',
+    target_type: 'coach',
+    target_id: 'mock_coach_001',
+    images: [],
+    reply: null,
+    is_anonymous: false,
+    status: 'visible',
+    created_at: '2026-05-20'
+  },
+  {
+    _id: 'mock_review_002',
+    order_id: 'mock_order_002',
+    rating: 4,
+    content: '场地环境不错，教练也很有耐心',
+    target_type: 'coach',
+    target_id: 'mock_coach_002',
+    images: [],
+    reply: null,
+    is_anonymous: false,
+    status: 'visible',
+    created_at: '2026-05-15'
+  }
+]
+
 module.exports = {
   mockUser: mockUser,
   mockCoaches: mockCoaches,
   mockReviews: mockReviews,
   mockOrders: mockOrders,
+  mockMyReviews: mockMyReviews,
   generateMockSlots: generateMockSlots
 }

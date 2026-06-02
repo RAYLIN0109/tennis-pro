@@ -1,4 +1,4 @@
-const ReviewService = require('../../services/review')
+const ReviewService = require('../../../services/review')
 
 Page({
   data: {

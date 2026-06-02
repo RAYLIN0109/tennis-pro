@@ -1,5 +1,5 @@
 /**
- * 获取当前用户的教练状态
+ * 获取当前用户的教练认证状态
  */
 module.exports = async function getMyStatus(db, openid) {
   const { data } = await db.collection('coaches')

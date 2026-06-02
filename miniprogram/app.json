@@ -15,9 +15,11 @@
     "pages/user/profile/index",
     "pages/user/edit-profile/index",
     "pages/user/settings/index",
-    "pages/tennis-circle/index",
     "pages/user/select-role/index",
-    "pages/user/coach-apply/index"
+    "pages/user/coach-apply/index",
+    "pages/user/privacy/index",
+    "pages/user/agreement/index",
+    "pages/tennis-circle/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",

@@ -1,18 +1,26 @@
 const CoachService = require('../../services/coach')
-const { getMyInfo } = require('../../utils/auth')
+const { getMyInfo, checkLogin } = require('../../utils/auth')
 var mock = require('../../common/mock-data')
 
 Page({
   data: {
     userInfo: null,
     recommendCoaches: [],
-    loading: true
+    loading: true,
+    __routeLeft: false
   },
 
   onShow() {
-    this.checkRoleGuide()
-    getMyInfo().catch(() => {})
+    if (checkLogin()) {
+      getMyInfo().catch(() => {})
+    }
     this.loadRecommendCoaches()
+    this.checkRoleGuide()
+    this.maybePromptLogin()
+  },
+
+  onHide() {
+    this.setData({ __routeLeft: true })
   },
 
   onPullDownRefresh() {
@@ -27,7 +35,6 @@ Page({
   },
 
   checkRoleGuide() {
-    // 如果已经展示过引导，跳过
     if (wx.getStorageSync('role_guide_shown')) return
 
     CoachService.getMyCoachStatus().then(res => {
@@ -47,12 +54,29 @@ Page({
         })
       }
     }).catch(() => {
-      // 云函数不可用时降级：首次进入仍弹出角色选择
       if (!wx.getStorageSync('role_guide_shown')) {
         wx.setStorageSync('role_guide_shown', true)
-        wx.navigateTo({ url: '/pages/user/select-role/index' })
       }
     })
+  },
+
+  maybePromptLogin() {
+    if (checkLogin()) return
+    if (wx.getStorageSync('login_prompt_shown')) return
+
+    setTimeout(() => {
+      if (this.data.__routeLeft) return
+      wx.setStorageSync('login_prompt_shown', true)
+      wx.showModal({
+        title: '登录提示',
+        content: '登录后可同步数据、约教练、发评价，是否立即登录？',
+        confirmText: '立即登录',
+        cancelText: '稍后再说',
+        success: ({ confirm }) => {
+          if (confirm) wx.navigateTo({ url: '/pages/user/login/index' })
+        }
+      })
+    }, 1500)
   },
 
   goCoachList() { wx.navigateTo({ url: '/pages/coach/list/index' }) },

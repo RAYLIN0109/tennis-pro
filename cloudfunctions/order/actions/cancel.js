@@ -1,6 +1,9 @@
 /**
- * 取消订单
+ * 取消订单（释放时段通过 schedule 云函数）
  */
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function cancel(db, openid, event) {
   const { orderId, reason } = event
   if (!orderId) return { code: 9002, message: '缺少订单ID' }
@@ -28,12 +31,15 @@ module.exports = async function cancel(db, openid, event) {
     }
   })
 
-  // 释放时段
+  // 释放时段（通过 schedule 云函数）
   if (order.schedule_id && order.slot_indexes) {
-    const releaseSlot = require('../../schedule/actions/releaseSlot')
-    await releaseSlot(db, {
-      scheduleId: order.schedule_id,
-      slotIndexes: order.slot_indexes
+    await cloud.callFunction({
+      name: 'schedule',
+      data: {
+        action: 'releaseSlot',
+        scheduleId: order.schedule_id,
+        slotIndexes: order.slot_indexes
+      }
     })
   }
 

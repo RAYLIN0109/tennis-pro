@@ -1,6 +1,6 @@
-const CoachService = require('../../services/coach')
-const { priceShort } = require('../../utils/formatter')
-var mock = require('../../common/mock-data')
+const CoachService = require('../../../services/coach')
+const { priceShort } = require('../../../utils/formatter')
+var mock = require('../../../common/mock-data')
 
 Page({
   data: {

@@ -8,16 +8,15 @@ module.exports = async function applyCoach(db, openid, event) {
     service_areas, venue_ids
   } = event
 
-  if (!real_name) {
-    return { code: 9002, message: '请输入真实姓名' }
-  }
+  if (!real_name) return { code: 9002, message: '请输入真实姓名' }
+  if (!phone || !/^1[3-9]\d{9}$/.test(phone)) return { code: 9002, message: '请输入正确的手机号' }
+  if (!specialties || specialties.length === 0) return { code: 9002, message: '请至少选择一个特长标签' }
+  if (teaching_years < 0 || teaching_years > 50) return { code: 9002, message: '教学年限 0-50' }
+  if (!hourly_rate || hourly_rate <= 0) return { code: 9002, message: '请输入有效的每小时费用' }
 
-  // 从 users 表获取 city
-  const { data: users } = await db.collection('users')
-    .where({ _openid: openid })
-    .limit(1)
-    .get()
-  const userCity = users[0]?.city || ''
+  // 查询当前用户 city
+  const { data: users } = await db.collection('users').where({ _openid: openid }).limit(1).get()
+  const userCity = users.length > 0 ? users[0].city : ''
 
   // 检查是否已有教练资料
   const { data: existing } = await db.collection('coaches')
@@ -33,7 +32,8 @@ module.exports = async function applyCoach(db, openid, event) {
   const coachData = {
     user_id: openid,
     real_name,
-    phone: phone || '',
+    phone,
+    city: userCity,
     specialties: specialties || [],
     certifications: certifications || [],
     certification_labels: certification_labels || [],
@@ -44,7 +44,6 @@ module.exports = async function applyCoach(db, openid, event) {
     photos: photos || [],
     service_areas: service_areas || [],
     venue_ids: venue_ids || [],
-    city: userCity,
     rating: 0,
     review_count: 0,
     total_students: 0,
@@ -54,9 +53,7 @@ module.exports = async function applyCoach(db, openid, event) {
   }
 
   let coachId
-
   if (existing.length > 0) {
-    // 更新已有记录
     await db.collection('coaches').doc(existing[0]._id).update({
       data: { ...coachData, status: 'pending', updated_at: now }
     })
@@ -66,13 +63,9 @@ module.exports = async function applyCoach(db, openid, event) {
     coachId = _id
   }
 
-  // 无论新申请还是重新申请，都需要更新用户角色
-  // 修复 A1: 将角色更新移出 if/else 分支，避免重提申请时角色未更新
+  // 写角色
   await db.collection('users').where({ _openid: openid }).update({
-    data: {
-      role: db.command.addToSet('coach'),
-      updated_at: now
-    }
+    data: { role: db.command.addToSet('coach'), updated_at: now }
   })
 
   return { code: 0, data: { _id: coachId } }

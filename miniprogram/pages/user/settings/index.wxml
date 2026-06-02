@@ -1,15 +1,15 @@
 <view class="settings-page page-container">
   <view class="settings-list card">
     <view class="settings-item">
-      <text class="settings-label">关于 Tennis Eco</text>
+      <text class="settings-label">关于 TennisVibe</text>
       <text class="settings-value">v1.0.0</text>
     </view>
-    <view class="settings-item">
-      <text class="settings-label">隐私政策</text>
+    <view class="settings-item" bindtap="goAgreement">
+      <text class="settings-label">用户协议</text>
       <text class="settings-arrow">></text>
     </view>
-    <view class="settings-item">
-      <text class="settings-label">用户协议</text>
+    <view class="settings-item" bindtap="goPrivacy">
+      <text class="settings-label">隐私政策</text>
       <text class="settings-arrow">></text>
     </view>
     <view class="settings-item" bindtap="onClearCache">
@@ -19,8 +19,6 @@
   </view>
 
   <view class="logout-wrap">
-    <button class="btn btn-danger btn-block" bindtap="onLogout">
-      退出登录
-    </button>
+    <button class="btn btn-danger btn-block" bindtap="onLogout">退出登录</button>
   </view>
 </view>

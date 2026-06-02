@@ -1,7 +1,10 @@
 /**
  * 创建订单
- * 同时预约时段
+ * 同时预约时段（通过 callFunction 调用 schedule 云函数）
  */
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function create(db, openid, event) {
   const {
     orderType, resourceId, resourceType, scheduleId, slotIndexes,
@@ -11,6 +14,10 @@ module.exports = async function create(db, openid, event) {
 
   if (!resourceId || !slotIndexes || !slotIndexes.length) {
     return { code: 9002, message: '缺少必要参数' }
+  }
+
+  if (!scheduleId) {
+    return { code: 9002, message: '缺少排期ID' }
   }
 
   // 生成订单号
@@ -44,14 +51,17 @@ module.exports = async function create(db, openid, event) {
     updated_at: now
   }
 
-  // 预约时段（原子操作）
-  const bookSlot = require('../../schedule/actions/bookSlot')
-  const bookResult = await bookSlot(db, openid, {
-    scheduleId,
-    slotIndexes,
-    bookedBy: openid,
-    orderRef: orderNo
-  })
+  // 预约时段（原子操作，通过 schedule 云函数）
+  const bookResult = await cloud.callFunction({
+    name: 'schedule',
+    data: {
+      action: 'bookSlot',
+      scheduleId,
+      slotIndexes,
+      bookedBy: openid,
+      orderRef: orderNo
+    }
+  }).then(res => res.result)
 
   if (bookResult.code !== 0) {
     return bookResult
@@ -63,8 +73,14 @@ module.exports = async function create(db, openid, event) {
     orderData._id = _id
     return { code: 0, data: orderData }
   } catch (err) {
-    const releaseSlot = require('../../schedule/actions/releaseSlot')
-    await releaseSlot(db, { scheduleId, slotIndexes }).catch(() => {})
+    await cloud.callFunction({
+      name: 'schedule',
+      data: {
+        action: 'releaseSlot',
+        scheduleId,
+        slotIndexes
+      }
+    }).catch(() => {})
     throw err
   }
 }

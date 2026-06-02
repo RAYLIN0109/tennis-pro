@@ -5,7 +5,7 @@ App({
     } else {
       try {
         wx.cloud.init({
-          // env: 'your-env-id', // 接入云环境后替换为真实环境ID
+          env: 'cloud1-d6ggdck56e7b16eac', // 用户云环境（2026-06-02 配置）
           traceUser: true
         })
       } catch (e) {
@@ -19,6 +19,22 @@ App({
     this.globalData.statusBarHeight = systemInfo.statusBarHeight
     this.globalData.navBarHeight = 44
     this.globalData.safeAreaBottom = systemInfo.screenHeight - systemInfo.safeArea.bottom
+
+    // 静默登录尝试（不阻塞首屏，失败绝不弹 toast）
+    this.silentLogin()
+  },
+
+  silentLogin() {
+    const { request } = require('./utils/request')
+    request('user', 'login', {}, { showLoading: false, showError: false })
+      .then((data) => {
+        this.globalData.openid = data._openid
+        this.globalData.userInfo = data
+        console.log('[silentLogin] success', data._openid)
+      })
+      .catch((err) => {
+        console.log('[silentLogin] fail（无云环境或首次）', err.message || 'unknown')
+      })
   },
 
   globalData: {

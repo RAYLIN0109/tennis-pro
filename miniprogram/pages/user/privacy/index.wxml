@@ -1,0 +1,25 @@
+<view class="rich-text-page page-container">
+  <view class="content">
+    <view class="content-title">隐私政策</view>
+    <view class="content-section">
+      <view class="section-heading">一、信息收集</view>
+      <view class="section-body">本小程序仅收集您在注册、使用过程中主动提供的信息，包括：微信头像、昵称、手机号码、网球水平、所在城市等。未经您明确同意，我们不会收集其他个人信息。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">二、信息使用</view>
+      <view class="section-body">收集的信息用于：为您提供预约教练、参与活动、评价服务等功能。我们不会将您的个人信息出售、交易或转让给第三方。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">三、信息存储</view>
+      <view class="section-body">您的信息存储在微信云开发（CloudBase）平台，采用行业标准的安全措施保护您的数据。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">四、您的权利</view>
+      <view class="section-body">您可以在个人中心编辑或删除您的基本信息。如需彻底注销账号，请联系客服。</view>
+    </view>
+    <view class="content-section">
+      <view class="section-heading">五、联系我们</view>
+      <view class="section-body">如有隐私相关问题，请在设置页的"意见反馈"中联系我们。</view>
+    </view>
+  </view>
+</view>

@@ -1,21 +1,35 @@
-const UserService = require('../../services/user')
-const CoachService = require('../../services/coach')
-const { checkLogin } = require('../../utils/auth')
-var mock = require('../../common/mock-data')
+const UserService = require('../../../services/user')
+const CoachService = require('../../../services/coach')
+const NotificationService = require('../../../services/notification')
+const { checkLogin } = require('../../../utils/auth')
+var mock = require('../../../common/mock-data')
 
 Page({
   data: {
     userInfo: null,
     isLoggedIn: false,
+    profileLoaded: false,
     stats: { total_bookings: 0, total_reviews: 0, total_activities: 0 },
-    coachInfo: null
+    coachInfo: null,
+    unreadCount: 0
   },
 
   onShow() {
-    // 无云环境时直接使用模拟数据展示登录状态
-    this.setData({ isLoggedIn: true })
-    this.loadProfile()
-    this.loadCoachStatus()
+    const loggedIn = checkLogin()
+    this.setData({ isLoggedIn: loggedIn })
+
+    if (loggedIn) {
+      // 已登录：未加载过时显示骨架屏
+      if (!this.data.profileLoaded) {
+        this.setData({ profileLoaded: false })
+      }
+      this.loadProfile()
+      this.loadCoachStatus()
+      this.loadUnreadCount()
+    } else {
+      // 未登录：跳过骨架屏，直接进入 B 块
+      this.setData({ profileLoaded: true, userInfo: null, coachInfo: null, unreadCount: 0 })
+    }
   },
 
   loadProfile() {
@@ -23,14 +37,16 @@ Page({
       .then((data) => {
         this.setData({
           userInfo: data,
+          profileLoaded: true,
           stats: data.stats || { total_bookings: 0, total_reviews: 0, total_activities: 0 }
         })
       })
       .catch(() => {
-        // 模拟数据回退
+        // 静默回退到 mock
         var u = mock.mockUser
         this.setData({
           userInfo: u,
+          profileLoaded: true,
           stats: u.stats || { total_bookings: 0, total_reviews: 0, total_activities: 0 }
         })
       })
@@ -39,6 +55,12 @@ Page({
   loadCoachStatus() {
     CoachService.getMyCoachStatus().then(res => {
       this.setData({ coachInfo: res })
+    }).catch(() => {})
+  },
+
+  loadUnreadCount() {
+    NotificationService.getUnreadCount().then(res => {
+      this.setData({ unreadCount: res.count || 0 })
     }).catch(() => {})
   },
 
@@ -58,7 +80,19 @@ Page({
     wx.navigateTo({ url: '/pages/order/list/index' })
   },
 
+  goReviews() {
+    wx.navigateTo({ url: '/pages/review/list/index?from=mine' })
+  },
+
   goSettings() {
     wx.navigateTo({ url: '/pages/user/settings/index' })
+  },
+
+  goCoachApply() {
+    wx.navigateTo({ url: '/pages/user/select-role/index' })
+  },
+
+  goNotifications() {
+    wx.showToast({ title: '通知列表即将上线', icon: 'none' })
   }
 })

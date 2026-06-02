@@ -56,3 +56,7 @@
   margin-top: var(--space-5);
   line-height: var(--leading-relaxed);
 }
+
+.link {
+  color: var(--accent-dark);
+}
