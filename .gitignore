@@ -4,3 +4,4 @@ project.private.config.json
 .DS_Store
 *.local
 dist/
+.qoder/

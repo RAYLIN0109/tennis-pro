@@ -3,7 +3,7 @@
  */
 module.exports = async function applyCoach(db, openid, event) {
   const {
-    real_name, specialties, certifications, certification_labels,
+    real_name, phone, specialties, certifications, certification_labels,
     teaching_years, hourly_rate, trial_rate, bio, photos,
     service_areas, venue_ids
   } = event
@@ -11,6 +11,13 @@ module.exports = async function applyCoach(db, openid, event) {
   if (!real_name) {
     return { code: 9002, message: '请输入真实姓名' }
   }
+
+  // 从 users 表获取 city
+  const { data: users } = await db.collection('users')
+    .where({ _openid: openid })
+    .limit(1)
+    .get()
+  const userCity = users[0]?.city || ''
 
   // 检查是否已有教练资料
   const { data: existing } = await db.collection('coaches')
@@ -26,6 +33,7 @@ module.exports = async function applyCoach(db, openid, event) {
   const coachData = {
     user_id: openid,
     real_name,
+    phone: phone || '',
     specialties: specialties || [],
     certifications: certifications || [],
     certification_labels: certification_labels || [],
@@ -36,6 +44,7 @@ module.exports = async function applyCoach(db, openid, event) {
     photos: photos || [],
     service_areas: service_areas || [],
     venue_ids: venue_ids || [],
+    city: userCity,
     rating: 0,
     review_count: 0,
     total_students: 0,

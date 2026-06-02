@@ -5,6 +5,9 @@ const list = require('./actions/list')
 const detail = require('./actions/detail')
 const search = require('./actions/search')
 const applyCoach = require('./actions/applyCoach')
+const getMyStatus = require('./actions/getMyStatus')
+const approve = require('./actions/approve')
+const reject = require('./actions/reject')
 
 exports.main = async (event, context) => {
   const { OPENID } = cloud.getWXContext()
@@ -20,6 +23,12 @@ exports.main = async (event, context) => {
         return await search(db, event)
       case 'applyCoach':
         return await applyCoach(db, OPENID, event)
+      case 'getMyStatus':
+        return await getMyStatus(db, OPENID)
+      case 'approve':
+        return await approve(db, OPENID, event)
+      case 'reject':
+        return await reject(db, OPENID, event)
       default:
         return { code: 9001, message: '未知操作' }
     }

@@ -1,4 +1,4 @@
-const { get } = require('../utils/request')
+const { get, post } = require('../utils/request')
 
 const CoachService = {
   getList(params) {
@@ -11,6 +11,14 @@ const CoachService = {
 
   search(keyword, page = 1) {
     return get('coach', 'search', { keyword, page })
+  },
+
+  apply(data) {
+    return post('coach', 'applyCoach', data, '提交中...')
+  },
+
+  getMyCoachStatus() {
+    return get('coach', 'getMyStatus')
   }
 }
 

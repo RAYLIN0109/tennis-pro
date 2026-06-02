@@ -118,113 +118,6 @@ var mockCoaches = [
   }
 ]
 
-var mockVenues = [
-  {
-    _id: 'venue_1',
-    name: '城市网球中心',
-    address: '北京市朝阳区建国路800号',
-    city: '北京',
-    district: '朝阳区',
-    distance: '3.2km',
-    court_count: 6,
-    court_types: ['硬地', '室内'],
-    courts: [
-      { id: 'court_1', name: '1号场-硬地', type: '硬地' },
-      { id: 'court_2', name: '2号场-硬地', type: '硬地' },
-      { id: 'court_3', name: '3号场-室内', type: '室内' },
-      { id: 'court_4', name: '4号场-室内', type: '室内' }
-    ],
-    facilities: ['淋浴', '更衣室', '停车场', '咖啡厅', 'WiFi', '灯光'],
-    price_rules: [
-      { label: '工作日白天', price_per_hour: 8000, time_range: '07:00-18:00' },
-      { label: '工作日晚间', price_per_hour: 12000, time_range: '18:00-22:00' }
-    ],
-    display_price: '80',
-    business_hours: { open: '07:00', close: '22:00' },
-    rating: 4.8,
-    review_count: 128,
-    photos: [IMG_BASE + 'b631e3130e39e4361003eb60b24db828.png'],
-    status: 'active'
-  },
-  {
-    _id: 'venue_2',
-    name: '绿洲网球俱乐部',
-    address: '北京市海淀区中关村南大街500号',
-    city: '北京',
-    district: '海淀区',
-    distance: '5.1km',
-    court_count: 4,
-    court_types: ['红土', '硬地'],
-    courts: [
-      { id: 'court_1', name: '红土1号', type: '红土' },
-      { id: 'court_2', name: '红土2号', type: '红土' },
-      { id: 'court_3', name: '硬地1号', type: '硬地' },
-      { id: 'court_4', name: '硬地2号', type: '硬地' }
-    ],
-    facilities: ['淋浴', '储物柜', '停车场', '网球商店'],
-    price_rules: [
-      { label: '统一价格', price_per_hour: 12000, time_range: '08:00-21:00' }
-    ],
-    display_price: '120',
-    business_hours: { open: '08:00', close: '21:00' },
-    rating: 4.9,
-    review_count: 76,
-    photos: [IMG_BASE + '88163fe2068cf245d663f6c49cf931fd.png'],
-    status: 'active'
-  },
-  {
-    _id: 'venue_3',
-    name: '阳光网球公园',
-    address: '北京市顺义区天竺路200号',
-    city: '北京',
-    district: '顺义区',
-    distance: '7.8km',
-    court_count: 8,
-    court_types: ['硬地', '室外'],
-    courts: [
-      { id: 'court_1', name: 'A1-室外', type: '室外' },
-      { id: 'court_2', name: 'A2-室外', type: '室外' },
-      { id: 'court_3', name: 'B1-硬地', type: '硬地' },
-      { id: 'court_4', name: 'B2-硬地', type: '硬地' }
-    ],
-    facilities: ['淋浴', '更衣室', '停车场', '咖啡厅', 'WiFi', '灯光', '网球商店'],
-    price_rules: [
-      { label: '统一价格', price_per_hour: 6000, time_range: '06:00-20:00' }
-    ],
-    display_price: '60',
-    business_hours: { open: '06:00', close: '20:00' },
-    rating: 4.7,
-    review_count: 210,
-    photos: [IMG_BASE + '2a3f81129431a2f263de00a085587cf8.png'],
-    status: 'active'
-  },
-  {
-    _id: 'venue_4',
-    name: 'CBD网球会所',
-    address: '北京市朝阳区国贸三期B1层',
-    city: '北京',
-    district: '朝阳区',
-    distance: '2.5km',
-    court_count: 3,
-    court_types: ['室内', '硬地'],
-    courts: [
-      { id: 'court_1', name: 'VIP-1', type: '室内' },
-      { id: 'court_2', name: 'VIP-2', type: '室内' },
-      { id: 'court_3', name: '标准场', type: '硬地' }
-    ],
-    facilities: ['淋浴', '更衣室', '停车场', '咖啡厅', 'WiFi', '灯光'],
-    price_rules: [
-      { label: '统一价格', price_per_hour: 15000, time_range: '08:00-22:00' }
-    ],
-    display_price: '150',
-    business_hours: { open: '08:00', close: '22:00' },
-    rating: 4.6,
-    review_count: 52,
-    photos: [IMG_BASE + '0410b1b3d65e2f036cb6d3ca3422fcc3.png'],
-    status: 'active'
-  }
-]
-
 function generateMockSlots() {
   var slots = []
   var times = [
@@ -271,20 +164,6 @@ var mockOrders = [
     created_at: '2026-05-19T10:00:00Z'
   },
   {
-    _id: 'order_2',
-    order_no: 'TE20260525002',
-    order_type: 'venue_booking',
-    status: 'paid',
-    resource_snapshot: { name: '城市网球中心', avatar: IMG_BASE + 'b631e3130e39e4361003eb60b24db828.png' },
-    resource_info: { name: '城市网球中心', type: 'venue' },
-    date: '2026-06-01',
-    time_range: { start: '15:00', end: '16:30' },
-    duration_minutes: 90,
-    total_amount: 18000,
-    reviewed: false,
-    created_at: '2026-05-25T08:30:00Z'
-  },
-  {
     _id: 'order_3',
     order_no: 'TE20260528003',
     order_type: 'coach_booking',
@@ -303,7 +182,6 @@ var mockOrders = [
 module.exports = {
   mockUser: mockUser,
   mockCoaches: mockCoaches,
-  mockVenues: mockVenues,
   mockReviews: mockReviews,
   mockOrders: mockOrders,
   generateMockSlots: generateMockSlots

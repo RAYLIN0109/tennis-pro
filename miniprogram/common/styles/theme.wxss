@@ -3,6 +3,13 @@
    Modern / Lime accent
    ======================================== */
 
+/* === Font Awesome === */
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  src: url('/common/fonts/fa-solid-900.woff2') format('woff2');
+  font-weight: 900;
+}
+
 page {
   /* === Colors === */
   --accent: #D4FF00;

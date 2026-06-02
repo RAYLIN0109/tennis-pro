@@ -56,7 +56,7 @@
 /* === Function Grid === */
 .function-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-4);
   margin-bottom: var(--space-8);
 }
@@ -72,15 +72,18 @@
   width: 128rpx;
   height: 128rpx;
   border-radius: 50%;
-  background-color: rgba(212, 255, 0, 0.1);
+  background: linear-gradient(145deg, #FAFAFA, #F0F0F0);
+  box-shadow: 6rpx 6rpx 16rpx rgba(0, 0, 0, 0.04), -4rpx -4rpx 12rpx rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-2);
+  overflow: hidden;
 }
 
-.func-emoji {
-  font-size: 48rpx;
+.func-img {
+  width: 60%;
+  height: 60%;
 }
 
 .func-label {
@@ -144,90 +147,6 @@
 .h-scroll-inner {
   display: inline-flex;
   gap: var(--space-4);
-}
-
-/* === Court Horizontal Card === */
-.court-h-card {
-  display: inline-flex;
-  flex-direction: column;
-  width: 520rpx;
-  background-color: var(--bg-primary);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  flex-shrink: 0;
-}
-
-.court-h-image {
-  width: 100%;
-  height: 280rpx;
-}
-
-.court-h-info {
-  padding: var(--space-4);
-}
-
-.court-h-name {
-  display: block;
-  font-weight: var(--font-bold);
-  font-size: var(--text-lg);
-  color: var(--text-primary);
-  margin-bottom: var(--space-2);
-}
-
-.court-h-location {
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--space-3);
-}
-
-.location-icon {
-  font-size: var(--text-xs);
-  margin-right: var(--space-1);
-}
-
-.location-text {
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
-}
-
-.court-h-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.court-h-rating {
-  display: flex;
-  align-items: center;
-}
-
-.rating-star {
-  font-size: var(--text-xs);
-  color: #F59E0B;
-  margin-right: var(--space-1);
-}
-
-.rating-num {
-  font-size: var(--text-base);
-  font-weight: var(--font-medium);
-  color: var(--text-primary);
-}
-
-.court-h-price {
-  display: flex;
-  align-items: baseline;
-}
-
-.price-value {
-  font-size: var(--text-lg);
-  font-weight: var(--font-bold);
-  color: var(--accent);
-}
-
-.price-unit {
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
 }
 
 /* === Coach Horizontal Card === */

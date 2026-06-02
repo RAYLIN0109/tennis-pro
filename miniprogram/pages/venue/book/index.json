@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "确认预约",
-  "usingComponents": {
-    "price-display": "/components/price-display/index"
-  }
-}

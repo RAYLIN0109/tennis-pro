@@ -27,7 +27,7 @@ module.exports = async function detail(db, event) {
     }
   }
 
-  // 获取评价统计
+  // 获取评价统计 测试
   const reviewsCol = db.collection('reviews')
   const { total: reviewCount } = await reviewsCol
     .where({ target_type: 'coach', target_id: coachId })

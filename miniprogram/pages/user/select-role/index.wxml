@@ -1,0 +1,27 @@
+<view class="role-page">
+  <!-- Hero -->
+  <view class="hero-section">
+    <text class="hero-emoji">🎾</text>
+    <text class="hero-title">欢迎来到 TennisVibe</text>
+    <text class="hero-subtitle">请选择您的身份</text>
+  </view>
+
+  <!-- Role Cards -->
+  <view class="role-cards">
+    <view class="role-card" bindtap="selectStudent">
+      <view class="role-card-icon role-card-icon-student">
+        <text class="role-card-emoji">👤</text>
+      </view>
+      <text class="role-card-title">我是学员</text>
+      <text class="role-card-desc">开始约教练</text>
+    </view>
+
+    <view class="role-card" bindtap="selectCoach">
+      <view class="role-card-icon role-card-icon-coach">
+        <text class="role-card-emoji">🎾</text>
+      </view>
+      <text class="role-card-title">我是教练</text>
+      <text class="role-card-desc">创建教练主页</text>
+    </view>
+  </view>
+</view>

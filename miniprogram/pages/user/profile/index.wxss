@@ -90,3 +90,64 @@
   font-size: var(--text-sm);
   color: var(--text-tertiary);
 }
+
+/* === Coach Certification === */
+.coach-cert-section {
+  margin-bottom: var(--space-4);
+}
+
+.coach-cert-card {
+  padding: var(--space-5);
+  background-color: var(--bg-primary);
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.cert-title {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.cert-status {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.cert-pending {
+  background-color: #F5F5F5;
+  color: #999999;
+}
+
+.cert-active {
+  background-color: var(--accent-light);
+  color: var(--accent-dark);
+}
+
+.cert-suspended {
+  background-color: #FFF3E0;
+  color: #FF9500;
+}
+
+.cert-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-3);
+}
+
+.btn-reapply {
+  padding: 12rpx 32rpx;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-full);
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+  border: none;
+  line-height: 1;
+}
+
+.btn-reapply::after {
+  border: none;
+}

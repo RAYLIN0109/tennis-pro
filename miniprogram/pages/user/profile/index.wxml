@@ -35,6 +35,25 @@
       </view>
     </view>
 
+    <!-- Coach Certification Block -->
+    <view wx:if="{{coachInfo && coachInfo.has_apply}}" class="coach-cert-section">
+      <view class="coach-cert-card">
+        <text class="cert-title">我的教练认证</text>
+        <view wx:if="{{coachInfo.coach.status === 'pending'}}" class="cert-status cert-pending">
+          <text>审核中，请耐心等待</text>
+        </view>
+        <view wx:if="{{coachInfo.coach.status === 'active'}}" class="cert-status cert-active">
+          <text>已认证</text>
+        </view>
+        <view wx:if="{{coachInfo.coach.status === 'suspended'}}" class="cert-status cert-suspended">
+          <text>认证未通过：{{coachInfo.coach.reject_reason || '已停用'}}</text>
+        </view>
+      </view>
+      <view wx:if="{{coachInfo.coach.status === 'suspended'}}" class="cert-actions">
+        <button class="btn-primary btn-reapply" bindtap="goReapply">重新申请</button>
+      </view>
+    </view>
+
     <!-- Menu List -->
     <view class="profile-menu card">
       <view class="menu-item" bindtap="goOrders">

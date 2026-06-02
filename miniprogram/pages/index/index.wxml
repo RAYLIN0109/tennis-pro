@@ -11,7 +11,7 @@
     <view class="search-section" bindtap="goCoachList">
       <view class="search-bar-fake">
         <text class="search-icon">🔍</text>
-        <text class="search-placeholder">搜索教练、场地或球友...</text>
+        <text class="search-placeholder">搜索教练、球友...</text>
       </view>
     </view>
 
@@ -19,71 +19,30 @@
     <view class="function-grid">
       <view class="func-item" bindtap="goCoachList">
         <view class="func-icon-circle">
-          <text class="func-emoji">👔</text>
+          <image class="func-img" src="/common/images/icon-coach.svg" mode="aspectFit" />
         </view>
         <text class="func-label">约教练</text>
       </view>
-      <view class="func-item" bindtap="goVenueList">
-        <view class="func-icon-circle">
-          <text class="func-emoji">📍</text>
-        </view>
-        <text class="func-label">约场地</text>
-      </view>
       <view class="func-item" bindtap="goMatch">
         <view class="func-icon-circle">
-          <text class="func-emoji">🤝</text>
+          <image class="func-img" src="/common/images/icon-players.svg" mode="aspectFit" />
         </view>
         <text class="func-label">约球友</text>
         <view class="coming-badge">即将</view>
       </view>
       <view class="func-item" bindtap="goMatch">
         <view class="func-icon-circle">
-          <text class="func-emoji">📺</text>
+          <image class="func-img" src="/common/images/icon-video.svg" mode="aspectFit" />
         </view>
         <text class="func-label">看比赛</text>
         <view class="coming-badge">即将</view>
       </view>
       <view class="func-item" bindtap="goTennisCircle">
         <view class="func-icon-circle">
-          <text class="func-emoji">💬</text>
+          <image class="func-img" src="/common/images/icon-circle.svg" mode="aspectFit" />
         </view>
         <text class="func-label">网球圈</text>
       </view>
-    </view>
-
-    <!-- Hot Courts -->
-    <view class="section-block">
-      <view class="section-header">
-        <text class="section-title">附近热门球场</text>
-        <view class="section-more" bindtap="goVenueList">
-          <text class="more-text">查看全部</text>
-          <text class="more-arrow">></text>
-        </view>
-      </view>
-      <scroll-view class="h-scroll breakout-scroll" scroll-x show-scrollbar="{{false}}">
-        <view class="h-scroll-inner">
-          <view wx:for="{{hotVenues}}" wx:key="_id" class="court-h-card" data-id="{{item._id}}" bindtap="goVenueDetail">
-            <image class="court-h-image" src="{{item.photos[0] || '/common/images/empty-state.png'}}" mode="aspectFill" />
-            <view class="court-h-info">
-              <text class="court-h-name">{{item.name}}</text>
-              <view class="court-h-location">
-                <text class="location-icon">📍</text>
-                <text class="location-text">{{item.distance || ''}} · {{item.district || item.city || ''}}</text>
-              </view>
-              <view class="court-h-bottom">
-                <view class="court-h-rating">
-                  <text class="rating-star">★</text>
-                  <text class="rating-num">{{item.rating}}</text>
-                </view>
-                <view class="court-h-price">
-                  <text class="price-value">¥{{item.display_price || '80'}}</text>
-                  <text class="price-unit">/小时起</text>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </scroll-view>
     </view>
 
     <!-- Recommended Coaches -->

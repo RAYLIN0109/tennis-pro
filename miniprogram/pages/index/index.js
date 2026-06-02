@@ -1,5 +1,4 @@
 const CoachService = require('../../services/coach')
-const VenueService = require('../../services/venue')
 const { getMyInfo } = require('../../utils/auth')
 var mock = require('../../common/mock-data')
 
@@ -7,18 +6,17 @@ Page({
   data: {
     userInfo: null,
     recommendCoaches: [],
-    hotVenues: [],
     loading: true
   },
 
   onShow() {
+    this.checkRoleGuide()
     getMyInfo().catch(() => {})
     this.loadRecommendCoaches()
-    this.loadHotVenues()
   },
 
   onPullDownRefresh() {
-    Promise.all([this.loadRecommendCoaches(), this.loadHotVenues()])
+    this.loadRecommendCoaches()
       .finally(() => wx.stopPullDownRefresh())
   },
 
@@ -28,22 +26,41 @@ Page({
       .catch(() => { this.setData({ recommendCoaches: mock.mockCoaches.slice(0, 3), loading: false }) })
   },
 
-  loadHotVenues() {
-    return VenueService.getList({ page: 1, pageSize: 4, sortBy: 'rating' })
-      .then((res) => { this.setData({ hotVenues: res.list }) })
-      .catch(() => { this.setData({ hotVenues: mock.mockVenues }) })
+  checkRoleGuide() {
+    // 如果已经展示过引导，跳过
+    if (wx.getStorageSync('role_guide_shown')) return
+
+    CoachService.getMyCoachStatus().then(res => {
+      wx.setStorageSync('role_guide_shown', true)
+      if (!res.has_apply) {
+        wx.navigateTo({ url: '/pages/user/select-role/index' })
+      } else if (res.coach.status === 'pending') {
+        wx.showToast({ title: '教练认证审核中...', icon: 'none' })
+      } else if (res.coach.status === 'suspended') {
+        wx.showModal({
+          title: '教练认证状态',
+          content: `您的教练认证已被${res.coach.reject_reason ? '驳回：' + res.coach.reject_reason : '停用'}。`,
+          confirmText: '重新申请',
+          success: ({ confirm }) => {
+            if (confirm) wx.navigateTo({ url: '/pages/user/coach-apply/index?mode=edit' })
+          }
+        })
+      }
+    }).catch(() => {
+      // 云函数不可用时降级：首次进入仍弹出角色选择
+      if (!wx.getStorageSync('role_guide_shown')) {
+        wx.setStorageSync('role_guide_shown', true)
+        wx.navigateTo({ url: '/pages/user/select-role/index' })
+      }
+    })
   },
 
   goCoachList() { wx.navigateTo({ url: '/pages/coach/list/index' }) },
-  goVenueList() { wx.navigateTo({ url: '/pages/venue/list/index' }) },
   goActivity() { wx.navigateTo({ url: '/pages/activity/list/index' }) },
   goTennisCircle() { wx.switchTab({ url: '/pages/tennis-circle/index' }) },
   goMatch() { wx.showToast({ title: '即将开放', icon: 'none' }) },
 
   goCoachDetail(e) {
     wx.navigateTo({ url: `/pages/coach/detail/index?id=${e.currentTarget.dataset.id}` })
-  },
-  goVenueDetail(e) {
-    wx.navigateTo({ url: `/pages/venue/detail/index?id=${e.currentTarget.dataset.id}` })
   }
 })
