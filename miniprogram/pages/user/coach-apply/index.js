@@ -176,12 +176,17 @@ Page({
   // === 标签 ===
   toggleTag(e) {
     const tag = e.currentTarget.dataset.tag
-    const specialties = this.data.form.specialties
-    if (specialties.includes(tag)) {
-      this.setData({ 'form.specialties': specialties.filter(t => t !== tag) })
+    console.log('[tag] clicked:', tag, 'current:', this.data.form.specialties)
+    if (!tag) return
+    let specialties = [...this.data.form.specialties]
+    const idx = specialties.indexOf(tag)
+    if (idx > -1) {
+      specialties.splice(idx, 1)
     } else {
-      this.setData({ 'form.specialties': [...specialties, tag] })
+      specialties.push(tag)
     }
+    this.setData({ 'form.specialties': specialties })
+    console.log('[tag] result:', specialties)
   },
 
   // === 表单输入 ===

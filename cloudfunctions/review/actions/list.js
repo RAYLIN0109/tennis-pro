@@ -1,3 +1,6 @@
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function list(db, event) {
   const { targetType, targetId, page = 1, pageSize = 10, sortBy = 'newest' } = event
   if (!targetType || !targetId) return { code: 9002, message: '缺少参数' }
@@ -24,6 +27,23 @@ module.exports = async function list(db, event) {
   let usersMap = {}
   if (openids.length) {
     const { data: users } = await db.collection('users').where({ _openid: _.in(openids) }).field({ _openid: true, nickname: true, avatar_url: true, tennis_level: true }).get()
+
+    // 将云存储 fileID 转为临时可访问 URL
+    for (const u of users) {
+      if (u.avatar_url && u.avatar_url.startsWith('cloud://')) {
+        try {
+          const { fileList } = await cloud.getTempFileURL({
+            fileList: [u.avatar_url]
+          })
+          if (fileList && fileList[0] && fileList[0].tempFileURL) {
+            u.avatar_url = fileList[0].tempFileURL
+          }
+        } catch (e) {
+          console.warn('[review/list] getTempFileURL failed:', e.message)
+        }
+      }
+    }
+
     users.forEach((u) => { usersMap[u._openid] = u })
   }
 

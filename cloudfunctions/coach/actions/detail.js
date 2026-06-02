@@ -1,6 +1,9 @@
 /**
  * 教练详情
  */
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function detail(db, event) {
   const { coachId } = event
   if (!coachId) {
@@ -25,6 +28,19 @@ module.exports = async function detail(db, event) {
           nickname: u.nickname,
           avatar_url: u.avatar_url,
           tennis_level: u.tennis_level
+        }
+        // 将云存储 fileID 转为临时可访问 URL
+        if (u.avatar_url && u.avatar_url.startsWith('cloud://')) {
+          try {
+            const { fileList } = await cloud.getTempFileURL({
+              fileList: [u.avatar_url]
+            })
+            if (fileList && fileList[0] && fileList[0].tempFileURL) {
+              userInfo.avatar_url = fileList[0].tempFileURL
+            }
+          } catch (e) {
+            console.warn('[coach/detail] getTempFileURL failed:', e.message)
+          }
         }
       }
     } catch (e) {

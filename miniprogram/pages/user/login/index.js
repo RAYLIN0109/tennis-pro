@@ -1,4 +1,4 @@
-const UserService = require('../../../services/user')
+const { login } = require('../../../utils/auth')
 
 Page({
   data: { logging: false },
@@ -7,7 +7,7 @@ Page({
     if (this.data.logging) return
     this.setData({ logging: true })
 
-    UserService.login()
+    login()
       .then(() => {
         wx.showToast({ title: '登录成功', icon: 'success' })
         setTimeout(() => wx.switchTab({ url: '/pages/user/profile/index' }), 1000)

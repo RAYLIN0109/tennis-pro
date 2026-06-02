@@ -1,6 +1,9 @@
 /**
  * 教练列表（分页、筛选、排序）
  */
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function list(db, event) {
   const {
     page = 1,
@@ -65,6 +68,22 @@ module.exports = async function list(db, event) {
       .field({ _openid: true, nickname: true, avatar_url: true })
       .get()
     users.forEach((u) => { usersMap[u._openid] = u })
+  }
+
+  // 将云存储 fileID 转为临时可访问 URL（跨用户头像可见）
+  for (const u of Object.values(usersMap)) {
+    if (u.avatar_url && u.avatar_url.startsWith('cloud://')) {
+      try {
+        const { fileList } = await cloud.getTempFileURL({
+          fileList: [u.avatar_url]
+        })
+        if (fileList && fileList[0] && fileList[0].tempFileURL) {
+          u.avatar_url = fileList[0].tempFileURL
+        }
+      } catch (e) {
+        console.warn('[coach/list] getTempFileURL failed:', e.message)
+      }
+    }
   }
 
   // 合并数据
