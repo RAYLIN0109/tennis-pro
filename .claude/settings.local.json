@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(rm -rf ~/.claude/teams/agent-dev-team/)",
+      "Bash(rm -rf ~/.claude/tasks/agent-dev-team/)",
+      "Bash(rm -rf ~/.claude/tasks/5b211b2b-3706-48f0-b7b4-aeb88b2a8267/)",
+      "Bash(ls D:/workspace/vb/vibe*.md)",
+      "Bash(node:*)"
+    ]
+  }
+}

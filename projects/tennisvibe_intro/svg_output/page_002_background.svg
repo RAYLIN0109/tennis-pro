@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_002_background.svg
+  Rhythm: breathing
+  Spec:  spec_lock.md §1–7, outline.md page 02
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <!-- Background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Section pill -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">01 / 11</text>
+
+  <!-- Title -->
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">项目背景</text>
+  <text x="64" y="166" font-size="13" fill="#777777">为什么做 TennisVibe？</text>
+
+  <!-- Title rule -->
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- Pain point cards: 3 cards, x=64 / 456 / 848, w=368, h=180, y=210 -->
+  <!-- Card 1: 找教练难 -->
+  <rect x="64" y="210" width="368" height="180" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64" y="210" width="368" height="40" rx="12" fill="#B8E600"/>
+  <rect x="64" y="230" width="368" height="20" fill="#B8E600"/>
+  <text x="248" y="236" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">找教练难</text>
+  <text x="248" y="290" font-size="13" fill="#333333" text-anchor="middle">信息分散在朋友圈 / 微信群</text>
+  <text x="248" y="312" font-size="13" fill="#333333" text-anchor="middle">缺乏统一的教练库与评价体系</text>
+
+  <!-- Card 2: 约场地难 -->
+  <rect x="456" y="210" width="368" height="180" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="456" y="210" width="368" height="40" rx="12" fill="#B8E600"/>
+  <rect x="456" y="230" width="368" height="20" fill="#B8E600"/>
+  <text x="640" y="236" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">约场地难</text>
+  <text x="640" y="290" font-size="13" fill="#333333" text-anchor="middle">档期、价格、可用时段不透明</text>
+  <text x="640" y="312" font-size="13" fill="#333333" text-anchor="middle">排期冲突频发</text>
+
+  <!-- Card 3: 建圈子难 -->
+  <rect x="848" y="210" width="368" height="180" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="848" y="210" width="368" height="40" rx="12" fill="#B8E600"/>
+  <rect x="848" y="230" width="368" height="20" fill="#B8E600"/>
+  <text x="1032" y="236" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">建圈子难</text>
+  <text x="1032" y="290" font-size="13" fill="#333333" text-anchor="middle">球友匹配低效</text>
+  <text x="1032" y="312" font-size="13" fill="#333333" text-anchor="middle">活动组织缺少数字化工具</text>
+
+  <!-- Goals panel -->
+  <rect x="64" y="420" width="1152" height="220" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="88" y="450" font-size="18" font-weight="700" fill="#B8E600">项目目标</text>
+
+  <!-- 4 goals -->
+  <g font-size="14" fill="#333333">
+    <!-- goal 1 -->
+    <circle cx="100" cy="494" r="5" fill="#B8E600"/>
+    <text x="116" y="498">打造网球教练 / 场地 / 活动 三位一体的微信生态小程序</text>
+    <!-- goal 2 -->
+    <circle cx="100" cy="528" r="5" fill="#B8E600"/>
+    <text x="116" y="532">为球友提供「查 → 约 → 付 → 评」完整体验闭环</text>
+    <!-- goal 3 -->
+    <circle cx="100" cy="562" r="5" fill="#B8E600"/>
+    <text x="116" y="566">沉淀结构化数据，逐步接入支付、运营、商家管理能力</text>
+    <!-- goal 4 -->
+    <circle cx="100" cy="596" r="5" fill="#B8E600"/>
+    <text x="116" y="600">轻量起步：以微信云开发承载后端，零服务器运维成本</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">02 / 12</text>
+</svg>

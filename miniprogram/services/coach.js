@@ -8,7 +8,9 @@ const CoachService = {
   getMyCoachStatus() { return get('coach', 'getMyStatus', {}, { showError: false }) },
 
   // 写操作：主动提示
-  apply(data) { return post('coach', 'applyCoach', data, '提交中...') }
+  apply(data) { return post('coach', 'applyCoach', data, '提交中...') },
+  approve(coachId) { return post('coach', 'approve', { coachId }, '审核中...') },
+  reject(coachId, reason) { return post('coach', 'reject', { coachId, reason }, '处理中...') }
 }
 
 module.exports = CoachService

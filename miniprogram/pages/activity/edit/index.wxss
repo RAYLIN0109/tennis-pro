@@ -1,0 +1,36 @@
+@import '../create/index.wxss';
+
+/* Restriction banner for edit page */
+.restriction-banner {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  margin: 0 24rpx;
+  background: #FFF8E1;
+  border-radius: 16rpx;
+  border: 2rpx solid #FFE082;
+}
+
+.restriction-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.restriction-text {
+  font-size: 26rpx;
+  color: #F57F17;
+  line-height: 1.5;
+}
+
+.section-disabled {
+  opacity: 0.6;
+}
+
+.picker-disabled {
+  opacity: 0.5;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+}

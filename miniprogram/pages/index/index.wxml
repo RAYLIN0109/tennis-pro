@@ -1,11 +1,14 @@
 <view class="home-page page-container">
-  <view class="page-content">
-
-    <!-- Greeting -->
-    <view class="greeting-section">
-      <text class="greeting-title">你好，网球爱好者👋</text>
-      <text class="greeting-subtitle">今天想去打网球吗？</text>
+  <!-- Background Hero -->
+  <view class="hero-section">
+    <image class="hero-bg" src="/common/images/home-bg.png" mode="aspectFill" />
+    <view class="hero-overlay">
+      <text class="hero-title">TennisVibe</text>
+      <text class="hero-subtitle">找到你的网球搭档</text>
     </view>
+  </view>
+
+  <view class="page-content">
 
     <!-- Search -->
     <view class="search-section" bindtap="goCoachList">
@@ -23,19 +26,17 @@
         </view>
         <text class="func-label">约教练</text>
       </view>
-      <view class="func-item" bindtap="goMatch">
+      <view class="func-item" bindtap="goPickupGame">
         <view class="func-icon-circle">
           <image class="func-img" src="/common/images/icon-players.svg" mode="aspectFit" />
         </view>
         <text class="func-label">约球友</text>
-        <view class="coming-badge">即将</view>
       </view>
-      <view class="func-item" bindtap="goMatch">
+      <view class="func-item" bindtap="goWatchParty">
         <view class="func-icon-circle">
           <image class="func-img" src="/common/images/icon-video.svg" mode="aspectFit" />
         </view>
         <text class="func-label">看比赛</text>
-        <view class="coming-badge">即将</view>
       </view>
       <view class="func-item" bindtap="goTennisCircle">
         <view class="func-icon-circle">

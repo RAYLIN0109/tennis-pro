@@ -60,7 +60,7 @@ function request(name, action, data = {}, options = {}) {
 }
 
 function get(name, action, data = {}, options = {}) {
-  return request(name, action, data, { showLoading: false, showError: true, ...options })
+  return request(name, action, data, { showLoading: false, showError: false, ...options })
 }
 
 function post(name, action, data = {}, loadingText = '提交中...') {

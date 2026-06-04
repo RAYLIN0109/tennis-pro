@@ -80,6 +80,10 @@ Page({
     wx.navigateTo({ url: '/pages/order/list/index' })
   },
 
+  goMyActivities() {
+    wx.switchTab({ url: '/pages/activity/list/index' })
+  },
+
   goReviews() {
     wx.navigateTo({ url: '/pages/review/list/index?from=mine' })
   },
@@ -93,6 +97,6 @@ Page({
   },
 
   goNotifications() {
-    wx.showToast({ title: '通知列表即将上线', icon: 'none' })
+    wx.navigateTo({ url: '/pages/notification/list/index' })
   }
 })

@@ -29,6 +29,20 @@
       { "fields": [{ "fieldPath": "order_id", "order": "asc" }], "unique": true },
       { "fields": [{ "fieldPath": "created_by", "order": "asc" }] }
     ],
+    "posts": [
+      { "fields": [{ "fieldPath": "status", "order": "asc" }, { "fieldPath": "created_at", "order": "desc" }] },
+      { "fields": [{ "fieldPath": "topic", "order": "asc" }, { "fieldPath": "status", "order": "asc" }, { "fieldPath": "created_at", "order": "desc" }] },
+      { "fields": [{ "fieldPath": "author_id", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "is_pinned", "order": "asc" }, { "fieldPath": "created_at", "order": "desc" }] }
+    ],
+    "comments": [
+      { "fields": [{ "fieldPath": "post_id", "order": "asc" }, { "fieldPath": "created_at", "order": "asc" }] },
+      { "fields": [{ "fieldPath": "author_id", "order": "asc" }] }
+    ],
+    "likes": [
+      { "fields": [{ "fieldPath": "target_type", "order": "asc" }, { "fieldPath": "target_id", "order": "asc" }, { "fieldPath": "user_id", "order": "asc" }], "unique": true },
+      { "fields": [{ "fieldPath": "user_id", "order": "asc" }] }
+    ],
     "notifications": [
       { "fields": [{ "fieldPath": "user_id", "order": "asc" }, { "fieldPath": "is_read", "order": "asc" }, { "fieldPath": "created_at", "order": "desc" }] }
     ]

@@ -1,0 +1,20 @@
+{
+  "envId": "cloud1-d6ggdck56e7b16eac",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "activity",
+      "timeout": 15,
+      "runtime": "Nodejs20.19",
+      "handler": "index.main",
+      "envVariables": {}
+    },
+    {
+      "name": "social",
+      "timeout": 15,
+      "runtime": "Nodejs20.19",
+      "handler": "index.main",
+      "envVariables": {}
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+<view class="post-create page-container">
+  <!-- Header -->
+  <view class="header">
+    <view class="header-left" bindtap="goBack">
+      <text class="cancel-text">取消</text>
+    </view>
+    <text class="header-title">发布动态</text>
+    <view class="header-right">
+      <view class="submit-btn {{content.trim() ? 'active' : ''}}" bindtap="submit">
+        <text>发布</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Content Area -->
+  <scroll-view scroll-y class="scroll-content">
+    <!-- Text Input -->
+    <view class="content-section">
+      <textarea
+        class="content-textarea"
+        placeholder="分享你的网球故事..."
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="5000"
+        auto-height
+      />
+      <text class="chars-counter">{{ charsLeft }}</text>
+    </view>
+
+    <!-- Image Picker -->
+    <view class="image-section">
+      <view class="image-grid">
+        <view wx:for="{{images}}" wx:key="index" class="image-item">
+          <image src="{{item}}" class="preview-image" mode="aspectFill" />
+          <view class="remove-image" bindtap="removeImage" data-index="{{index}}">
+            <text>×</text>
+          </view>
+        </view>
+        <view wx:if="{{images.length < 9}}" class="image-picker" bindtap="chooseImage">
+          <text class="picker-icon">+</text>
+          <text class="picker-text">{{ images.length }}/9</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Topic Selector -->
+    <view class="form-section">
+      <text class="form-label">话题</text>
+      <picker mode="selector" range="{{topics}}" value="{{topics.indexOf(topic)}}" bindchange="onTopicChange">
+        <view class="picker-value">
+          <text>{{ topic }}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Location -->
+    <view class="form-section">
+      <text class="form-label">位置</text>
+      <view wx:if="{{!location}}" class="form-action" bindtap="chooseLocation">
+        <text class="action-text">添加位置</text>
+        <text class="action-icon">📍</text>
+      </view>
+      <view wx:else class="form-action">
+        <text class="action-text location-name">{{ locationName }}</text>
+        <text class="action-icon" bindtap="clearLocation">✕</text>
+      </view>
+    </view>
+
+    <!-- Tags -->
+    <view class="form-section">
+      <text class="form-label">标签</text>
+      <view class="tag-input-row">
+        <input
+          class="tag-input"
+          placeholder="输入标签回车添加"
+          value="{{tagInput}}"
+          bindinput="onTagInput"
+          bindconfirm="addTag"
+        />
+        <view class="tag-add-btn" bindtap="addTag">
+          <text>添加</text>
+        </view>
+      </view>
+      <view wx:if="{{tags.length > 0}}" class="tag-list">
+        <view wx:for="{{tags}}" wx:key="index" class="tag-item">
+          <text>#{{ item }}</text>
+          <text class="tag-remove" bindtap="removeTag" data-index="{{index}}">×</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Loading overlay -->
+  <view wx:if="{{submitting}}" class="loading-overlay">
+    <view class="loading-box">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">发布中...</text>
+    </view>
+  </view>
+</view>

@@ -2,6 +2,7 @@ const OrderService = require('../../../services/order')
 const { ORDER_STATUS_MAP, ORDER_TYPE_MAP } = require('../../../common/constants/order')
 const { price } = require('../../../utils/formatter')
 const { formatDate } = require('../../../utils/date')
+const { subscribeOrder } = require('../../../utils/subscribe')
 var mock = require('../../../common/mock-data')
 
 Page({
@@ -59,9 +60,12 @@ Page({
   },
 
   goPay() {
-    OrderService.pay(this.data.orderId).then(() => {
-      wx.showToast({ title: '支付成功', icon: 'success' })
-      this.loadDetail()
+    // 先请求订阅授权，再执行支付
+    subscribeOrder().then(() => {
+      OrderService.pay(this.data.orderId).then(() => {
+        wx.showToast({ title: '支付成功', icon: 'success' })
+        this.loadDetail()
+      })
     })
   },
 
@@ -72,9 +76,12 @@ Page({
       confirmColor: '#EF4444',
       success: (res) => {
         if (res.confirm) {
-          OrderService.cancel(this.data.orderId, '用户主动取消').then(() => {
-            wx.showToast({ title: '已取消', icon: 'success' })
-            this.loadDetail()
+          // 先请求订阅授权，再执行取消
+          subscribeOrder().then(() => {
+            OrderService.cancel(this.data.orderId, '用户主动取消').then(() => {
+              wx.showToast({ title: '已取消', icon: 'success' })
+              this.loadDetail()
+            })
           })
         }
       }

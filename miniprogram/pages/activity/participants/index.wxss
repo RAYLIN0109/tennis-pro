@@ -1,0 +1,209 @@
+/* ===== Participants Page ===== */
+.participants-page {
+  min-height: 100vh;
+  background: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header ===== */
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 60rpx 32rpx 24rpx;
+  background: #fff;
+}
+
+.header-left {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 48rpx;
+  color: #333;
+  font-weight: 300;
+}
+
+.header-info {
+  flex: 1;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a1a2e;
+  display: block;
+}
+
+.header-count {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.header-right {
+  width: 80rpx;
+}
+
+/* ===== Loading ===== */
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 200rpx 0;
+}
+
+.loading-spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #e0e0e0;
+  border-top-color: #B8E600;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 24rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* ===== List Scroll ===== */
+.list-scroll {
+  flex: 1;
+}
+
+.participants-list {
+  padding: 24rpx;
+  padding-bottom: 60rpx;
+}
+
+/* ===== Participant Card ===== */
+.participant-card {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.participant-card.creator-card {
+  border: 2rpx solid #B8E600;
+  background: linear-gradient(135deg, #FDFFEB, #F5FFD0);
+}
+
+.card-avatar-wrap {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  flex-shrink: 0;
+  margin-right: 24rpx;
+}
+
+.card-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-avatar-placeholder {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #B8E600, #9ACD32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-avatar-placeholder text {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.badge-creator {
+  position: absolute;
+  bottom: -4rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #B8E600;
+  color: #1F2A37;
+  font-size: 18rpx;
+  font-weight: 600;
+  padding: 2rpx 12rpx;
+  border-radius: 12rpx;
+  white-space: nowrap;
+}
+
+.card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+}
+
+.card-level {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.card-joined {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 2rpx;
+  display: block;
+}
+
+/* ===== Divider ===== */
+.divider-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  margin-bottom: 8rpx;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2rpx;
+  background: #e0e0e0;
+}
+
+.divider-text {
+  font-size: 24rpx;
+  color: #999;
+  margin: 0 24rpx;
+  flex-shrink: 0;
+}
+
+/* ===== Load More ===== */
+.load-more {
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.load-more-text {
+  font-size: 24rpx;
+  color: #bbb;
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_003_positioning.svg
+  Rhythm: breathing
+  Spec:  spec_lock.md §1–7, outline.md page 03
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Section pill -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">02 / 11</text>
+
+  <!-- Title -->
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">产品定位</text>
+  <text x="64" y="166" font-size="13" fill="#777777">三位一体的网球生态</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- Card 1: 球友 / User -->
+  <rect x="64" y="210" width="368" height="220" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <!-- icon: simple player (head + body) -->
+  <g transform="translate(248,232)" fill="#1F2A37">
+    <circle cx="0" cy="0" r="14"/>
+    <path d="M -22 50 Q 0 22 22 50 L 22 60 L -22 60 Z" fill="#B8E600" stroke="#1F2A37" stroke-width="1.5"/>
+  </g>
+  <text x="248" y="320" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">球友 / User</text>
+  <text x="248" y="352" font-size="13" fill="#333333" text-anchor="middle">查找教练 · 预约时段</text>
+  <text x="248" y="374" font-size="13" fill="#333333" text-anchor="middle">下单支付 · 完成评价</text>
+
+  <!-- Card 2: 教练 / Coach -->
+  <rect x="456" y="210" width="368" height="220" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <g transform="translate(640,232)" fill="#1F2A37">
+    <circle cx="0" cy="0" r="14"/>
+    <path d="M -22 50 Q 0 22 22 50 L 22 60 L -22 60 Z" fill="#B8E600" stroke="#1F2A37" stroke-width="1.5"/>
+    <!-- racket -->
+    <ellipse cx="34" cy="22" rx="14" ry="18" fill="none" stroke="#B8E600" stroke-width="2.5"/>
+    <line x1="22" y1="36" x2="14" y2="48" stroke="#1F2A37" stroke-width="2.5"/>
+  </g>
+  <text x="640" y="320" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">教练 / Coach</text>
+  <text x="640" y="352" font-size="13" fill="#333333" text-anchor="middle">上架资料 · 管理排期</text>
+  <text x="640" y="374" font-size="13" fill="#333333" text-anchor="middle">接收订单 · 维护口碑</text>
+
+  <!-- Card 3: 场地主 / Venue -->
+  <rect x="848" y="210" width="368" height="220" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <g transform="translate(1032,232)" fill="none" stroke="#1F2A37" stroke-width="2">
+    <!-- court outline -->
+    <rect x="-30" y="-18" width="60" height="36" rx="3"/>
+    <line x1="0" y1="-18" x2="0" y2="18"/>
+    <!-- net -->
+    <line x1="-30" y1="0" x2="30" y2="0" stroke="#B8E600" stroke-width="2"/>
+  </g>
+  <text x="1032" y="320" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">场地主 / Venue</text>
+  <text x="1032" y="352" font-size="13" fill="#333333" text-anchor="middle">档期发布 · 订单管理</text>
+  <text x="1032" y="374" font-size="13" fill="#777777" text-anchor="middle">（筹备中，二期接入）</text>
+
+  <!-- Relationship panel -->
+  <rect x="64" y="460" width="1152" height="180" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="88" y="492" font-size="18" font-weight="700" fill="#B8E600">生态关系：球友 · 教练 · 场地 相互连接</text>
+
+  <g font-size="13" fill="#333333">
+    <text x="88" y="528">球友在 TennisVibe 内即可完成：浏览教练 → 选择时段 → 创建订单 → 微信支付 → 上场训练 → 课后评价。</text>
+    <text x="88" y="554">教练侧支持：申请入驻 → 平台审核 → 上架资料 → 维护排期 → 接收并完成订单。</text>
+    <text x="88" y="580">场地侧作为后续扩展角色，将共享同一套「排期 + 订单」原子能力，复用底层数据模型。</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">03 / 12</text>
+</svg>

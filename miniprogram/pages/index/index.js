@@ -30,8 +30,8 @@ Page({
 
   loadRecommendCoaches() {
     return CoachService.getList({ page: 1, pageSize: 3, sortBy: 'rating' })
-      .then((res) => { this.setData({ recommendCoaches: res.list, loading: false }) })
-      .catch(() => { this.setData({ recommendCoaches: mock.mockCoaches.slice(0, 3), loading: false }) })
+      .then((res) => { this.setData({ recommendCoaches: res.list || [], loading: false }) })
+      .catch(() => { this.setData({ recommendCoaches: [], loading: false }) })
   },
 
   checkRoleGuide() {
@@ -82,7 +82,14 @@ Page({
   goCoachList() { wx.navigateTo({ url: '/pages/coach/list/index' }) },
   goActivity() { wx.navigateTo({ url: '/pages/activity/list/index' }) },
   goTennisCircle() { wx.switchTab({ url: '/pages/tennis-circle/index' }) },
-  goMatch() { wx.showToast({ title: '即将开放', icon: 'none' }) },
+
+  goPickupGame() {
+    wx.navigateTo({ url: '/pages/activity/list/index?type=pickup_game' })
+  },
+
+  goWatchParty() {
+    wx.navigateTo({ url: '/pages/activity/list/index?type=watch_party' })
+  },
 
   goCoachDetail(e) {
     wx.navigateTo({ url: `/pages/coach/detail/index?id=${e.currentTarget.dataset.id}` })

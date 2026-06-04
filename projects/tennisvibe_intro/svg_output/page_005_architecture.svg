@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_005_architecture.svg
+  Rhythm: dense (3 columns with arrows)
+  Spec:  spec_lock.md §1–7, outline.md page 05
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">04 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">总体架构</text>
+  <text x="64" y="166" font-size="13" fill="#777777">端 → 云函数 → 云数据库 三层结构</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- Col 1: 客户端 -->
+  <rect x="64" y="210" width="364" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64" y="210" width="364" height="40" rx="12" fill="#B8E600"/>
+  <rect x="64" y="230" width="364" height="20" fill="#B8E600"/>
+  <text x="246" y="236" font-size="16" font-weight="700" fill="#1F2A37" text-anchor="middle">小程序端</text>
+
+  <text x="84" y="284" font-size="13" font-weight="700" fill="#1F2A37">Pages (21)</text>
+  <g font-size="11" fill="#333333">
+    <text x="84" y="308">·  首页 / 网球圈 / 我的</text>
+    <text x="84" y="328">·  教练  列表·详情·预约</text>
+    <text x="84" y="348">·  活动  列表·详情·创建</text>
+    <text x="84" y="368">·  订单  列表·详情</text>
+    <text x="84" y="388">·  评价  创建·列表</text>
+    <text x="84" y="408">·  用户  登录·资料·设置</text>
+  </g>
+
+  <text x="84" y="448" font-size="13" font-weight="700" fill="#1F2A37">Components (8)</text>
+  <g font-size="11" fill="#333333">
+    <text x="84" y="472">rating-stars · status-badge</text>
+    <text x="84" y="492">empty-state · price-display</text>
+    <text x="84" y="512">skeleton-loader · user-card</text>
+    <text x="84" y="532">search-bar · time-slot-picker</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g transform="translate(434,420)">
+    <polygon points="0,0 24,0 24,-8 36,4 24,16 24,8 0,8" fill="#B8E600"/>
+  </g>
+
+  <!-- Col 2: 云函数层 -->
+  <rect x="458" y="210" width="364" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="458" y="210" width="364" height="40" rx="12" fill="#B8E600"/>
+  <rect x="458" y="230" width="364" height="20" fill="#B8E600"/>
+  <text x="640" y="236" font-size="14" font-weight="700" fill="#1F2A37" text-anchor="middle">云函数层（8 模块）</text>
+
+  <text x="478" y="278" font-size="11" fill="#777777" text-anchor="middle">34 actions · 91% 已实现</text>
+
+  <!-- 8 module mini cards: 2 cols x 4 rows, each 162x52, gap 8 -->
+  <g>
+    <!-- Row 1 -->
+    <rect x="478" y="296" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="559" y="320" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">user</text>
+    <text x="559" y="338" font-size="10" fill="#777777" text-anchor="middle">4 actions · 登录/资料</text>
+
+    <rect x="650" y="296" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="731" y="320" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">coach</text>
+    <text x="731" y="338" font-size="10" fill="#777777" text-anchor="middle">7 actions · 申请/审核</text>
+
+    <!-- Row 2 -->
+    <rect x="478" y="356" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="559" y="380" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">order</text>
+    <text x="559" y="398" font-size="10" fill="#777777" text-anchor="middle">6 actions · 下单/支付</text>
+
+    <rect x="650" y="356" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="731" y="380" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">review</text>
+    <text x="731" y="398" font-size="10" fill="#777777" text-anchor="middle">4 actions · 评价/统计</text>
+
+    <!-- Row 3 -->
+    <rect x="478" y="416" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="559" y="440" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">schedule</text>
+    <text x="559" y="458" font-size="10" fill="#777777" text-anchor="middle">4 actions · 原子预约</text>
+
+    <rect x="650" y="416" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="731" y="440" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">venue</text>
+    <text x="731" y="458" font-size="10" fill="#777777" text-anchor="middle">3 actions · 只读</text>
+
+    <!-- Row 4 -->
+    <rect x="478" y="476" width="162" height="52" rx="6" fill="#FFE7C2"/>
+    <text x="559" y="500" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">activity</text>
+    <text x="559" y="518" font-size="10" fill="#FF8A00" text-anchor="middle">3 actions · 占位中</text>
+
+    <rect x="650" y="476" width="162" height="52" rx="6" fill="#E6F7C8"/>
+    <text x="731" y="500" font-size="13" font-weight="700" fill="#1F2A37" text-anchor="middle">notification</text>
+    <text x="731" y="518" font-size="10" fill="#777777" text-anchor="middle">3 actions · 已读/未读</text>
+  </g>
+
+  <text x="640" y="572" font-size="11" fill="#777777" text-anchor="middle">统一：exports.main · switch(action)</text>
+
+  <!-- Arrow 2 -->
+  <g transform="translate(828,420)">
+    <polygon points="0,0 24,0 24,-8 36,4 24,16 24,8 0,8" fill="#B8E600"/>
+  </g>
+
+  <!-- Col 3: 数据库 -->
+  <rect x="852" y="210" width="364" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="852" y="210" width="364" height="40" rx="12" fill="#B8E600"/>
+  <rect x="852" y="230" width="364" height="20" fill="#B8E600"/>
+  <text x="1034" y="236" font-size="16" font-weight="700" fill="#1F2A37" text-anchor="middle">云数据库 / 存储</text>
+
+  <text x="872" y="282" font-size="13" font-weight="700" fill="#1F2A37">8 张集合</text>
+  <g font-size="12" fill="#333333">
+    <text x="888" y="306">·  users</text>
+    <text x="1000" y="306" fill="#777777">用户档案</text>
+
+    <text x="888" y="328">·  coaches</text>
+    <text x="1000" y="328" fill="#777777">教练扩展资料</text>
+
+    <text x="888" y="350">·  orders</text>
+    <text x="1000" y="350" fill="#777777">订单</text>
+
+    <text x="888" y="372">·  reviews</text>
+    <text x="1000" y="372" fill="#777777">评价</text>
+
+    <text x="888" y="394">·  schedules</text>
+    <text x="1000" y="394" fill="#777777">排期（多态）</text>
+
+    <text x="888" y="416">·  venues</text>
+    <text x="1000" y="416" fill="#777777">场地</text>
+
+    <text x="888" y="438">·  activities</text>
+    <text x="1000" y="438" fill="#777777">活动</text>
+
+    <text x="888" y="460">·  notifications</text>
+    <text x="1000" y="460" fill="#777777">通知</text>
+  </g>
+
+  <line x1="872" y1="478" x2="1196" y2="478" stroke="#E5E5E0"/>
+  <text x="872" y="500" font-size="13" font-weight="700" fill="#1F2A37">云存储</text>
+  <g font-size="11" fill="#777777">
+    <text x="872" y="522">·  头像 / 认证图片 / 评价图</text>
+    <text x="872" y="540">·  唯一索引：_openid · user_id</text>
+    <text x="872" y="558">·  复合索引：status + created_at</text>
+  </g>
+
+  <!-- Bottom note -->
+  <text x="640" y="666" font-size="11" fill="#777777" text-anchor="middle">调用链路：wx.cloud.callFunction({ name, data: { action, ... } }) → switch 路由 → actions/&lt;name&gt;.js → db.collection()</text>
+
+  <!-- Footer -->
+  <text x="64" y="700" font-size="10" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="700" font-size="10" fill="#777777" text-anchor="end">05 / 12</text>
+</svg>

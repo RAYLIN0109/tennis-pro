@@ -7,6 +7,7 @@ const list = require('./actions/list')
 const pay = require('./actions/pay')
 const cancel = require('./actions/cancel')
 const confirm = require('./actions/confirm')
+const refund = require('./actions/refund')
 
 exports.main = async (event, context) => {
   const { OPENID } = cloud.getWXContext()
@@ -26,6 +27,8 @@ exports.main = async (event, context) => {
         return await cancel(db, OPENID, event)
       case 'confirm':
         return await confirm(db, OPENID, event)
+      case 'refund':
+        return await refund(db, OPENID, event)
       default:
         return { code: 9001, message: '未知操作' }
     }

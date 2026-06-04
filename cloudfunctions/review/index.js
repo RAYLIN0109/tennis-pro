@@ -4,6 +4,7 @@ const create = require('./actions/create')
 const list = require('./actions/list')
 const getStats = require('./actions/getStats')
 const myList = require('./actions/myList')
+const reply = require('./actions/reply')
 
 exports.main = async (event, context) => {
   const { OPENID } = cloud.getWXContext()
@@ -14,6 +15,7 @@ exports.main = async (event, context) => {
       case 'list':     return await list(db, event)
       case 'getStats': return await getStats(db, event)
       case 'myList':   return await myList(db, OPENID, event)
+      case 'reply':    return await reply(db, OPENID, event)
       default:         return { code: 9001, message: '未知操作' }
     }
   } catch (err) {

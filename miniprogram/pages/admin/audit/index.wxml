@@ -1,0 +1,100 @@
+<view class="admin-page">
+  <view class="page-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">教练审核</text>
+    <view class="header-right"></view>
+  </view>
+
+  <view class="tabs-bar">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="value"
+      class="tab-item {{ currentTab === item.value ? 'active' : '' }}"
+      bindtap="switchTab"
+      data-value="{{item.value}}"
+    >
+      <text>{{ item.label }}</text>
+      <view wx:if="{{item.value === 'pending' && pendingCount > 0}}" class="badge">{{ pendingCount }}</view>
+    </view>
+  </view>
+
+  <scroll-view class="content-scroll" scroll-y>
+    <view wx:if="{{loading}}" class="loading-wrapper">
+      <view class="loading-spinner"></view>
+    </view>
+
+    <view wx:else-if="{{coachList.length === 0}}" class="empty-state">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">{{ currentTab === 'pending' ? '暂无待审核申请' : '暂无审核记录' }}</text>
+    </view>
+
+    <view wx:else class="coach-list">
+      <view 
+        wx:for="{{coachList}}" 
+        wx:key="_id" 
+        class="coach-card"
+      >
+        <view class="coach-header">
+          <image 
+            class="coach-avatar" 
+            src="{{item.user_info.avatar_url || '/common/images/default-avatar.png'}}" 
+            mode="aspectFill" 
+          />
+          <view class="coach-info">
+            <text class="coach-name">{{item.real_name || item.user_info.nickname}}</text>
+            <view class="coach-meta">
+              <text class="meta-item">🏆 {{item.cert_text}}</text>
+              <text class="meta-divider">·</text>
+              <text class="meta-item">📅 {{item.teaching_years || 0}}年教龄</text>
+            </view>
+          </view>
+          <view class="status-tag {{item.status}}">{{getStatusText(item.status)}}</view>
+        </view>
+
+        <view class="coach-details">
+          <view class="detail-row">
+            <text class="detail-label">特长</text>
+            <text class="detail-value">{{item.specialties_text}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">报价</text>
+            <text class="detail-value">¥{{item.display_price_text}}/课时</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">城市</text>
+            <text class="detail-value">{{item.city || '未填写'}}</text>
+          </view>
+        </view>
+
+        <view class="apply-time">
+          <text>申请时间：{{formatTime(item.created_at)}}</text>
+        </view>
+
+        <view wx:if="{{currentTab === 'pending'}}" class="action-btns">
+          <view class="btn btn-reject" bindtap="handleReject" data-id="{{item._id}}">驳回</view>
+          <view class="btn btn-approve" bindtap="handleApprove" data-id="{{item._id}}">通过</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 驳回弹窗 -->
+  <view wx:if="{{showRejectModal}}" class="modal-overlay" bindtap="closeRejectModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <text class="modal-title">驳回申请</text>
+      <textarea 
+        class="reject-reason" 
+        placeholder="请输入驳回理由" 
+        value="{{rejectReason}}"
+        bindinput="onRejectReasonInput"
+        maxlength="200"
+      />
+      <view class="modal-footer">
+        <view class="modal-btn cancel" bindtap="closeRejectModal">取消</view>
+        <view class="modal-btn confirm" bindtap="confirmReject">确认驳回</view>
+      </view>
+    </view>
+  </view>
+</view>

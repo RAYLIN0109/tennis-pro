@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_004_techstack.svg
+  Rhythm: breathing
+  Spec:  spec_lock.md §1–7, outline.md page 04
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">03 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">技术栈</text>
+  <text x="64" y="166" font-size="13" fill="#777777">微信原生 + 云开发一体化</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- 3 columns at x=64/456/848, w=368, y=210, h=440 -->
+  <!-- Col 1: 前端 -->
+  <rect x="64" y="210" width="368" height="440" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64" y="210" width="368" height="50" rx="12" fill="#B8E600"/>
+  <rect x="64" y="240" width="368" height="20" fill="#B8E600"/>
+  <text x="248" y="240" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">前端</text>
+  <text x="248" y="270" font-size="11" fill="#1F2A37" text-anchor="middle">微信小程序原生框架</text>
+
+  <!-- list items -->
+  <g font-size="13" fill="#333333">
+    <rect x="92" y="312" width="6" height="20" fill="#B8E600"/>
+    <text x="108" y="328">WXML + WXSS + JS(ES6+)</text>
+
+    <rect x="92" y="352" width="6" height="20" fill="#B8E600"/>
+    <text x="108" y="368">21 个页面 / 3 个 tabBar</text>
+
+    <rect x="92" y="392" width="6" height="20" fill="#B8E600"/>
+    <text x="108" y="408">8 个自定义组件</text>
+
+    <rect x="92" y="432" width="6" height="20" fill="#B8E600"/>
+    <text x="108" y="448">基础库 3.3.4</text>
+
+    <rect x="92" y="472" width="6" height="20" fill="#B8E600"/>
+    <text x="108" y="488">代码风格 2 空格缩进</text>
+  </g>
+
+  <!-- Col 2: 后端 -->
+  <rect x="456" y="210" width="368" height="440" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="456" y="210" width="368" height="50" rx="12" fill="#B8E600"/>
+  <rect x="456" y="240" width="368" height="20" fill="#B8E600"/>
+  <text x="640" y="240" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">后端</text>
+  <text x="640" y="270" font-size="11" fill="#1F2A37" text-anchor="middle">微信云开发 (CloudBase)</text>
+
+  <g font-size="13" fill="#333333">
+    <rect x="484" y="312" width="6" height="20" fill="#B8E600"/>
+    <text x="500" y="328">云函数 8 个模块</text>
+
+    <rect x="484" y="352" width="6" height="20" fill="#B8E600"/>
+    <text x="500" y="368">云数据库 NoSQL</text>
+
+    <rect x="484" y="392" width="6" height="20" fill="#B8E600"/>
+    <text x="500" y="408">云存储（头像 / 图片）</text>
+
+    <rect x="484" y="432" width="6" height="20" fill="#B8E600"/>
+    <text x="500" y="448">云调用 / 微信开放接口</text>
+
+    <rect x="484" y="472" width="6" height="20" fill="#B8E600"/>
+    <text x="500" y="488">免运维 · 自动弹性</text>
+  </g>
+
+  <!-- Col 3: 工具链 -->
+  <rect x="848" y="210" width="368" height="440" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="848" y="210" width="368" height="50" rx="12" fill="#B8E600"/>
+  <rect x="848" y="240" width="368" height="20" fill="#B8E600"/>
+  <text x="1032" y="240" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">工具链</text>
+  <text x="1032" y="270" font-size="11" fill="#1F2A37" text-anchor="middle">开发 &amp; 协作</text>
+
+  <g font-size="13" fill="#333333">
+    <rect x="876" y="312" width="6" height="20" fill="#B8E600"/>
+    <text x="892" y="328">微信开发者工具</text>
+
+    <rect x="876" y="352" width="6" height="20" fill="#B8E600"/>
+    <text x="892" y="368">VSCode + 编辑器插件</text>
+
+    <rect x="876" y="392" width="6" height="20" fill="#B8E600"/>
+    <text x="892" y="408">npm（云函数依赖）</text>
+
+    <rect x="876" y="432" width="6" height="20" fill="#B8E600"/>
+    <text x="892" y="448">Git 版本管理</text>
+
+    <rect x="876" y="472" width="6" height="20" fill="#B8E600"/>
+    <text x="892" y="488">Claude Code 协作</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">04 / 12</text>
+</svg>

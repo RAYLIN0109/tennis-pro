@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "网球圈",
+  "enablePullDownRefresh": false,
   "usingComponents": {}
 }

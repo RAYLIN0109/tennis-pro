@@ -199,6 +199,65 @@
       ]
     },
     {
+      "name": "posts",
+      "description": "网球圈帖子",
+      "fields": {
+        "_id": "string (auto)",
+        "author_id": "string (OPENID)",
+        "content": "string (max 5000)",
+        "images": "array<string> (cloud fileIDs)",
+        "video": "string (cloud fileID, optional)",
+        "topic": "string (约球/技术/装备/赛事/其他)",
+        "location": "object { lat, lng, name, address }",
+        "tags": "array<string>",
+        "like_count": "number",
+        "comment_count": "number",
+        "view_count": "number",
+        "is_pinned": "boolean",
+        "status": "string (active, hidden, reported)",
+        "created_at": "Date",
+        "updated_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["status", "created_at"] },
+        { "fields": ["topic", "status", "created_at"] },
+        { "fields": ["author_id"] },
+        { "fields": ["is_pinned", "created_at"] }
+      ]
+    },
+    {
+      "name": "comments",
+      "description": "帖子评论",
+      "fields": {
+        "_id": "string (auto)",
+        "post_id": "string",
+        "author_id": "string (OPENID)",
+        "content": "string",
+        "reply_to": "string (评论ID，可选)",
+        "status": "string (visible, hidden)",
+        "created_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["post_id", "created_at"] },
+        { "fields": ["author_id"] }
+      ]
+    },
+    {
+      "name": "likes",
+      "description": "点赞记录",
+      "fields": {
+        "_id": "string (auto)",
+        "target_type": "string (post, comment)",
+        "target_id": "string",
+        "user_id": "string (OPENID)",
+        "created_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["target_type", "target_id", "user_id"], "unique": true },
+        { "fields": ["user_id"] }
+      ]
+    },
+    {
       "name": "notifications",
       "description": "通知表",
       "fields": {
@@ -213,6 +272,24 @@
       },
       "indexes": [
         { "fields": ["user_id", "is_read", "created_at"] }
+      ]
+    },
+    {
+      "name": "subscribe_records",
+      "description": "用户订阅模板消息记录",
+      "fields": {
+        "_id": "string (auto)",
+        "user_id": "string (openid)",
+        "template_id": "string (微信模板ID)",
+        "template_type": "string (order_pay_success/order_cancel/activity_reminder/coach_audit)",
+        "subscribe_status": "string (accept/reject/ban)",
+        "subscribe_time": "Date",
+        "scene": "string (订阅场景：payment/cancel/activity_join/coach_apply)",
+        "expire_at": "Date"
+      },
+      "indexes": [
+        { "fields": ["user_id", "template_type"] },
+        { "fields": ["user_id", "subscribe_time"] }
       ]
     }
   ]

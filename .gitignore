@@ -5,3 +5,4 @@ project.private.config.json
 *.local
 dist/
 .qoder/
+.trae/skills/ppt-master/

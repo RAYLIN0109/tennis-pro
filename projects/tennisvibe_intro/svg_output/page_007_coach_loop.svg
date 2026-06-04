@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_007_coach_loop.svg
+  Rhythm: breathing (left flow / right design points)
+  Spec:  spec_lock.md §1–7, outline.md page 07
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">06 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">关键模块 · 教练闭环</text>
+  <text x="64" y="166" font-size="13" fill="#777777">申请 → 审核 → 选角色 全流程</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- Left card: 入驻流程 -->
+  <rect x="64" y="210" width="540" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="88" y="244" font-size="16" font-weight="700" fill="#B8E600">教练入驻流程</text>
+
+  <!-- 8 flow steps, each 38 tall, starting y=270 -->
+  <g font-size="12" fill="#333333">
+    <rect x="88"  y="278" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="294">1. 用户在「我的」发起教练申请，填写资料 + 上传认证图片</text>
+
+    <rect x="88"  y="318" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="334">2. 云函数 coach/applyCoach 校验字段 + 去重（user_id 唯一）</text>
+
+    <rect x="88"  y="358" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="374">3. 状态置为 pending，等待平台审核</text>
+
+    <rect x="88"  y="398" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="414">4. 管理员调用 approve / reject（云开发控制台 / 二期后台）</text>
+
+    <rect x="88"  y="438" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="454">5. 状态变为 active，通知模块推送结果给用户</text>
+
+    <rect x="88"  y="478" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="494">6. 教练可被球友在列表 / 搜索中检索到</text>
+
+    <rect x="88"  y="518" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="534">7. 球友选择教练 → 选择时段 → 创建订单</text>
+
+    <rect x="88"  y="558" width="4" height="20" fill="#B8E600"/>
+    <text x="100" y="574">8. 订单完成后产生评价，回写教练平均分</text>
+  </g>
+
+  <!-- Right card: 关键设计点 -->
+  <rect x="636" y="210" width="580" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="660" y="244" font-size="16" font-weight="700" fill="#B8E600">关键设计点</text>
+
+  <!-- 6 design points: 2 cols x 3 rows, each row 100 tall, y=270/370/470 -->
+  <g font-size="12">
+    <!-- row 1 -->
+    <text x="660" y="284" font-weight="700" fill="#1F2A37">状态机</text>
+    <text x="660" y="304" fill="#333333">pending / active / suspended 三态；切换由云函数集中控制</text>
+
+    <text x="940" y="284" font-weight="700" fill="#1F2A37">数据去重</text>
+    <text x="940" y="304" fill="#333333">coaches.user_id 唯一索引 → 2001 业务冲突码 → 友好提示</text>
+
+    <!-- row 2 -->
+    <text x="660" y="384" font-weight="700" fill="#1F2A37">角色字段</text>
+    <text x="660" y="404" fill="#333333">users.role 包含 user / coach / venue_owner / admin 多个</text>
+
+    <text x="940" y="384" font-weight="700" fill="#1F2A37">审核权限</text>
+    <text x="940" y="404" fill="#333333">云函数层强制校验 admin 角色；前端入口按角色显隐</text>
+
+    <!-- row 3 -->
+    <text x="660" y="484" font-weight="700" fill="#1F2A37">排期复用</text>
+    <text x="660" y="504" fill="#333333">schedules 表以 resource_type(coach/venue) 多态承载</text>
+
+    <text x="940" y="484" font-weight="700" fill="#1F2A37">评价回写</text>
+    <text x="940" y="504" fill="#333333">review.create 走 db.runTransaction 保证评价与统计一致</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">07 / 12</text>
+</svg>

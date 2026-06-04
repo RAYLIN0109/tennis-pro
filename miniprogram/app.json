@@ -19,7 +19,10 @@
     "pages/user/coach-apply/index",
     "pages/user/privacy/index",
     "pages/user/agreement/index",
-    "pages/tennis-circle/index"
+    "pages/tennis-circle/index",
+    "pages/social/post-detail/index",
+    "pages/social/post-create/index",
+    "pages/notification/list/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",

@@ -1,0 +1,76 @@
+<view class="participants-page">
+  <!-- Header -->
+  <view class="page-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="header-info">
+      <text class="header-title">参与者</text>
+      <text class="header-count">{{ participants.length }}人已报名</text>
+    </view>
+    <view class="header-right"></view>
+  </view>
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-section">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- List -->
+  <scroll-view wx:else scroll-y class="list-scroll" bindscrolltolower="loadMore">
+    <view class="participants-list">
+      <!-- Creator card at top -->
+      <view class="participant-card creator-card">
+        <view class="card-avatar-wrap">
+          <image wx:if="{{creator.avatar}}" src="{{creator.avatar}}" class="card-avatar" mode="aspectFill" />
+          <view wx:else class="card-avatar-placeholder">
+            <text>{{ creator.initial }}</text>
+          </view>
+          <view class="badge-creator">创建者</view>
+        </view>
+        <view class="card-info">
+          <text class="card-name">{{ creator.nickname }}</text>
+          <text wx:if="{{creator.level}}" class="card-level">等级: {{ creator.level }}</text>
+          <text class="card-joined">创建了此活动</text>
+        </view>
+      </view>
+
+      <!-- Divider -->
+      <view class="divider-row">
+        <text class="divider-line"></text>
+        <text class="divider-text">报名球友</text>
+        <text class="divider-line"></text>
+      </view>
+
+      <!-- Normal participants -->
+      <view wx:for="{{participantList}}" wx:key="user_id" class="participant-card" data-user="{{item.user_id}}" data-index="{{index}}">
+        <view class="card-avatar-wrap">
+          <image wx:if="{{item.avatar}}" src="{{item.avatar}}" class="card-avatar" mode="aspectFill" />
+          <view wx:else class="card-avatar-placeholder">
+            <text>{{ item.initial }}</text>
+          </view>
+        </view>
+        <view class="card-info">
+          <text class="card-name">{{ item.nickname }}</text>
+          <text wx:if="{{item.level}}" class="card-level">等级: {{ item.level }}</text>
+          <text class="card-joined">{{ item.joinedText }}</text>
+        </view>
+      </view>
+
+      <!-- Empty state -->
+      <empty-state wx:if="{{participantList.length === 0 && !loading}}" tip="还没有球友报名~" />
+
+      <!-- Load more -->
+      <view wx:if="{{loadingMore}}" class="load-more">
+        <text class="load-more-text">加载更多...</text>
+      </view>
+      <view wx:elif="{{hasMore}}" class="load-more">
+        <text class="load-more-text">上拉加载更多</text>
+      </view>
+      <view wx:else class="load-more">
+        <text class="load-more-text">— 已显示全部 —</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

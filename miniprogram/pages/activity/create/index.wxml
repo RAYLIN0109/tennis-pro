@@ -1,1 +1,235 @@
-<view class="page-container"><empty-state title="即将开放" description="发起活动功能即将上线" /></view>
+<view class="activity-create-page">
+  <scroll-view class="page-content" scroll-y>
+    <!-- Header -->
+    <view class="page-header">
+      <view class="header-left" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <text class="header-title">发布活动</text>
+      <view class="header-right"></view>
+    </view>
+
+    <!-- Form Content -->
+    <view class="form-container">
+      <!-- Activity Type -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">🎾</text>
+          <text class="section-title">活动类型</text>
+          <text class="section-required">*</text>
+        </view>
+        <view class="type-grid">
+          <view 
+            wx:for="{{activityTypes}}" 
+            wx:key="value"
+            class="type-card {{ form.type === item.value ? 'active' : '' }}"
+            bindtap="selectType"
+            data-value="{{item.value}}"
+          >
+            <text class="type-emoji">{{ item.icon }}</text>
+            <text class="type-label">{{ item.label }}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Title -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">📝</text>
+          <text class="section-title">活动标题</text>
+          <text class="section-required">*</text>
+        </view>
+        <view class="input-wrapper">
+          <input 
+            class="form-input" 
+            placeholder="输入活动标题，吸引更多球友参与" 
+            value="{{form.title}}"
+            bindinput="onTitleInput"
+            maxlength="50"
+          />
+          <text class="input-length">{{ form.title.length }}/50</text>
+        </view>
+      </view>
+
+      <!-- Description -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">📖</text>
+          <text class="section-title">活动介绍</text>
+        </view>
+        <view class="textarea-wrapper">
+          <textarea 
+            class="form-textarea" 
+            placeholder="介绍活动亮点、注意事项等（可选）" 
+            value="{{form.description}}"
+            bindinput="onDescInput"
+            maxlength="500"
+          />
+          <text class="textarea-length">{{ form.description.length }}/500</text>
+        </view>
+      </view>
+
+      <!-- Time Selection -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">🕐</text>
+          <text class="section-title">活动时间</text>
+          <text class="section-required">*</text>
+        </view>
+        <view class="time-section">
+          <!-- 开始时间 -->
+          <view class="time-block">
+            <text class="time-block-label">开始时间</text>
+            <view class="time-pickers">
+              <picker mode="date" value="{{startDate}}" start="{{todayDate}}" end="{{maxDate}}" bindchange="onStartDateChange">
+                <view class="time-picker-btn">
+                  <text class="time-picker-text">{{startDateText || '选择日期'}}</text>
+                  <text class="time-picker-arrow">▼</text>
+                </view>
+              </picker>
+              <picker mode="time" value="{{startTime}}" bindchange="onStartTimeChange">
+                <view class="time-picker-btn">
+                  <text class="time-picker-text">{{startTimeText || '选择时间'}}</text>
+                  <text class="time-picker-arrow">▼</text>
+                </view>
+              </picker>
+            </view>
+          </view>
+
+          <!-- 结束时间 -->
+          <view class="time-block">
+            <text class="time-block-label">结束时间</text>
+            <view class="time-pickers">
+              <picker mode="date" value="{{endDate}}" start="{{startDate || todayDate}}" end="{{maxDate}}" bindchange="onEndDateChange">
+                <view class="time-picker-btn">
+                  <text class="time-picker-text">{{endDateText || '选择日期'}}</text>
+                  <text class="time-picker-arrow">▼</text>
+                </view>
+              </picker>
+              <picker mode="time" value="{{endTime}}" bindchange="onEndTimeChange">
+                <view class="time-picker-btn">
+                  <text class="time-picker-text">{{endTimeText || '选择时间'}}</text>
+                  <text class="time-picker-arrow">▼</text>
+                </view>
+              </picker>
+            </view>
+          </view>
+          <view class="time-result">
+            <text class="time-result-text">{{form.start_time && form.end_time ? form.start_time + ' — ' + form.end_time : '请选择活动开始和结束时间'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Location -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">📍</text>
+          <text class="section-title">活动地点</text>
+          <text class="section-required">*</text>
+        </view>
+        <view class="location-wrapper">
+          <input 
+            class="form-input location-input" 
+            placeholder="搜索或输入活动地点" 
+            value="{{form.location_name}}"
+            bindinput="onLocationInput"
+          />
+          <view class="location-btn" bindtap="chooseLocation">
+            <text class="location-btn-icon">📍</text>
+          </view>
+        </view>
+        <text class="location-tip">点击定位图标获取当前位置</text>
+      </view>
+
+      <!-- Participants -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">👥</text>
+          <text class="section-title">人数设置</text>
+          <text class="section-required">*</text>
+        </view>
+        <view class="people-section">
+          <view class="people-card">
+            <text class="people-label">最少人数</text>
+            <view class="people-control">
+              <view class="control-btn minus {{ form.min_participants <= 1 ? 'disabled' : '' }}" bindtap="decreaseMin">
+                <text>−</text>
+              </view>
+              <view class="control-display">
+                <text class="control-value">{{ form.min_participants }}</text>
+                <text class="control-unit">人</text>
+              </view>
+              <view class="control-btn plus {{ form.min_participants >= form.max_participants - 1 ? 'disabled' : '' }}" bindtap="increaseMin">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+          <view class="people-card">
+            <text class="people-label">最多人数</text>
+            <view class="people-control">
+              <view class="control-btn minus {{ form.max_participants <= form.min_participants + 1 ? 'disabled' : '' }}" bindtap="decreaseMax">
+                <text>−</text>
+              </view>
+              <view class="control-display">
+                <text class="control-value">{{ form.max_participants }}</text>
+                <text class="control-unit">人</text>
+              </view>
+              <view class="control-btn plus {{ form.max_participants >= 100 ? 'disabled' : '' }}" bindtap="increaseMax">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- Fee -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">💰</text>
+          <text class="section-title">活动费用</text>
+        </view>
+        <view class="fee-wrapper">
+          <text class="fee-symbol">¥</text>
+          <input 
+            class="fee-input" 
+            type="digit" 
+            placeholder="0" 
+            value="{{form.fee}}"
+            bindinput="onFeeInput"
+          />
+          <text class="fee-unit">元/人</text>
+          <view class="fee-switch" bindtap="toggleFree">
+            <text class="fee-switch-text">{{ form.fee === '' || parseFloat(form.fee) === 0 ? '免费' : '收费' }}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Tags -->
+      <view class="form-section">
+        <view class="section-header">
+          <text class="section-icon">🏷️</text>
+          <text class="section-title">活动标签</text>
+        </view>
+        <view class="tags-wrapper">
+          <view 
+            wx:for="{{tagItems}}" 
+            wx:key="name"
+            class="tag-chip {{ item.selected ? 'active' : '' }}"
+            bindtap="toggleTag"
+            data-tag="{{item.name}}"
+          >
+            {{ item.name }}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Bottom padding for floating button -->
+    <view class="safe-bottom-floating"></view>
+  </scroll-view>
+
+  <!-- Floating Submit Button -->
+  <view class="fab-submit {{ canSubmit ? '' : 'disabled' }}" bindtap="submitForm">
+    <text class="fab-submit-text">发布活动</text>
+  </view>
+</view>

@@ -1,6 +1,9 @@
 /**
  * 管理员审核通过
  */
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function approve(db, openid, event) {
   const { coachId } = event
 
@@ -33,6 +36,22 @@ module.exports = async function approve(db, openid, event) {
       created_at: new Date()
     }
   })
+
+  // 异步发送模板消息
+  cloud.callFunction({
+    name: 'notification',
+    data: {
+      action: 'sendTemplate',
+      templateType: 'coach_audit',
+      openid: coach.user_id,
+      page: 'pages/user/profile/index',
+      data: {
+        result: '审核通过',
+        reason: '恭喜，您的教练认证已通过审核！',
+        auditTime: new Date().toLocaleString('zh-CN')
+      }
+    }
+  }).catch(err => console.error('[coach:approve] 发送模板消息失败:', err))
 
   return { code: 0 }
 }

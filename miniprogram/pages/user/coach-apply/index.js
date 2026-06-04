@@ -1,5 +1,6 @@
 const CoachService = require('../../../services/coach')
 const { getProfile } = require('../../../utils/auth')
+const { subscribeCoachAudit } = require('../../../utils/subscribe')
 
 const PRESET_TAGS = ['青少年', '成人', '初学者', '进阶', '双打', '体能', '备战比赛']
 
@@ -102,6 +103,9 @@ Page({
 
     this.setData({ submitting: true })
     wx.showLoading({ title: '提交中...', mask: true })
+
+    // 先请求订阅授权（不阻塞提交流程）
+    subscribeCoachAudit()
 
     const formData = {
       real_name: this.data.form.real_name,

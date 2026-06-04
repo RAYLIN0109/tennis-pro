@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_011_roadmap.svg
+  Rhythm: dense (3-phase Gantt-style timeline)
+  Spec:  spec_lock.md §1–7, outline.md page 11
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">10 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">路线图（Roadmap）</text>
+  <text x="64" y="166" font-size="13" fill="#777777">2026 / 05 → 2026 / 12 · 三阶段交付</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- Month axis: y=220, x=216 to 1216, 8 months -->
+  <g font-size="10" fill="#777777">
+    <line x1="216" y1="240" x2="1216" y2="240" stroke="#E5E5E0"/>
+    <text x="216"  y="234" text-anchor="start">2026 / 05</text>
+    <text x="341"  y="234" text-anchor="middle">06</text>
+    <text x="466"  y="234" text-anchor="middle">07</text>
+    <text x="591"  y="234" text-anchor="middle">08</text>
+    <text x="716"  y="234" text-anchor="middle">09</text>
+    <text x="841"  y="234" text-anchor="middle">10</text>
+    <text x="966"  y="234" text-anchor="middle">11</text>
+    <text x="1216" y="234" text-anchor="end">2026 / 12</text>
+  </g>
+
+  <!-- Month grid lines -->
+  <g stroke="#F0F0EB" stroke-width="1">
+    <line x1="278.5" y1="260" x2="278.5" y2="600"/>
+    <line x1="403.5" y1="260" x2="403.5" y2="600"/>
+    <line x1="528.5" y1="260" x2="528.5" y2="600"/>
+    <line x1="653.5" y1="260" x2="653.5" y2="600"/>
+    <line x1="778.5" y1="260" x2="778.5" y2="600"/>
+    <line x1="903.5" y1="260" x2="903.5" y2="600"/>
+    <line x1="1028.5" y1="260" x2="1028.5" y2="600"/>
+    <line x1="1153.5" y1="260" x2="1153.5" y2="600"/>
+  </g>
+
+  <!-- Now marker at start of June 2026 -->
+  <line x1="278.5" y1="260" x2="278.5" y2="600" stroke="#1F2A37" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="246" y="600" width="64" height="20" rx="10" fill="#1F2A37"/>
+  <text x="278" y="614" font-size="10" font-weight="700" fill="#B8E600" text-anchor="middle">当前</text>
+
+  <!-- Phase 1: May - early June (x=216..341) -->
+  <text x="64" y="288" font-size="14" font-weight="700" fill="#1F2A37">Phase 1</text>
+  <text x="64" y="306" font-size="10" fill="#777777">体验闭环</text>
+  <rect x="216" y="278" width="125" height="28" rx="6" fill="#B8E600"/>
+  <text x="278.5" y="298" font-size="11" font-weight="700" fill="#1F2A37" text-anchor="middle">5/1 - 6/10</text>
+  <!-- milestone dot -->
+  <circle cx="278.5" cy="320" r="5" fill="#B8E600"/>
+  <text x="278.5" y="344" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M1 体验闭环完成</text>
+  <text x="278.5" y="358" font-size="9" fill="#777777" text-anchor="middle">21 页面 / 8 组件 / 种子数据</text>
+
+  <!-- Phase 2: June - Sep (x=278..778) -->
+  <text x="64" y="408" font-size="14" font-weight="700" fill="#1F2A37">Phase 2</text>
+  <text x="64" y="426" font-size="10" fill="#777777">交易闭环</text>
+  <rect x="278" y="398" width="500" height="28" rx="6" fill="#B8E600"/>
+  <text x="528" y="418" font-size="11" font-weight="700" fill="#1F2A37" text-anchor="middle">6/15 - 9/30 · 进行中</text>
+  <!-- milestones at 403, 528, 653 -->
+  <circle cx="403.5" cy="440" r="5" fill="#B8E600"/>
+  <text x="403.5" y="464" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M2 订单+模拟支付</text>
+  <circle cx="528.5" cy="440" r="5" fill="#B8E600"/>
+  <text x="528.5" y="464" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M3 评价闭环</text>
+  <circle cx="653.5" cy="440" r="5" fill="#B8E600"/>
+  <text x="653.5" y="464" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M4 通知 + 收藏</text>
+
+  <!-- Phase 3: Oct - Dec (x=778..1216) -->
+  <text x="64" y="528" font-size="14" font-weight="700" fill="#1F2A37">Phase 3</text>
+  <text x="64" y="546" font-size="10" fill="#777777">运营闭环</text>
+  <rect x="778" y="518" width="438" height="28" rx="6" fill="#E6F7C8" stroke="#B8E600"/>
+  <text x="997" y="538" font-size="11" font-weight="700" fill="#1F2A37" text-anchor="middle">10/1 - 12/31 · 待启动</text>
+  <!-- milestones at 903, 1028, 1153 -->
+  <circle cx="903.5"  cy="560" r="5" fill="#B8E600"/>
+  <text x="903.5"  y="584" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M5 真实支付</text>
+  <circle cx="1028.5" cy="560" r="5" fill="#B8E600"/>
+  <text x="1028.5" y="584" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M6 后台+数据看板</text>
+  <circle cx="1153.5" cy="560" r="5" fill="#B8E600"/>
+  <text x="1153.5" y="584" font-size="10" font-weight="700" fill="#1F2A37" text-anchor="middle">M7 会员 / 社区运营</text>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">11 / 12</text>
+</svg>

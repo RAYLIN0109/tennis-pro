@@ -77,6 +77,10 @@
         <text class="menu-label">我的订单</text>
         <text class="menu-arrow">></text>
       </view>
+      <view class="menu-item" bindtap="goMyActivities">
+        <text class="menu-label">我的活动</text>
+        <text class="menu-arrow">></text>
+      </view>
       <view class="menu-item" bindtap="goReviews">
         <text class="menu-label">我的评价</text>
         <text class="menu-arrow">></text>

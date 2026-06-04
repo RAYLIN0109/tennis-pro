@@ -1,1 +1,162 @@
-<view class="page-container"><empty-state title="即将开放" description="活动详情功能即将上线" /></view>
+<view class="activity-detail">
+  <scroll-view scroll-y class="scroll-content">
+    <!-- Header / Cover -->
+    <view class="header">
+      <image wx:if="{{activity.cover_image}}" src="{{activity.cover_image}}" class="cover-image" mode="aspectFill" />
+      <view wx:else class="cover-placeholder">
+        <text class="placeholder-icon">🎾</text>
+      </view>
+      <view class="header-overlay">
+        <view class="status-tag {{activity.status}}">
+          {{ getStatusText(activity.status) }}
+        </view>
+        <text class="title">{{ activity.title }}</text>
+      </view>
+    </view>
+
+    <view class="content">
+      <!-- Info Section -->
+      <view class="info-section">
+        <view class="info-row">
+          <text class="label">🕐 时间</text>
+          <text class="value">{{ formatTime(activity.start_time) }} - {{ formatTime(activity.end_time) }}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">📍 地点</text>
+          <text class="value">{{ activity.location_name }}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">💰 费用</text>
+          <text class="value fee">{{ formatFee(activity.fee) }}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">👥 人数</text>
+          <text class="value">{{ activity.current_count }}/{{ activity.max_participants }} 人</text>
+        </view>
+        <!-- Countdown -->
+        <view class="countdown-row">
+          <text class="countdown-label">⏰ 倒计时</text>
+          <text class="countdown-value {{countdownClass}}">{{ countdownText }}</text>
+        </view>
+        <!-- Description -->
+        <view wx:if="{{activity.description}}" class="desc-section">
+          <text class="desc-title">📝 活动介绍</text>
+          <text class="desc-content">{{ activity.description }}</text>
+        </view>
+      </view>
+
+      <!-- Tags -->
+      <view wx:if="{{activity.tags && activity.tags.length > 0}}" class="tags-section">
+        <text class="section-title">🏷️ 标签</text>
+        <view class="tags-wrap">
+          <text wx:for="{{activity.tags}}" wx:key="index" class="tag">{{ item }}</text>
+        </view>
+      </view>
+
+      <!-- Creator -->
+      <view class="creator-section">
+        <text class="section-title">👤 创建者</text>
+        <view class="creator-card">
+          <image wx:if="{{activity.has_creator_info && activity.creator_avatar}}" src="{{activity.creator_avatar}}" class="avatar" mode="aspectFill" />
+          <view wx:else class="avatar-placeholder">
+            <text>{{ activity.creator_initial }}</text>
+          </view>
+          <view class="creator-info">
+            <text class="nickname">{{ activity.creator_nickname }}</text>
+            <text wx:if="{{activity.creator_level}}" class="level">等级: {{ activity.creator_level }}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Participants -->
+      <view class="participants-section">
+        <view class="section-header-row">
+          <text class="section-title">🎯 参与者 ({{ participants.length }})</text>
+          <text wx:if="{{participants.length > 0}}" class="view-all" bindtap="goParticipantList">查看全部 →</text>
+        </view>
+        <view class="participants-avatars">
+          <view wx:for="{{displayParticipants}}" wx:key="index" class="participant-item">
+            <image wx:if="{{item.has_user_info && item.user_avatar}}" src="{{item.user_avatar}}" class="participant-avatar" mode="aspectFill" />
+            <view wx:else class="participant-avatar-placeholder">
+              <text>{{ item.user_initial }}</text>
+            </view>
+            <text class="participant-name">{{ item.user_nickname }}</text>
+          </view>
+          <!-- Extra count -->
+          <view wx:if="{{extraParticipantCount > 0}}" class="participant-item extra">
+            <view class="participant-extra">
+              <text>+{{ extraParticipantCount }}</text>
+            </view>
+          </view>
+          <!-- Empty state -->
+          <empty-state wx:if="{{participants.length === 0}}" tip="暂无参与者，快来第一个报名吧~" />
+        </view>
+      </view>
+
+      <!-- Map Preview -->
+      <view wx:if="{{activity.location}}" class="map-section">
+        <text class="section-title">📍 活动地点</text>
+        <view class="map-preview" bindtap="openLocation">
+          <view class="map-placeholder">
+            <text>🗺️</text>
+          </view>
+          <text class="map-address">{{ activity.location.address || activity.location.name }}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Bottom Bar -->
+  <view class="bottom-bar">
+    <!-- Share -->
+    <button class="action-btn share-btn" open-type="share">
+      <text>⬆️</text>
+    </button>
+
+    <!-- Creator: Management button -->
+    <block wx:if="{{isCreator}}">
+      <view class="action-btn primary" bindtap="showManageMenu">
+        <text>管理活动</text>
+      </view>
+    </block>
+
+    <!-- Normal user (not joined): Join button -->
+    <block wx:elif="{{!isJoined}}">
+      <view class="action-btn primary {{activity.status !== 'open' ? 'disabled' : ''}}" bindtap="joinActivity">
+        <text>{{ activity.status === 'open' ? '立即参加' : (activity.status === 'full' ? '名额已满' : (activity.status === 'ended' ? '已结束' : '已取消')) }}</text>
+      </view>
+    </block>
+
+    <!-- Normal user (joined): Quit / Joined state -->
+    <block wx:else>
+      <view class="action-btn primary" style="background:#4CAF50;" bindtap="showQuitConfirm">
+        <text>✅ 已报名</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- Manage Menu Overlay (creator only) -->
+  <view wx:if="{{showManageMenuOverlay}}" class="manage-menu-overlay" bindtap="hideManageMenu">
+    <view class="manage-menu" catchtap="stopPropagation">
+      <text class="manage-menu-title">管理活动</text>
+
+      <view class="manage-menu-item" bindtap="goEditActivity">
+        <text class="item-icon">📝</text>
+        <text class="item-text">编辑活动信息</text>
+        <text class="item-desc">修改描述/标签等</text>
+      </view>
+      <view class="manage-menu-item" bindtap="goParticipantList">
+        <text class="item-icon">📋</text>
+        <text class="item-text">参与者名单</text>
+        <text class="item-desc">{{ participants.length }}人已报名</text>
+      </view>
+      <view class="manage-menu-item danger" bindtap="confirmCancelActivity">
+        <text class="item-icon">⛔</text>
+        <text class="item-text">取消活动</text>
+        <text class="item-desc">将通知所有参与者</text>
+      </view>
+
+      <view class="manage-menu-cancel" bindtap="hideManageMenu">取消</view>
+    </view>
+  </view>
+</view>

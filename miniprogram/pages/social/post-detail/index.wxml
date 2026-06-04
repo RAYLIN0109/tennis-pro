@@ -1,0 +1,142 @@
+<view class="post-detail">
+  <scroll-view scroll-y class="scroll-content" bindscrolltolower="loadMoreComments">
+    <!-- Loading -->
+    <view wx:if="{{loading}}" class="loading-section">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <block wx:else>
+      <!-- Author Header -->
+      <view class="author-header">
+        <view class="author-left" bindtap="goBack">
+          <text class="back-arrow">←</text>
+        </view>
+        <image wx:if="{{authorInfo && authorInfo.avatar_url}}" src="{{authorInfo.avatar_url}}" class="author-avatar" mode="aspectFill" />
+        <view wx:else class="author-avatar-placeholder">
+          <text>{{ authorInfo && authorInfo.nickname ? authorInfo.nickname.charAt(0) : '?' }}</text>
+        </view>
+        <view class="author-detail">
+          <text class="author-name">{{ authorInfo ? authorInfo.nickname : '未知用户' }}</text>
+          <text class="post-time">{{ formatTime(post.created_at) }}</text>
+        </view>
+        <view wx:if="{{post.author_id === app_global_openid}}" class="delete-btn" bindtap="confirmDelete">
+          <text>···</text>
+        </view>
+      </view>
+
+      <!-- Topic Badge -->
+      <view class="topic-row">
+        <view class="topic-badge">{{ post.topic }}</view>
+        <text wx:if="{{post.location && post.location.name}}" class="location-text">📍 {{ post.location.name }}</text>
+      </view>
+
+      <!-- Content -->
+      <view class="post-content">
+        <text class="content-text">{{ post.content }}</text>
+      </view>
+
+      <!-- Images -->
+      <view wx:if="{{post.images && post.images.length > 0}}" class="images-grid">
+        <image
+          wx:for="{{post.images}}"
+          wx:key="index"
+          src="{{item}}"
+          class="grid-image {{post.images.length === 1 ? 'single' : ''}} {{post.images.length === 4 ? 'four' : ''}}"
+          mode="aspectFill"
+          data-images="{{post.images}}"
+          data-index="{{index}}"
+          bindtap="previewImages"
+        />
+      </view>
+
+      <!-- Tags -->
+      <view wx:if="{{post.tags && post.tags.length > 0}}" class="tags-row">
+        <text wx:for="{{post.tags}}" wx:key="index" class="tag">#{{ item }}</text>
+      </view>
+
+      <!-- Stats -->
+      <view class="stats-row">
+        <text class="stat-text">{{ post.view_count || 0 }} 次浏览</text>
+        <text class="stat-text">{{ post.like_count || 0 }} 次点赞</text>
+      </view>
+
+      <!-- Actions -->
+      <view class="actions-row">
+        <view class="action-btn {{isLiked ? 'liked' : ''}}" bindtap="toggleLike">
+          <text class="action-icon">{{ isLiked ? '❤️' : '🤍' }}</text>
+          <text class="action-text">{{ isLiked ? '已赞' : '点赞' }}</text>
+        </view>
+        <view class="action-btn" bindtap="focusCommentInput">
+          <text class="action-icon">💬</text>
+          <text class="action-text">评论</text>
+        </view>
+      </view>
+
+      <!-- Divider -->
+      <view class="divider-section">
+        <text class="divider-line"></text>
+        <text class="divider-text">评论 ({{ post.comment_count || 0 }})</text>
+        <text class="divider-line"></text>
+      </view>
+
+      <!-- Comments -->
+      <view wx:if="{{comments.length === 0}}" class="no-comments">
+        <text>暂无评论，快来抢沙发吧~</text>
+      </view>
+
+      <view wx:for="{{comments}}" wx:key="_id" class="comment-item">
+        <image wx:if="{{item.author_info && item.author_info.avatar_url}}" src="{{item.author_info.avatar_url}}" class="comment-avatar" mode="aspectFill" />
+        <view wx:else class="comment-avatar-placeholder">
+          <text>{{ item.author_info && item.author_info.nickname ? item.author_info.nickname.charAt(0) : '?' }}</text>
+        </view>
+        <view class="comment-body">
+          <view class="comment-header">
+            <text class="comment-author">{{ item.author_info ? item.author_info.nickname : '未知用户' }}</text>
+            <text class="comment-time">{{ formatTime(item.created_at) }}</text>
+          </view>
+          <view class="comment-content">
+            <block wx:if="{{item.reply_to_info}}">
+              <text class="reply-tag">回复</text>
+              <text class="reply-to-name">@{{ item.reply_to_info.author_name }}：</text>
+            </block>
+            <text>{{ item.content }}</text>
+          </view>
+          <view class="comment-actions">
+            <text class="comment-reply-btn" data-comment="{{item}}" bindtap="focusReply">回复</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Load More Comments -->
+      <view wx:if="{{loadingComments}}" class="load-more-comments">
+        <text>加载中...</text>
+      </view>
+      <view wx:elif="{{hasMoreComments}}" class="load-more-comments" bindtap="loadMoreComments">
+        <text>加载更多评论</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- Comment Input -->
+  <view wx:if="{{showCommentInput}}" class="comment-input-bar">
+    <view wx:if="{{replyToComment}}" class="reply-hint">
+      <text>回复 @{{ replyToComment.author_info ? replyToComment.author_info.nickname : '用户' }}</text>
+      <text class="cancel-reply" bindtap="cancelReply">取消</text>
+    </view>
+    <view class="input-row">
+      <input
+        class="comment-input"
+        placeholder="{{replyToComment ? '输入回复...' : '写下你的评论...'}}"
+        value="{{commentText}}"
+        bindinput="onCommentInput"
+        focus="true"
+        confirm-type="send"
+        bindconfirm="submitComment"
+      />
+      <view class="send-btn {{commentText.trim() ? 'active' : ''}}" bindtap="submitComment">
+        <text>发送</text>
+      </view>
+    </view>
+  </view>
+</view>

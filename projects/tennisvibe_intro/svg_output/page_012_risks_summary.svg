@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_012_risks_summary.svg
+  Rhythm: dense (5 risks + 3 decisions + closing)
+  Spec:  spec_lock.md §1–7, outline.md page 12
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">11 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">风险与关键决策</text>
+  <text x="64" y="166" font-size="13" fill="#777777">上线前必须回答 / 必须避免</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- 5 risk cards: w=220, gap=13, x=64/297/530/763/996, h=210, y=210 -->
+  <!-- Risk 1 -->
+  <rect x="64"  y="210" width="220" height="210" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64"  y="210" width="220" height="36"  rx="10" fill="#1F2A37"/>
+  <text x="174" y="234" font-size="13" font-weight="700" fill="#B8E600" text-anchor="middle">R1 · 支付合规</text>
+  <text x="80"  y="270" font-size="11" font-weight="700" fill="#1F2A37">影响</text>
+  <text x="80"  y="286" font-size="10" fill="#333333">真实交易前置</text>
+  <text x="80"  y="300" font-size="10" fill="#333333">ICP / 微信支付</text>
+  <text x="80"  y="328" font-size="11" font-weight="700" fill="#1F2A37">缓解</text>
+  <text x="80"  y="344" font-size="10" fill="#333333">先模拟支付，</text>
+  <text x="80"  y="358" font-size="10" fill="#333333">二期待资质</text>
+  <text x="80"  y="392" font-size="10" font-weight="700" fill="#B8E600">等级：● HIGH</text>
+
+  <!-- Risk 2 -->
+  <rect x="297" y="210" width="220" height="210" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="297" y="210" width="220" height="36"  rx="10" fill="#1F2A37"/>
+  <text x="407" y="234" font-size="13" font-weight="700" fill="#B8E600" text-anchor="middle">R2 · 并发占座</text>
+  <text x="313" y="270" font-size="11" font-weight="700" fill="#1F2A37">影响</text>
+  <text x="313" y="286" font-size="10" fill="#333333">双订 + 重复评价</text>
+  <text x="313" y="328" font-size="11" font-weight="700" fill="#1F2A37">缓解</text>
+  <text x="313" y="344" font-size="10" fill="#333333">schedules 原子</text>
+  <text x="313" y="358" font-size="10" fill="#333333">db.runTransaction</text>
+  <text x="313" y="392" font-size="10" font-weight="700" fill="#B8E600">等级：● HIGH</text>
+
+  <!-- Risk 3 -->
+  <rect x="530" y="210" width="220" height="210" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="530" y="210" width="220" height="36"  rx="10" fill="#1F2A37"/>
+  <text x="640" y="234" font-size="13" font-weight="700" fill="#B8E600" text-anchor="middle">R3 · 资质审核</text>
+  <text x="546" y="270" font-size="11" font-weight="700" fill="#1F2A37">影响</text>
+  <text x="546" y="286" font-size="10" fill="#333333">教练真实性 / 纠纷</text>
+  <text x="546" y="328" font-size="11" font-weight="700" fill="#1F2A37">缓解</text>
+  <text x="546" y="344" font-size="10" fill="#333333">认证图 + 后台审批</text>
+  <text x="546" y="392" font-size="10" font-weight="700" fill="#FF8A00">等级：● MED</text>
+
+  <!-- Risk 4 -->
+  <rect x="763" y="210" width="220" height="210" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="763" y="210" width="220" height="36"  rx="10" fill="#1F2A37"/>
+  <text x="873" y="234" font-size="13" font-weight="700" fill="#B8E600" text-anchor="middle">R4 · 冷启动</text>
+  <text x="779" y="270" font-size="11" font-weight="700" fill="#1F2A37">影响</text>
+  <text x="779" y="286" font-size="10" fill="#333333">缺教练 / 缺球友</text>
+  <text x="779" y="328" font-size="11" font-weight="700" fill="#1F2A37">缓解</text>
+  <text x="779" y="344" font-size="10" fill="#333333">种子数据 + 邀请码</text>
+  <text x="779" y="358" font-size="10" fill="#333333">先 3 家球馆</text>
+  <text x="779" y="392" font-size="10" font-weight="700" fill="#B8E600">等级：● HIGH</text>
+
+  <!-- Risk 5 -->
+  <rect x="996" y="210" width="220" height="210" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="996" y="210" width="220" height="36"  rx="10" fill="#1F2A37"/>
+  <text x="1106" y="234" font-size="13" font-weight="700" fill="#B8E600" text-anchor="middle">R5 · 政策变动</text>
+  <text x="1012" y="270" font-size="11" font-weight="700" fill="#1F2A37">影响</text>
+  <text x="1012" y="286" font-size="10" fill="#333333">云函数 / 收费策略</text>
+  <text x="1012" y="328" font-size="11" font-weight="700" fill="#1F2A37">缓解</text>
+  <text x="1012" y="344" font-size="10" fill="#333333">关注 release notes</text>
+  <text x="1012" y="358" font-size="10" fill="#333333">预留迁移空间</text>
+  <text x="1012" y="392" font-size="10" font-weight="700" fill="#777777">等级：● LOW</text>
+
+  <!-- 3 key decisions -->
+  <text x="64"  y="456" font-size="16" font-weight="700" fill="#B8E600">需要立即回答的 3 个关键决策</text>
+
+  <!-- Decision 1 -->
+  <rect x="64"  y="468" width="370" height="120" rx="10" fill="#1F2A37"/>
+  <text x="84"  y="498" font-size="14" font-weight="700" fill="#B8E600">D1 · 支付模式</text>
+  <text x="84"  y="524" font-size="11" fill="#FFFFFF">A  微信支付（需要 ICP+商户号）</text>
+  <text x="84"  y="542" font-size="11" fill="#FFFFFF">B  平台代收（先跑通 + 财务兜底）</text>
+  <text x="84"  y="568" font-size="11" font-weight="700" fill="#B8E600">→ 推荐 B · 先 90 天跑通业务再切换</text>
+
+  <!-- Decision 2 -->
+  <rect x="454" y="468" width="370" height="120" rx="10" fill="#1F2A37"/>
+  <text x="474" y="498" font-size="14" font-weight="700" fill="#B8E600">D2 · 审核通道</text>
+  <text x="474" y="524" font-size="11" fill="#FFFFFF">A  控制台手工审核（演示期）</text>
+  <text x="474" y="542" font-size="11" fill="#FFFFFF">B  简易管理后台（Phase 3 启动）</text>
+  <text x="474" y="568" font-size="11" font-weight="700" fill="#B8E600">→ 推荐 A · 控制台 + 一人值守</text>
+
+  <!-- Decision 3 -->
+  <rect x="844" y="468" width="372" height="120" rx="10" fill="#1F2A37"/>
+  <text x="864" y="498" font-size="14" font-weight="700" fill="#B8E600">D3 · 城市节奏</text>
+  <text x="864" y="524" font-size="11" fill="#FFFFFF">A  单一城市深耕（上海/北京）</text>
+  <text x="864" y="542" font-size="11" fill="#FFFFFF">B  多城市并行（3 城 + 5 球馆）</text>
+  <text x="864" y="568" font-size="11" font-weight="700" fill="#B8E600">→ 推荐 A · 单城 50 球馆 / 100 教练</text>
+
+  <!-- Closing line -->
+  <text x="64"  y="624" font-size="14" font-weight="700" fill="#1F2A37">下一步</text>
+  <text x="64"  y="646" font-size="12" fill="#333333">①  选 3 家球馆签合作意向  ②  招募 5 名种子教练  ③  上线 v0.1 邀请码内测</text>
+
+  <!-- Footer -->
+  <text x="64" y="700" font-size="10" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="700" font-size="10" fill="#777777" text-anchor="end">12 / 12</text>
+</svg>

@@ -1,6 +1,9 @@
 /**
  * 管理员驳回
  */
+const cloud = require('wx-server-sdk')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
+
 module.exports = async function reject(db, openid, event) {
   const { coachId, reason } = event
 
@@ -34,6 +37,22 @@ module.exports = async function reject(db, openid, event) {
       created_at: new Date()
     }
   })
+
+  // 异步发送模板消息
+  cloud.callFunction({
+    name: 'notification',
+    data: {
+      action: 'sendTemplate',
+      templateType: 'coach_audit',
+      openid: coach.user_id,
+      page: 'pages/user/profile/index',
+      data: {
+        result: '审核未通过',
+        reason: reason,
+        auditTime: new Date().toLocaleString('zh-CN')
+      }
+    }
+  }).catch(err => console.error('[coach:reject] 发送模板消息失败:', err))
 
   return { code: 0 }
 }

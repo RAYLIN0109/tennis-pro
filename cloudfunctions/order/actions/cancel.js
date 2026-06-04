@@ -43,5 +43,22 @@ module.exports = async function cancel(db, openid, event) {
     })
   }
 
+  // 异步发送订单取消模板消息
+  cloud.callFunction({
+    name: 'notification',
+    data: {
+      action: 'sendTemplate',
+      templateType: 'order_cancel',
+      openid,
+      page: 'pages/order/list/index',
+      data: {
+        title: order.resource_snapshot?.name || '网球服务订单',
+        orderNo: order.order_no,
+        cancelTime: now.toLocaleString('zh-CN'),
+        reason: reason || '用户主动取消'
+      }
+    }
+  }).catch(err => console.error('[order:cancel] 发送模板消息失败:', err))
+
   return { code: 0, data: { orderId } }
 }

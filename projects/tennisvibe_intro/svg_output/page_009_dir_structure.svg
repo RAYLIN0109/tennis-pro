@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_009_dir_structure.svg
+  Rhythm: dense (3 directory tree columns)
+  Spec:  spec_lock.md §1–7, outline.md page 09
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">08 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">项目目录结构</text>
+  <text x="64" y="166" font-size="13" fill="#777777">前端 / 云函数 / 数据库 三段式</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- 3 columns -->
+  <!-- Col 1: miniprogram -->
+  <rect x="64" y="210" width="376" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64" y="210" width="376" height="40" rx="12" fill="#B8E600"/>
+  <rect x="64" y="230" width="376" height="20" fill="#B8E600"/>
+  <text x="252" y="236" font-size="14" font-weight="700" fill="#1F2A37" text-anchor="middle">miniprogram/  小程序前端</text>
+
+  <g font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#333333">
+    <text x="80" y="278" font-weight="700" fill="#1F2A37">app.js / app.json / app.wxss</text>
+    <text x="80" y="300">common/</text>
+    <text x="92" y="318">├── constants/  (5 个业务枚举)</text>
+    <text x="92" y="336">├── images/     (图标 / tabBar)</text>
+    <text x="92" y="354">├── styles/     (theme / global)</text>
+    <text x="92" y="372">├── text/       (协议 markdown)</text>
+    <text x="92" y="390">└── mock-data.js</text>
+    <text x="80" y="412" font-weight="700" fill="#1F2A37">components/  (8 个自定义组件)</text>
+    <text x="80" y="434" font-weight="700" fill="#1F2A37">pages/</text>
+    <text x="92" y="452">├── index/   tennis-circle/</text>
+    <text x="92" y="470">├── coach/   activity/</text>
+    <text x="92" y="488">├── order/   review/</text>
+    <text x="92" y="506">└── user/    (login / profile / ...)</text>
+    <text x="80" y="528">services/  (8 个 service 封装)</text>
+    <text x="80" y="546">utils/    (request / auth / date / ...)</text>
+  </g>
+
+  <!-- Col 2: cloudfunctions -->
+  <rect x="452" y="210" width="376" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="452" y="210" width="376" height="40" rx="12" fill="#B8E600"/>
+  <rect x="452" y="230" width="376" height="20" fill="#B8E600"/>
+  <text x="640" y="236" font-size="14" font-weight="700" fill="#1F2A37" text-anchor="middle">cloudfunctions/  云函数</text>
+
+  <g font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#333333">
+    <text x="468" y="278" font-weight="700" fill="#1F2A37">user/  index + actions/</text>
+    <text x="480" y="296">├── login.js</text>
+    <text x="480" y="314">├── getProfile.js</text>
+    <text x="480" y="332">├── updateProfile.js</text>
+    <text x="480" y="350">└── getMyInfo.js</text>
+    <text x="468" y="372" font-weight="700" fill="#1F2A37">coach/  7 actions</text>
+    <text x="480" y="390">list / detail / search</text>
+    <text x="480" y="408">applyCoach / approve / reject</text>
+    <text x="480" y="426">getMyStatus</text>
+    <text x="468" y="448">order/    6 actions</text>
+    <text x="468" y="466">review/   4 actions</text>
+    <text x="468" y="484">schedule/ 4 actions</text>
+    <text x="468" y="502">venue/    3 actions</text>
+    <text x="468" y="520" fill="#FF8A00">activity/  占位（内联）</text>
+    <text x="468" y="538" fill="#FF8A00">notification/ 占位（内联）</text>
+    <text x="468" y="568" fill="#777777">exports.main = async (event)=&gt;{</text>
+    <text x="468" y="586" fill="#777777">  switch(event.action) {</text>
+    <text x="468" y="604" fill="#777777">    case ... } }</text>
+  </g>
+
+  <!-- Col 3: database -->
+  <rect x="840" y="210" width="376" height="420" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="840" y="210" width="376" height="40" rx="12" fill="#B8E600"/>
+  <rect x="840" y="210" width="376" height="20" fill="#B8E600" opacity="0"/>
+  <rect x="840" y="230" width="376" height="20" fill="#B8E600"/>
+  <text x="1028" y="236" font-size="14" font-weight="700" fill="#1F2A37" text-anchor="middle">database/  数据库 &amp; 文档</text>
+
+  <g font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#333333">
+    <text x="856" y="278" font-weight="700" fill="#1F2A37">collections.json</text>
+    <text x="868" y="296">· 8 张集合 schema 定义</text>
+    <text x="868" y="314">· 含字段类型 / 必填约束</text>
+    <text x="856" y="340" font-weight="700" fill="#1F2A37">indexes.json</text>
+    <text x="868" y="358">· 唯一索引：_openid · user_id</text>
+    <text x="868" y="376">· 复合索引：status + created_at</text>
+    <text x="856" y="402" font-weight="700" fill="#1F2A37">init-data/</text>
+    <text x="868" y="420">├── coaches.json  种子数据</text>
+    <text x="868" y="438">└── venues.json   种子数据</text>
+    <text x="856" y="478" font-weight="700" fill="#1F2A37">docs/  阶段规划</text>
+    <text x="868" y="496">├── phase1-plan.md  体验闭环</text>
+    <text x="868" y="514">├── phase2-plan.md  交易闭环</text>
+    <text x="868" y="532">└── phase3-plan.md  运营闭环</text>
+    <text x="856" y="558" font-weight="700" fill="#1F2A37">CLAUDE.md  项目知识库</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">09 / 12</text>
+</svg>

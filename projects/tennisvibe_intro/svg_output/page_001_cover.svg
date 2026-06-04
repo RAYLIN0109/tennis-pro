@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_001_cover.svg
+  Rhythm: anchor (full-bleed dark cover with primary decoration)
+  Spec:  design_spec.md §6, spec_lock.md §1–7
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <!-- Background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#1F2A37"/>
+
+  <!-- Right darker band -->
+  <rect x="1010" y="0" width="270" height="720" fill="#161F2A"/>
+
+  <!-- Left primary vertical bar -->
+  <rect x="0" y="0" width="14" height="720" fill="#B8E600"/>
+
+  <!-- Tennis ring decoration (right side) -->
+  <g transform="translate(820,80)" fill="none" stroke="#B8E600">
+    <circle cx="160" cy="160" r="155" stroke-width="3"/>
+    <circle cx="160" cy="160" r="120" stroke-width="2"/>
+    <circle cx="160" cy="160" r="85"  stroke-width="1.5"/>
+    <!-- seam lines suggesting tennis ball texture -->
+    <path d="M 5 160 Q 160 60 315 160" stroke-width="1.2" opacity="0.6"/>
+    <path d="M 5 160 Q 160 260 315 160" stroke-width="1.2" opacity="0.6"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="270" font-size="88" font-weight="700" fill="#B8E600" letter-spacing="2">TennisVibe</text>
+  <text x="80" y="350" font-size="32" font-weight="700" fill="#FFFFFF">网球生态小程序 · 项目介绍</text>
+
+  <!-- Tagline -->
+  <text x="80" y="408" font-size="16" fill="#E6F7C8">WeChat Mini Program × Cloud Development · 体验闭环 + 交易闭环</text>
+
+  <!-- Divider -->
+  <rect x="80" y="450" width="600" height="2" fill="#B8E600"/>
+
+  <!-- Meta lines -->
+  <g font-size="14" fill="#FFFFFF">
+    <text x="80" y="495">技术栈   微信小程序 · 微信云开发 · 云函数 · 云数据库</text>
+    <text x="80" y="525">当前迭代  约教练 MVP 闭环完成 ｜ 活动 / 支付 / 管理后台  下一阶段</text>
+    <text x="80" y="555">项目代号  tennis-eco  ｜  AppID  wxd78e98cafe1dff67</text>
+  </g>
+
+  <!-- Bottom caption -->
+  <text x="80" y="678" font-size="11" fill="#777777">2026 · Project Briefing</text>
+</svg>

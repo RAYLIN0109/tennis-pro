@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_008_data_model.svg
+  Rhythm: dense (8 collection cards in 2x4 grid)
+  Spec:  spec_lock.md §1–7, outline.md page 08
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">07 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">数据模型设计</text>
+  <text x="64" y="166" font-size="13" fill="#777777">8 张核心集合（database/collections.json）</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- Row 1 -->
+  <rect x="64"  y="210" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64"  y="210" width="6"   height="100" fill="#B8E600"/>
+  <text x="84"  y="240" font-size="15" font-weight="700" fill="#1F2A37">users</text>
+  <text x="170" y="240" font-size="11" fill="#777777">用户档案</text>
+  <text x="84"  y="272" font-size="11" fill="#333333">_openid, nickname, avatar, role, phone, created_at</text>
+
+  <rect x="664" y="210" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="664" y="210" width="6"   height="100" fill="#B8E600"/>
+  <text x="684" y="240" font-size="15" font-weight="700" fill="#1F2A37">coaches</text>
+  <text x="780" y="240" font-size="11" fill="#777777">教练扩展资料</text>
+  <text x="684" y="272" font-size="11" fill="#333333">user_id → users, level, specialties[], hourly_rate, status, cert_imgs[]</text>
+
+  <!-- Row 2 -->
+  <rect x="64"  y="320" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64"  y="320" width="6"   height="100" fill="#B8E600"/>
+  <text x="84"  y="350" font-size="15" font-weight="700" fill="#1F2A37">orders</text>
+  <text x="170" y="350" font-size="11" fill="#777777">订单</text>
+  <text x="84"  y="382" font-size="11" fill="#333333">user_id, order_type, target_id, total_amount(分), status, schedule_slot</text>
+
+  <rect x="664" y="320" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="664" y="320" width="6"   height="100" fill="#B8E600"/>
+  <text x="684" y="350" font-size="15" font-weight="700" fill="#1F2A37">reviews</text>
+  <text x="780" y="350" font-size="11" fill="#777777">评价</text>
+  <text x="684" y="382" font-size="11" fill="#333333">order_id(唯一), target_type, target_id, rating(1-5), content, images[]</text>
+
+  <!-- Row 3 -->
+  <rect x="64"  y="430" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64"  y="430" width="6"   height="100" fill="#B8E600"/>
+  <text x="84"  y="460" font-size="15" font-weight="700" fill="#1F2A37">schedules</text>
+  <text x="180" y="460" font-size="11" fill="#777777">排期（多态）</text>
+  <text x="84"  y="492" font-size="11" fill="#333333">resource_type, resource_id, date, slots[{ start, end, booked }]</text>
+
+  <rect x="664" y="430" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="664" y="430" width="6"   height="100" fill="#B8E600"/>
+  <text x="684" y="460" font-size="15" font-weight="700" fill="#1F2A37">venues</text>
+  <text x="770" y="460" font-size="11" fill="#777777">场地</text>
+  <text x="684" y="492" font-size="11" fill="#333333">name, address, geo, price_per_hour, facilities[]</text>
+
+  <!-- Row 4 -->
+  <rect x="64"  y="540" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="64"  y="540" width="6"   height="100" fill="#B8E600"/>
+  <text x="84"  y="570" font-size="15" font-weight="700" fill="#1F2A37">activities</text>
+  <text x="180" y="570" font-size="11" fill="#777777">活动</text>
+  <text x="84"  y="602" font-size="11" fill="#333333">type, title, start_time, location, max_players, fee, status</text>
+
+  <rect x="664" y="540" width="552" height="100" rx="10" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <rect x="664" y="540" width="6"   height="100" fill="#B8E600"/>
+  <text x="684" y="570" font-size="15" font-weight="700" fill="#1F2A37">notifications</text>
+  <text x="800" y="570" font-size="11" fill="#777777">通知</text>
+  <text x="684" y="602" font-size="11" fill="#333333">user_id, type, title, content, read, created_at</text>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">08 / 12</text>
+</svg>

@@ -1,0 +1,48 @@
+<view class="notification-list">
+  <view class="header">
+    <text class="title">通知</text>
+    <view class="action-btn" bindtap="markAllRead">
+      <text>全部已读</text>
+    </view>
+  </view>
+
+  <scroll-view 
+    scroll-y 
+    class="list-scroll"
+    refresher-enabled="true"
+    :refresher-triggered="refreshing"
+    bindrefresherrefresh="onPullDownRefresh"
+    bindscrolltolower="onReachBottom"
+  >
+    <view wx:if="{{notificationList.length === 0}}" class="empty-state">
+      <view class="empty-icon">🔔</view>
+      <text class="empty-text">暂无通知</text>
+    </view>
+
+    <view 
+      wx:for="{{notificationList}}" 
+      wx:key="_id"
+      class="notification-item {{ !item.is_read ? 'unread' : '' }}"
+      bindtap="goDetail"
+      data-notification="{{item}}"
+    >
+      <view class="icon-wrap">
+        <text class="icon">{{ getIcon(item.type) }}</text>
+      </view>
+      <view class="content-wrap">
+        <text class="title">{{ item.title }}</text>
+        <text class="content">{{ item.content }}</text>
+        <text class="time">{{ formatTime(item.created_at) }}</text>
+      </view>
+      <view class="action-wrap">
+        <view wx:if="{{!item.is_read}}" class="mark-btn" bindtap="markAsRead" data-id="{{item._id}}">
+          <text>标为已读</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{loading}}" class="loading-more">
+      <text>加载中...</text>
+    </view>
+  </scroll-view>
+</view>

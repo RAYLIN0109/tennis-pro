@@ -1,18 +1,73 @@
-<view class="activity-page page-container">
-  <view class="tab-bar">
-    <view wx:for="{{tabs}}" wx:key="*this" class="tab-item {{currentTab === index ? 'tab-active' : ''}}" data-index="{{index}}" bindtap="onTabChange">
-      {{item}}
+<view class="activity-list">
+  <view class="tabs">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="index"
+      class="tab {{ currentTab === index ? 'active' : '' }}"
+      bindtap="onTabChange"
+      data-index="{{index}}"
+    >
+      {{ item }}
     </view>
   </view>
 
-  <empty-state
-    title="即将开放"
-    description="{{currentTab === 0 ? '约球功能即将上线，敬请期待' : currentTab === 1 ? '看比赛功能即将上线，敬请期待' : '暂无活动'}}"
-    actionText="{{currentTab < 2 ? '' : ''}}"
-  />
+  <view class="content">
+    <view wx:if="{{activityList.length === 0 && !loading}}" class="empty-state">
+      <view class="empty-icon">🎾</view>
+      <text class="empty-text">暂无活动</text>
+    </view>
 
-  <!-- FAB -->
+    <scroll-view
+      scroll-y
+      class="list-scroll"
+      refresher-enabled="true"
+      refresher-triggered="{{refreshing}}"
+      bindrefresherrefresh="onPullDownRefresh"
+      bindscrolltolower="onReachBottom"
+    >
+      <view wx:for="{{activityList}}" wx:key="_id" class="activity-card" bindtap="goDetail" data-id="{{item._id}}">
+        <view class="card-header">
+          <image wx:if="{{item.cover_image}}" src="{{item.cover_image}}" class="cover-image" />
+          <view wx:else class="cover-placeholder">
+            <text class="placeholder-icon">🏆</text>
+          </view>
+          <view class="status-tag {{item.status}}">
+            {{ getStatusText(item.status) }}
+          </view>
+        </view>
+
+        <view class="card-body">
+          <text class="title">{{ item.title }}</text>
+          <view class="meta">
+            <view class="time">
+              <text class="icon">🕐</text>
+              <text>{{ formatTime(item.start_time) }} - {{ formatTime(item.end_time) }}</text>
+            </view>
+            <view class="location">
+              <text class="icon">📍</text>
+              <text>{{ item.location_name }}</text>
+            </view>
+          </view>
+          <view class="footer">
+            <view class="participants">
+              <text>{{ item.participants_count }}/{{ item.max_participants }} 人参与</text>
+            </view>
+            <text class="fee">{{ formatFee(item.fee) }}</text>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{loading}}" class="loading-more">
+        <text>加载中...</text>
+      </view>
+
+      <view wx:if="{{!loading && !hasMore && activityList.length > 0}}" class="no-more">
+        <text>— 已加载全部 —</text>
+      </view>
+    </scroll-view>
+  </view>
+
   <view class="fab" bindtap="onCreate">
-    <text class="fab-text">+</text>
+    <text class="fab-icon">+</text>
   </view>
 </view>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  page_006_business_flow.svg
+  Rhythm: anchor (6-step process + data convention panel)
+  Spec:  spec_lock.md §1–7, outline.md page 06
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <rect x="64" y="64" width="4" height="24" fill="#B8E600"/>
+  <text x="80" y="82" font-size="14" font-weight="600" fill="#1F2A37">05 / 11</text>
+  <text x="64" y="138" font-size="36" font-weight="700" fill="#1F2A37">核心业务流程</text>
+  <text x="64" y="166" font-size="13" fill="#777777">球友下单 → 教练完成 → 课后评价</text>
+  <rect x="64" y="180" width="1152" height="1" fill="#B8E600"/>
+
+  <!-- 6 step boxes: x=64/258/452/646/840/1034, w=178, h=150, y=210 -->
+  <!-- step 1: 浏览 -->
+  <rect x="64"   y="210" width="178" height="150" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="153"  y="248" font-size="32" font-weight="700" fill="#B8E600" text-anchor="middle">①</text>
+  <text x="153"  y="280" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">浏览</text>
+  <text x="153"  y="312" font-size="12" fill="#333333" text-anchor="middle">首页 / 教练列表</text>
+  <text x="153"  y="332" font-size="12" fill="#333333" text-anchor="middle">筛选 · 搜索</text>
+
+  <!-- arrow 1-2 -->
+  <polygon points="244,277 252,273 252,281" fill="#B8E600"/>
+
+  <!-- step 2: 选时段 -->
+  <rect x="258"  y="210" width="178" height="150" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="347"  y="248" font-size="32" font-weight="700" fill="#B8E600" text-anchor="middle">②</text>
+  <text x="347"  y="280" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">选时段</text>
+  <text x="347"  y="312" font-size="12" fill="#333333" text-anchor="middle">time-slot-picker</text>
+  <text x="347"  y="332" font-size="12" fill="#333333" text-anchor="middle">查看 30min 时段</text>
+  <polygon points="438,277 446,273 446,281" fill="#B8E600"/>
+
+  <!-- step 3: 下单 -->
+  <rect x="452"  y="210" width="178" height="150" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="541"  y="248" font-size="32" font-weight="700" fill="#B8E600" text-anchor="middle">③</text>
+  <text x="541"  y="280" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">下单</text>
+  <text x="541"  y="312" font-size="12" fill="#333333" text-anchor="middle">创建订单</text>
+  <text x="541"  y="332" font-size="12" fill="#333333" text-anchor="middle">原子占用排期</text>
+  <polygon points="632,277 640,273 640,281" fill="#B8E600"/>
+
+  <!-- step 4: 支付 -->
+  <rect x="646"  y="210" width="178" height="150" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="735"  y="248" font-size="32" font-weight="700" fill="#B8E600" text-anchor="middle">④</text>
+  <text x="735"  y="280" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">支付</text>
+  <text x="735"  y="312" font-size="12" fill="#333333" text-anchor="middle">模拟支付</text>
+  <text x="735"  y="332" font-size="12" fill="#777777" text-anchor="middle">(二期接入微信支付)</text>
+  <polygon points="826,277 834,273 834,281" fill="#B8E600"/>
+
+  <!-- step 5: 履约 -->
+  <rect x="840"  y="210" width="178" height="150" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="929"  y="248" font-size="32" font-weight="700" fill="#B8E600" text-anchor="middle">⑤</text>
+  <text x="929"  y="280" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">履约</text>
+  <text x="929"  y="312" font-size="12" fill="#333333" text-anchor="middle">教练确认 / 用户到场</text>
+  <text x="929"  y="332" font-size="12" fill="#333333" text-anchor="middle">确认完成</text>
+  <polygon points="1020,277 1028,273 1028,281" fill="#B8E600"/>
+
+  <!-- step 6: 评价 -->
+  <rect x="1034" y="210" width="178" height="150" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="1123" y="248" font-size="32" font-weight="700" fill="#B8E600" text-anchor="middle">⑥</text>
+  <text x="1123" y="280" font-size="18" font-weight="700" fill="#1F2A37" text-anchor="middle">评价</text>
+  <text x="1123" y="312" font-size="12" fill="#333333" text-anchor="middle">评分 + 文字 + 图片</text>
+  <text x="1123" y="332" font-size="12" fill="#333333" text-anchor="middle">沉淀教练口碑</text>
+
+  <!-- Data convention panel -->
+  <rect x="64" y="396" width="1152" height="240" rx="12" fill="#FFFFFF" stroke="#E5E5E0"/>
+  <text x="88" y="426" font-size="18" font-weight="700" fill="#B8E600">关键数据约定（贯穿全链路）</text>
+
+  <!-- 5 conventions: 2 cols x 3 rows (last row 1) -->
+  <g font-size="13">
+    <!-- col 1 -->
+    <text x="88"  y="468" font-weight="700" fill="#1F2A37">金额单位</text>
+    <text x="200" y="468" fill="#333333">一律以「分（cents）」存储 / 传输；展示时 ÷ 100 保留 2 位小数</text>
+
+    <text x="88"  y="500" font-weight="700" fill="#1F2A37">时间格式</text>
+    <text x="200" y="500" fill="#333333">Date / YYYY-MM-DD / { start:'HH:mm', end:'HH:mm' } 三种形态混用</text>
+
+    <text x="88"  y="532" font-weight="700" fill="#1F2A37">订单状态</text>
+    <text x="200" y="532" fill="#333333">pending_payment → paid → completed → reviewed；cancelled / refunded 并列</text>
+
+    <!-- col 2 -->
+    <text x="620" y="468" font-weight="700" fill="#1F2A37">唯一性约束</text>
+    <text x="730" y="468" fill="#333333">coaches.user_id · reviews.order_id（1 单 1 评）</text>
+
+    <text x="620" y="500" font-weight="700" fill="#1F2A37">错误码</text>
+    <text x="730" y="500" fill="#333333">0 成功 / 9001 未知 action / 9002 参数错 / 9999 服务器异常 / 2001 业务冲突</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="64" y="678" font-size="11" fill="#777777">TennisVibe · 网球生态小程序项目介绍</text>
+  <text x="1216" y="678" font-size="11" fill="#777777" text-anchor="end">06 / 12</text>
+</svg>
